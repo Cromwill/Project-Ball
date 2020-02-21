@@ -1,32 +1,21 @@
 ﻿using UnityEngine;
 
-public class ObjectPool : MonoBehaviour, IObjectPool
+public abstract class ObjectPool<T> : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _ballPrefab;
+    protected PoolObject _prefab;
     [SerializeField]
-    private Ball[] _balls;
+    protected T[] _objectArray;
 
-    private void OnValidate()
+    protected Transform _selfTransform;
+
+    private void OnEnable()
     {
-        if (_ballPrefab.GetComponent<Ball>() == null)
-            _ballPrefab = null;
+        _selfTransform = GetComponent<Transform>();
     }
 
-    private void GenerateObjectPool()
-    {
+    protected abstract void GenerateObjectPool(int count);
+    protected abstract T GetObject(int index);
+    protected abstract T[] GetObjects(int count);
 
-    }
-
-    public Ball[] GetBalls(int count)
-    {
-        Ball[] balls = new Ball[count];
-
-        for(int i = 0; i < balls.Length; i++)
-        {
-            balls[i] = _balls[i];
-        }
-
-        return balls;
-    }
 }

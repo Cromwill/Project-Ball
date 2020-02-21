@@ -2,48 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class Spawn : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _ball;
-    [SerializeField]
     private int _ballCount;
     [SerializeField]
-    private ObjectPool _pool;
+    private ObjectPoolForBalls _pool;
 
-    private Rect _spawnRect;
-    private BoxCollider2D _selfCollider;
+    private Vector2 _spawnPositionMin;
+    private Vector2 _spawnPositionMax;
 
-    private void OnValidate()
+    private void OnEnable()
     {
-        if(_ball.GetComponent<Ball>() == null)
-        {
-            _ball = null;
-        }
+        _pool.BallsGenerated += SpawnBalls;
+    }
+
+    private void OnDisable()
+    {
+        _pool.BallsGenerated -= SpawnBalls;
     }
 
     private void Start()
     {
-        _selfCollider = GetComponent<BoxCollider2D>();
-        _spawnRect = new Rect(_selfCollider.transform.position, _selfCollider.size);
+        Vector2 halfSize = GetComponent<BoxCollider2D>().size * 0.5f;
+        Vector2 centerPosition = GetComponent<Transform>().position;
+        _spawnPositionMin = centerPosition + (halfSize * -1);
+        _spawnPositionMax = centerPosition + (halfSize * 1);
+        _pool.Generate(_ballCount * 2);
     }
 
-    public void SpawnCircle()
+    public void SpawnBalls()
     {
-        StartCoroutine(SpawnCircle(0.05f, _ballCount));
+        Debug.Log("SpawnBall");
+        StartCoroutine(SpawnObjects(2.0f/ _ballCount, _ballCount));
     }
 
-    private Vector2 GetRandomPosition(Rect rect)
-    {
-        return new Vector2(Random.Range(rect.xMin, rect.xMax), Random.Range(rect.yMin, rect.yMax));
-    }
-
-    private IEnumerator SpawnCircle(float time, int count)
+    private IEnumerator SpawnObjects(float time, int count)
     {
         for (int i = 0; i < count; i++)
         {
-            GameObject go = Instantiate(_ball, GetRandomPosition(_spawnRect), Quaternion.identity);
+            _pool.GetObject().LeaveThePoll(GetRandomPosition(_spawnPositionMin, _spawnPositionMax));
             yield return new WaitForSeconds(time);
         }
+    }
+
+    private Vector2 GetRandomPosition(Vector2 min, Vector2 max)
+    {
+        return new Vector2(Random.Range(min.x, max.x), Random.Range(min.y, max.y));
     }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class FinishBlock : MonoBehaviour
+public class BallReceiver : MonoBehaviour
 {
     [SerializeField]
     private int _winnerCounter;
@@ -21,7 +21,7 @@ public class FinishBlock : MonoBehaviour
 
         if(v != null)
         {
-            v.ReturnToPool();
+            //v.LeaveThePoll();
             _winnerCounter--;
 
             if(_winnerCounter == 0)

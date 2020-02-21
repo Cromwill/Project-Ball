@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer), typeof(PolygonCollider2D))]
 public class BlockReaction : MonoBehaviour
 {
     [SerializeField]
@@ -20,6 +21,7 @@ public class BlockReaction : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _selfSpriteRenderer.color = _colors[_colorCounter];
+        collision.rigidbody.AddForce(collision.relativeVelocity.normalized * 0.5f, ForceMode2D.Impulse);
         _colorCounter--;
         if(_colorCounter < 0)
         {

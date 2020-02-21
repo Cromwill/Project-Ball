@@ -1,52 +1,49 @@
 ﻿using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class Ball : PoolObject
 {
     [SerializeField]
     private float _power;
     [SerializeField]
-    private float _startMass, _actionMass;
-    [SerializeField]
     private Vector2 _maxVelocity;
 
-    private Transform _selfTransform;
-    private Rigidbody2D _rigidbody2D;
-    private bool _isAction;
-
-    private void Start()
-    {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _selfTransform = GetComponent<Transform>();
-        _isAction = false;
-    }
+    private bool _iFound;
 
     private void FixedUpdate()
     {
-        if (_rigidbody2D.velocity.x > _maxVelocity.x)
-            _rigidbody2D.velocity = new Vector2(_maxVelocity.x, _rigidbody2D.velocity.y);
-        if (_rigidbody2D.velocity.y > _maxVelocity.y)
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _maxVelocity.y);
-        if(!_isAction)
-        {
-            _rigidbody2D.mass = _startMass;
-        }
+        SpeedControl();
     }
 
     public void Action(Vector3 target)
     {
-        _isAction = true;
-        _rigidbody2D.mass = _actionMass;
-        _rigidbody2D.AddForce((target - _selfTransform.position).normalized * _power, ForceMode2D.Force);
+        Vector2 direction = (target - _selfTransform.position).normalized;
+        if (IsCanMove(target))
+        {
+            _selfRigidbody.AddForce(direction * _power, ForceMode2D.Force);
+            _selfRigidbody.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+            //_selfTransform.Translate(direction * Time.deltaTime, Space.World);
+        }
     }
 
     public void InAction()
     {
-        _isAction = false;
-        _rigidbody2D.mass = _startMass;
+        _selfRigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        _selfRigidbody.velocity = Vector2.zero;
     }
 
-    public void ReturnToPool()
+    private void SpeedControl()
     {
+        if (_selfRigidbody.velocity.x > _maxVelocity.x)
+            _selfRigidbody.velocity = new Vector2(_maxVelocity.x, _selfRigidbody.velocity.y);
 
+        if (_selfRigidbody.velocity.y > _maxVelocity.y)
+            _selfRigidbody.velocity = new Vector2(_selfRigidbody.velocity.x, _maxVelocity.y);
+    }
+
+    private bool IsCanMove(Vector2 target)
+    {
+        float distance = Vector2.Distance(_selfTransform.position, target);
+
+        return distance > 0.02f;
     }
 }
