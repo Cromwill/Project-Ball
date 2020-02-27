@@ -2,11 +2,11 @@
 
 public class ActionObjectAnchor : MonoBehaviour, IActionObjectAnchor
 {
+    [SerializeField] private Color _idleColor;
+    [SerializeField] private Color _activeColor;
+
     private Transform _selfTransform;
     private SpriteRenderer _selfSpriteRenderer;
-    private const float _idleColorAlpha = 0;
-    private const float _activeColorAlpha = 0.1f;
-    private ColorAlpha _colorAlpha = ColorAlpha.Idle;
 
     public bool IsFree { get; set; }
 
@@ -14,7 +14,7 @@ public class ActionObjectAnchor : MonoBehaviour, IActionObjectAnchor
     {
         _selfTransform = GetComponent<Transform>();
         _selfSpriteRenderer = GetComponent<SpriteRenderer>();
-        _selfSpriteRenderer.color = new Color(1, 1, 1, _idleColorAlpha);
+        _selfSpriteRenderer.color = _idleColor;
         IsFree = true;
     }
 
@@ -28,16 +28,6 @@ public class ActionObjectAnchor : MonoBehaviour, IActionObjectAnchor
 
     public void Toggle()
     {
-        if (_selfSpriteRenderer.color.a == _idleColorAlpha)
-            _selfSpriteRenderer.color = new Color(1, 1, 1, _activeColorAlpha);
-        else
-            _selfSpriteRenderer.color = new Color(1, 1, 1, _idleColorAlpha);
+        _selfSpriteRenderer.color = _selfSpriteRenderer.color == _idleColor ? _activeColor : _idleColor;
     }
-
-    private enum ColorAlpha
-    {
-        Idle,
-        Active
-    }
-
 }

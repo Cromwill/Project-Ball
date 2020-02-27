@@ -1,4 +1,4 @@
-﻿interface IRunable
+﻿public interface IRunable
 {
     void Run();
     void Run<T>(T value);

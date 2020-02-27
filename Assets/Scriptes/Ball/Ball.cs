@@ -17,7 +17,7 @@ public class Ball : ObjectPool, IHaveScorre
 
     private void FixedUpdate()
     {
-        SpeedControl();
+        ControlSpeed();
     }
 
     public int GetScorre()
@@ -40,7 +40,7 @@ public class Ball : ObjectPool, IHaveScorre
         base.ReturnToPool(position);
     }
 
-    private void SpeedControl()
+    private void ControlSpeed()
     {
         if (Mathf.Abs(_selfRigidbody.velocity.x) > _maxVelocity.x)
             _selfRigidbody.velocity = new Vector2(_maxVelocity.x * Mathf.Sign(_selfRigidbody.velocity.x), _selfRigidbody.velocity.y);

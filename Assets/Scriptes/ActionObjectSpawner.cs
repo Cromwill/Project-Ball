@@ -49,11 +49,11 @@ public class ActionObjectSpawner : MonoBehaviour
 
     private bool IsAnchorForActionObject(IActionObjectAnchor anchor)
     {
-        var v = _currenObjectIsAction ? _anchorsForActionObject : _anchorsForSpawnObject;
+        var anchors = _currenObjectIsAction ? _anchorsForActionObject : _anchorsForSpawnObject;
 
-        for (int i = 0; i < v.Length; i++)
+        for (int i = 0; i < anchors.Length; i++)
         {
-            if (v[i].Equals(anchor))
+            if (anchors[i].Equals(anchor))
                 return true;
         }
         return false;
@@ -66,14 +66,14 @@ public class ActionObjectSpawner : MonoBehaviour
         AnchorsChangeState();
         _currentAvatar = Instantiate(actionObject.Avatar).GetComponent<Transform>();
 
-        var v = _currenObjectIsAction ? _anchorsForActionObject : _anchorsForSpawnObject;
+        var anchors = _currenObjectIsAction ? _anchorsForActionObject : _anchorsForSpawnObject;
 
-        for (int i = 0; i < v.Length; i++)
+        for (int i = 0; i < anchors.Length; i++)
         {
-            if (v[i].IsFree)
+            if (anchors[i].IsFree)
             {
-                _currentAvatar.position = v[i].GetPosition();
-                _currentAnchor = v[i];
+                _currentAvatar.position = anchors[i].GetPosition();
+                _currentAnchor = anchors[i];
                 return;
             }
         }
@@ -115,7 +115,8 @@ public class ActionObjectSpawner : MonoBehaviour
 
     private void AnchorsChangeState()
     {
-        for (int i = 0; i < _anchorsForActionObject.Length; i++)
-            _anchorsForActionObject[i].Toggle();
+        var anchors = _currenObjectIsAction ? _anchorsForActionObject : _anchorsForSpawnObject;
+        for (int i = 0; i < anchors.Length; i++)
+            anchors[i].Toggle();
     }
 }

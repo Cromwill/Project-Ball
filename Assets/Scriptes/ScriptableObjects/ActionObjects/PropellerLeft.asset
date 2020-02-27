@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
-  m_Name: Propeller
+  m_Name: PropellerLeft
   m_EditorClassIdentifier: 
   _actionObjectAvatar: {fileID: 5067629753590450909, guid: 9fe3eb1a4617eda47934035063e4630d,
     type: 3}

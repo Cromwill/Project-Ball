@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MouseControl : MonoBehaviour
 {
-    [SerializeField] private ObjectMove _objectMove;
+    [SerializeField] private MoverAroundLocation _objectMove;
     [SerializeField] private ActionObjectSpawner _objectSpawner;
 
     private void Update()
