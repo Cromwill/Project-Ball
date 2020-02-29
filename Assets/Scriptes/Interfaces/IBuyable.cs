@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-public interface IBuyable
+﻿public interface IBuyable
 {
     float Price { get;}
     string Name { get; }

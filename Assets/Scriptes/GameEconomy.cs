@@ -1,36 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameEconomy : MonoBehaviour
 {
-    [SerializeField] private float _priceIncreaseRationObjects;
-    [SerializeField] private float _priceIncreaseRationBoosts;
+    [SerializeField] private float _increase;
     [SerializeField] private ScorreCounter _scorreCounter;
 
-    private IBuyable _currentGood;
     private int _countObjectsOnStage = 1;
-    private int _currentPrice;
+    public event Action PurchaseCompleted;
 
-    public void StartPurchase(IBuyable buyable)
+    public void OnPurchaseCompleted(IBuyable buyable)
     {
-        _currentGood = buyable;
-        _currentPrice = (int)(_currentGood.Price * _countObjectsOnStage * _priceIncreaseRationObjects);
+        _scorreCounter.ReductionScorre(GetPrice(buyable));
+        _countObjectsOnStage++;
+        PurchaseCompleted?.Invoke();
     }
 
-    public void ShowImprovements()
+    public int GetPrice(IBuyable buyable)
     {
-
+        return (int)(buyable.Price * _countObjectsOnStage * _increase);
     }
 
-    public void FinishPurchase(bool isPurchaseDone)
+    public bool EnoughPoints(int scorre)
     {
-        if(isPurchaseDone)
-        {
-            _scorreCounter.ReductionScorre((int)(_currentGood.Price * _countObjectsOnStage * _priceIncreaseRationObjects)); 
-        }
-    }
-
-    public bool EnoughPoints()
-    {
-        return _currentPrice < _scorreCounter.Scorre;
+        return scorre <= _scorreCounter.Scorre;
     }
 }

@@ -42,6 +42,7 @@ public class ActionObjectSpawner : MonoBehaviour
             _currenObject.SetObjectOnScene(Instantiate(_currenObject.ActionObject));
         else
             _currenObject.SetObjectOnScene(_spawnPool.GetObject() as IBuyable);
+        _gameEconomy.OnPurchaseCompleted(_currenObject.ActionObject);
         EndUse();
     }
 

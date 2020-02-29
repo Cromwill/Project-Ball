@@ -10,6 +10,7 @@ public class ProductPanel : MonoBehaviour
     [SerializeField] private Text _priceViewer;
 
     private Button _productButton;
+    private GameEconomy _economy;
 
     private event Action<IGeneratedBy> _chooseProduct;
 
@@ -22,16 +23,29 @@ public class ProductPanel : MonoBehaviour
         _productButton.onClick.AddListener(OnChooseProduct);
     }
 
-    public void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel)
+    private void Update()
+    {
+        OpportunityBuy();
+    }
+
+    public void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy)
     {
         _chooseProduct += listener;
         _productButton.onClick.AddListener(closePanel);
         _productButton.onClick.AddListener(openConfirmPanel);
+        _economy = economy;
+        _economy.PurchaseCompleted += ChangePrice;
+        ChangePrice();
     }
 
-    public void RemoveListenerToButton(Action<IGeneratedBy> listener)
+    public void ChangePrice()
     {
-        _chooseProduct -= listener;
+        _priceViewer.text = _economy.GetPrice(_product.ActionObject).ToString();
+    }
+
+    private void OpportunityBuy()
+    {
+        _productButton.interactable = _economy.EnoughPoints(_economy.GetPrice(_product.ActionObject));
     }
 
     private void OnChooseProduct()
