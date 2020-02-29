@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MouseControl : MonoBehaviour
+public class MouseInput : MonoBehaviour
 {
     [SerializeField] private MoverAroundLocation _objectMove;
     [SerializeField] private ActionObjectSpawner _objectSpawner;
@@ -27,12 +27,12 @@ public class MouseControl : MonoBehaviour
     private bool SearchObject(Vector2 inputPosition)
     {
 
-        var v = Physics2D.OverlapCircle(inputPosition, 0.1f);
-        if (v != null)
+        var hit = Physics2D.OverlapCircle(inputPosition, 0.1f);
+        if (hit != null)
         {
-            if (v.GetComponent<IActionObjectAnchor>() != null && _objectSpawner.IsUsing)
+            if (hit.GetComponent<IActionObjectAnchor>() != null && _objectSpawner.IsUsing)
             {
-                _objectSpawner.ChangeAvatarPositionOnScene(v.GetComponent<IActionObjectAnchor>());
+                _objectSpawner.ChangeAvatarPositionOnScene(hit.GetComponent<IActionObjectAnchor>());
                 return true;
             }
             else

@@ -7,13 +7,6 @@ public class Propeller : ActionObject
 
     private float _actionSpeed;
 
-    public override void SetPosition(Vector2 position)
-    {
-        if (_selfTransform == null)
-            _selfTransform = GetComponent<Transform>();
-        _selfTransform.position = position;
-    }
-
     private void Update()
     {
         Work();

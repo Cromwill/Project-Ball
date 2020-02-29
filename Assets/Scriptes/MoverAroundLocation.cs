@@ -7,7 +7,6 @@ public class MoverAroundLocation : MonoBehaviour
     [SerializeField] private float _minYPosition;
 
     protected Transform _selfTransform;
-    protected Vector3 _startObjectPosition;
     protected Vector3 _nextObjectPosition;
     protected Vector3 _startInputPosition;
 
@@ -19,7 +18,6 @@ public class MoverAroundLocation : MonoBehaviour
     public void SetMovePositionData(Vector2 position)
     {
         _startInputPosition = position;
-        _startObjectPosition = _selfTransform.position;
     }
 
     public virtual void Move(Vector3 position)

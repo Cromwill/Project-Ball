@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00bd6aa8eaf950840ab70197d1f0c1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _price: 100
+  _name: Propeller Right
   _direction: -1
   _startSpeed: 50
 --- !u!1 &3318001292682352473

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-interface IGeneratedBy
+public interface IGeneratedBy
 {
-    GameObject Avatar { get; }
+    GameObject Avatar { get;}
     ActionObject ActionObject { get; }
     ActionObjectScriptableObject.ActionObjectType GetType { get; }
 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestLevel
   m_EditorClassIdentifier: 
   _spawnObjectCount: 13
-  _ballCount: 500
+  _ballCount: 200

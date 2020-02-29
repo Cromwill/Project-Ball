@@ -26,11 +26,11 @@ public class Ball : ObjectPool, IHaveScorre
         return Mathf.FloorToInt(_finishTime - _startTime) * _scoreMultiplier;
     }
 
-    public override void LeaveThePoll(Vector2 position)
+    public override void LeaveThePool(Vector2 position)
     {
         _startTime = Time.time;
         _selfRigidbody.simulated = true;
-        base.LeaveThePoll(position);
+        base.LeaveThePool(position);
     }
 
     public override void ReturnToPool(Vector2 position)

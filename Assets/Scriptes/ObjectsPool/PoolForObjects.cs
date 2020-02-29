@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 
-public class PoolForObjects : MonoBehaviour, IPoolForObjects, IRunable
+public class PoolForObjects : MonoBehaviour, IPoolForObjects
 {
     [SerializeField] protected MonoBehaviour _objectPrefab;
 
@@ -21,7 +22,7 @@ public class PoolForObjects : MonoBehaviour, IPoolForObjects, IRunable
     {
         _poolObjects = new IObjectPool[objectCount];
 
-        for(int i = 0; i < _poolObjects.Length; i++)
+        for (int i = 0; i < _poolObjects.Length; i++)
         {
             IObjectPool obj = (IObjectPool)Instantiate(_objectPrefab);
             obj.SelfObjectForPool = this;
@@ -32,12 +33,7 @@ public class PoolForObjects : MonoBehaviour, IPoolForObjects, IRunable
 
     public virtual IObjectPool GetObject()
     {
-        for(int i = 0; i < _poolObjects.Length; i++)
-        {
-            if (_poolObjects[i].IsInThePool)
-                return _poolObjects[i];
-        }
-        return null;
+        return _poolObjects.First(a=> a.IsInThePool);
     }
 
     public virtual IObjectPool GetObject(int index)
@@ -56,20 +52,5 @@ public class PoolForObjects : MonoBehaviour, IPoolForObjects, IRunable
     public void ReturnObjectToPool(IObjectPool obj)
     {
         obj.ReturnToPool(transform.position);
-    }
-
-    public void Run()
-    {
-        throw new NotImplementedException();
-    }
-
-    public virtual void Run<T>(T value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Run<T, V>(T valueT, V valueV)
-    {
-        throw new NotImplementedException();
     }
 }

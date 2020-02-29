@@ -10,6 +10,6 @@ public class LevelData : MonoBehaviour
     private void Start()
     {
         _objectPoolForBalls.GeneratePool(_levelData.BallCount);
-        _globalSpawn.Run(_levelData.SpawnObjectCount);
+        _globalSpawn.GeneratePool(_levelData.SpawnObjectCount);
     }
 }

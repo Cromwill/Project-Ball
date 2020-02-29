@@ -6,6 +6,8 @@ public class ScorreCounter : MonoBehaviour
 
     private int _scorre;
 
+    public int Scorre => _scorre;
+
     public void AddingScorre(int scorre)
     {
         ChangeScorre(scorre);

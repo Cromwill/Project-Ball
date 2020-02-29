@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-public class LoadLine : MonoBehaviour, IRunable
+public class LoadLine : MonoBehaviour, IRunable<float>
 {
     private Transform _selfTransform;
     private float _time;
@@ -23,24 +23,14 @@ public class LoadLine : MonoBehaviour, IRunable
             _selfTransform.localScale = _finishScale;
     }
 
-    public void Run()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Run<Single>(Single value)
+    public void Run(float value)
     {
         if (_selfTransform == null)
             _selfTransform = GetComponent<Transform>();
 
         _selfTransform.localScale = _startScale;
-        _time = Convert.ToSingle(value);
+        _time = value;
         _step = 1 / _time;
-    }
-
-    public void Run<T, V>(T valueT, V valueV)
-    {
-        throw new System.NotImplementedException();
     }
 
     private void loadLineMove()
@@ -48,4 +38,6 @@ public class LoadLine : MonoBehaviour, IRunable
         _selfTransform.localScale += new Vector3(_step * Time.deltaTime, 0, 0);
         _time -= Time.deltaTime;
     }
+
+
 }
