@@ -15,17 +15,6 @@ public class ActionObjectSpawner : MonoBehaviour
 
     public bool IsUsing => _currenObject != null;
 
-    private void OnEnable()
-    {
-        ActionObjectShopButton.UsingActionObject += SetObjectOnScene;
-        ObjectUIMenuElement.Confirm += ConfirmSetObject;
-    }
-    private void OnDisable()
-    {
-        ActionObjectShopButton.UsingActionObject -= SetObjectOnScene;
-        ObjectUIMenuElement.Confirm -= ConfirmSetObject;
-    }
-
     private void Start()
     {
         _anchorsForActionObject = _actionObjectTilemap.GetComponentsInChildren<IActionObjectAnchor>();
@@ -38,7 +27,7 @@ public class ActionObjectSpawner : MonoBehaviour
             _currenObject.ChangeAnchor(anchor);
     }
 
-    private void SetObjectOnScene(IGeneratedBy actionObject)
+    public void SetObjectOnScene(IGeneratedBy actionObject)
     {
         var avatar = Instantiate(actionObject.Avatar).GetComponent<Transform>();
         _currenObject = new ObjectSpawner(actionObject, avatar);
@@ -47,7 +36,7 @@ public class ActionObjectSpawner : MonoBehaviour
         _currenObject.ChangeAnchor(anchors.First(a => a.IsFree));
     }
 
-    private void ConfirmSetObject()
+    public void ConfirmSetObject()
     {
         if (_currenObject.IsActionObject())
             _currenObject.SetObjectOnScene(Instantiate(_currenObject.ActionObject));
@@ -56,7 +45,7 @@ public class ActionObjectSpawner : MonoBehaviour
         EndUse();
     }
 
-    private void DeclineSetObject()
+    public void DeclineSetObject()
     {
         EndUse();
     }

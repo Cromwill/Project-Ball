@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseInput : MonoBehaviour
 {
@@ -7,19 +8,22 @@ public class MouseInput : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            _objectMove.SetMovePositionData(position);
-        }
-
-        if(Input.GetMouseButton(0))
-        {
-            Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            if (!SearchObject(position))
+            if (Input.GetMouseButtonDown(0))
             {
-                _objectMove.Move(position);
+                Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                _objectMove.SetMovePositionData(position);
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                if (!SearchObject(position))
+                {
+                    _objectMove.Move(position);
+                }
             }
         }
     }

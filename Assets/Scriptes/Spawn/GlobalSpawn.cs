@@ -14,9 +14,8 @@ public class GlobalSpawn : PoolForObjects
     {
         _poolObjects = new IObjectPool[objectCount];
         GenerateObject();
-        _poolObjects[_currentObjectsIndex].LeaveThePool(_startAnchor.GetPosition());
+        (_poolObjects[_currentObjectsIndex] as ObjectPool).LeaveThePoolAndRun(_startAnchor.GetPosition());
         _startAnchor.IsFree = false;
-        (_poolObjects[_currentObjectsIndex] as ObjectPool).Run();
     }
 
     public override IObjectPool GetObject()

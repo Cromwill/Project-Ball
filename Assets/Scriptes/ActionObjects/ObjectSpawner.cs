@@ -8,7 +8,7 @@ public class ObjectSpawner
     private Transform _avatarTransform;
 
     public Transform Avatar => _avatarTransform;
-    public ActionObject ActionObject => _actionObject as ActionObject;
+    public ActionObject ActionObject => _actionObject.ActionObject;
 
     public ObjectSpawner(IGeneratedBy actionObject, Transform avatar)
     {
