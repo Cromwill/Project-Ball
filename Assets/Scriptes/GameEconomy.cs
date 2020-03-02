@@ -11,14 +11,14 @@ public class GameEconomy : MonoBehaviour
 
     public void OnPurchaseCompleted(IBuyable buyable)
     {
-        _scorreCounter.ReductionScorre(GetPrice(buyable));
+        _scorreCounter.ReductionScorre(GetPrice(buyable.Price));
         _countObjectsOnStage++;
         PurchaseCompleted?.Invoke();
     }
 
-    public int GetPrice(IBuyable buyable)
+    public int GetPrice(float price)
     {
-        return (int)(buyable.Price * _countObjectsOnStage * _increase);
+        return (int)(price * _countObjectsOnStage * _increase);
     }
 
     public bool EnoughPoints(int scorre)

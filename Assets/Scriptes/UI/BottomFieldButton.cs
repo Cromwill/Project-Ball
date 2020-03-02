@@ -3,6 +3,9 @@
 public class BottomFieldButton : MonoBehaviour
 {
     [SerializeField] private GameObject _selfPanel;
+    [SerializeField] private int _priority;
+
+    public bool IsOpen => _selfPanel.active;
 
     public void OpenPanel()
     {

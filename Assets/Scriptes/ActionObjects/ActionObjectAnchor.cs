@@ -12,7 +12,7 @@ public class ActionObjectAnchor : MonoBehaviour, IActionObjectAnchor
     public Transform Avatar { get; set; }
     ActionObjectScriptableObject.ActionObjectType IActionObjectAnchor.GetType => _type;
 
-    private void Start()
+    private void Awake()
     {
         _selfTransform = GetComponent<Transform>();
         _selfSpriteRenderer = GetComponent<SpriteRenderer>();

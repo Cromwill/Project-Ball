@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GlobalSpawn : PoolForObjects
 {
@@ -8,10 +7,11 @@ public class GlobalSpawn : PoolForObjects
     [SerializeField] private int _spawnCount;
     [SerializeField] private float _startSpawnTime;
 
-    private int _currentObjectsIndex = -1;
+    private int _currentObjectsIndex;
 
     public override void GeneratePool(int objectCount)
     {
+        _currentObjectsIndex = -1;
         _poolObjects = new IObjectPool[objectCount];
         GenerateObject();
         (_poolObjects[_currentObjectsIndex] as ObjectPool).LeaveThePoolAndRun(_startAnchor.GetPosition());

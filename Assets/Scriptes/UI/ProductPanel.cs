@@ -14,11 +14,15 @@ public class ProductPanel : MonoBehaviour
 
     private event Action<IGeneratedBy> _chooseProduct;
 
-    private void Start()
+    private void OnEnable()
     {
         _productButton = GetComponentInChildren<Button>();
-        _nameViewer.text = _product.ActionObject.name;
-        _priceViewer.text = _product.ActionObject.Price.ToString();
+    }
+
+    private void Start()
+    {
+        _nameViewer.text = _product.BuyableObject.Name;
+        _priceViewer.text = _product.BuyableObject.Price.ToString();
 
         _productButton.onClick.AddListener(OnChooseProduct);
     }
@@ -40,12 +44,12 @@ public class ProductPanel : MonoBehaviour
 
     public void ChangePrice()
     {
-        _priceViewer.text = _economy.GetPrice(_product.ActionObject).ToString();
+        _priceViewer.text = _economy.GetPrice(_product.BuyableObject.Price).ToString();
     }
 
     private void OpportunityBuy()
     {
-        _productButton.interactable = _economy.EnoughPoints(_economy.GetPrice(_product.ActionObject));
+        _productButton.interactable = _economy.EnoughPoints(_economy.GetPrice(_product.BuyableObject.Price));
     }
 
     private void OnChooseProduct()

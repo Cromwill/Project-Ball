@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ObjectSpawner
 {
@@ -9,6 +8,7 @@ public class ObjectSpawner
 
     public Transform Avatar => _avatarTransform;
     public ActionObject ActionObject => _actionObject.ActionObject;
+    public IBuyable BuyableObject => _actionObject.BuyableObject;
 
     public ObjectSpawner(IGeneratedBy actionObject, Transform avatar)
     {
