@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ActionObject" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ggAAIAAAAQAAAAAAAAAAAAQAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\ActionObjects\ActionObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ActionObjectAnchor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iAAAAAAAACAAABAAAAAAEAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\ActionObjects\ActionObjectAnchor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AnchorController" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\ActionObjects\AnchorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Libra" Collapsed="true">
+    <Position X="5.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\ActionObjects\Libra.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Propeller" Collapsed="true">
+    <Position X="7.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAAACAAEAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\ActionObjects\Propeller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ball" Collapsed="true">
+    <Position X="5.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIgAAAAADAQAAACAxAAAAAACAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Scriptes\Ball\Ball.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameEconomy" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgABAAAAAAAAQAAAAAQAAAAAAEEAAAAABAQIEgAAA=</HashCode>
+      <FileName>Assets\Scriptes\GameEconomy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelData" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Assets\Scriptes\LevelData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MouseInput" Collapsed="true">
+    <Position X="12" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAIAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\MouseInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoverAroundLocation" Collapsed="true">
+    <Position X="13.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAKAAEAAFAAAAAAAAACAAQAAAhAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\MoverAroundLocation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectPool" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAACAgAAAAABAAAAAwAEAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\ObjectsPool\ObjectPool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PoolForObjects" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIBAAAAEAAAAAgAAAAAAAAAAEAAGAAAI=</HashCode>
+      <FileName>Assets\Scriptes\ObjectsPool\PoolForObjects.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PurchaseDataDrawer" Collapsed="true">
+    <Position X="10.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAABAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\PurchaseDataDrawer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Receiver" Collapsed="true">
+    <Position X="15.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAABCAAAAAAAAAAEAAAAEAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Receiver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActionObjectScriptableObject" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAQAAAQCAgAAAQAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\ScriptableObjects\ActionObjects\ActionObjectScriptableObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LevelDataScriptableObjects" Collapsed="true">
+    <Position X="17.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\Scriptes\ScriptableObjects\LevelData\LevelDataScriptableObjects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActionObjectSpawner" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCAQBAACSAQAAAQAADAAAAgCAAAAAAIgIAAgAACCgA=</HashCode>
+      <FileName>Assets\Scriptes\Spawn\ActionObjectSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GlobalSpawn" Collapsed="true">
+    <Position X="0.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAIAgAAAAAAEAAgAAAAAAAACAAAAABAAI=</HashCode>
+      <FileName>Assets\Scriptes\Spawn\GlobalSpawn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoadLine" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAIAAAICAgAAAAAAAAAAAAAAAAAAAAAEAABAAAAAI=</HashCode>
+      <FileName>Assets\Scriptes\Spawn\LoadLine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Spawn" Collapsed="true">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAIAAADSCCAAACABAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Spawn\Spawn.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ActionObjectShopButton" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAIAgAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\UI\ActionObjectShopButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BallPointsDrawer" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAAAAACgAAAgAAAAAAAAAAAAAAABAAAAAAACAQ=</HashCode>
+      <FileName>Assets\Scriptes\UI\BallPointsDrawer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectUIMenuElement" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAgAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Scriptes\UI\ObjectUIMenuElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScorreCounter" Collapsed="true">
+    <Position X="10.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEAAAAAAQAAAAAAAAAAABAAAAAAAAAIIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\UI\ScorreCounter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScorreDrawer" Collapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\UI\ScorreDrawer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopElement" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQABAAAAAAAAAoAAAAAAQA=</HashCode>
+      <FileName>Assets\Scriptes\UI\ShopElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StageUIMenuElement" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAABAIACQAQAAAggAACAAAAAgAABAQAAkABAAAgAA=</HashCode>
+      <FileName>Assets\Scriptes\UI\StageUIMenuElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SubmenuShopButton" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\UI\SubmenuShopButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIMenuElement" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oAAAAAAABAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Scriptes\UI\UIMenuElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.Tilemaps.AnimatedTile" Collapsed="true">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAARAAAACAAEAAAAAAAAAAEAAAAAAAAAAAAAAEAAIg=</HashCode>
+      <FileName>Assets\Scriptes\Tiles\Animated Tile\Scripts\AnimatedTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.Tilemaps.AnimatedTileEditor" Collapsed="true">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Tiles\Animated Tile\Scripts\AnimatedTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.Tilemaps.PipelineTile" Collapsed="true">
+    <Position X="15.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACgAAQAQAABAAAAgAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Tiles\Pipeline Tile\Scripts\PipelineTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.Tilemaps.PipelineTileEditor" Collapsed="true">
+    <Position X="17.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Scriptes\Tiles\Pipeline Tile\Scripts\PipelineTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.Tilemaps.RandomTile" Collapsed="true">
+    <Position X="12" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAQAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Tiles\Random Tile\Scripts\RandomTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.Tilemaps.RandomTileEditor" Collapsed="true">
+    <Position X="13.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Tiles\Random Tile\Scripts\RandomTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.Tilemaps.TerrainTile" Collapsed="true">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACgAAQAQAABAAAAgAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Tiles\Terrain Tile\Scripts\TerrainTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.Tilemaps.TerrainTileEditor" Collapsed="true">
+    <Position X="15.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Scriptes\Tiles\Terrain Tile\Scripts\TerrainTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.RuleTile" Collapsed="true">
+    <Position X="17.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAADBiQACgAAAAAAAAAAAAABABAAAAAAAAAAAAAEIA=</HashCode>
+      <FileName>Assets\Scriptes\Tiles\Rule Tile\Scripts\RuleTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IActionObjectAnchor" Collapsed="true">
+    <Position X="10.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAACAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Interfaces\IActionObjectAnchor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IActiveObject" Collapsed="true">
+    <Position X="12" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Assets\Scriptes\Interfaces\IActiveObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IBuyable" Collapsed="true">
+    <Position X="13.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Interfaces\IBuyable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IGeneratedBy" Collapsed="true">
+    <Position X="15.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQCAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Interfaces\IGeneratedBy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IHaveScorre" Collapsed="true">
+    <Position X="17.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Interfaces\IHaveScorre.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IObjectPool" Collapsed="true">
+    <Position X="10.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAABAAAAAwAEAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Interfaces\IObjectPool.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IPoolForObjects" Collapsed="true">
+    <Position X="12" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIBAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Assets\Scriptes\Interfaces\IPoolForObjects.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IRunable" Collapsed="true">
+    <Position X="13.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scriptes\Interfaces\IRunable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
