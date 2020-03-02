@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Slowdone : MonoBehaviour
+public class Slowdone : ActionObject
 {
     [SerializeField] private Vector2 _maxSpeed;
     [SerializeField] private Direction _direction;

@@ -133,5 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669fc85430a560b41a22e61db9a506ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxVelocity: {x: 6, y: 6}
-  _scoreMultiplier: 2
+  _maxVelocity: {x: 8, y: 8}
+  _scoreMultiplier: 5

@@ -7,6 +7,7 @@ public class Receiver : MonoBehaviour
     [SerializeField] private MonoBehaviour _objectsPool;
     [SerializeField] private ScorreCounter _pointsCounter;
     [SerializeField] private BallPointsDrawer _ballPointsDrawer;
+    [SerializeField] private RectTransform _parentForPointsDrawer;
 
     private Transform _selfTransform;
 
@@ -21,7 +22,7 @@ public class Receiver : MonoBehaviour
     {
         IObjectPool ball = collision.GetComponent<IObjectPool>();
         IHaveScorre scorre = collision.GetComponent<IHaveScorre>();
-        var v = Instantiate(_ballPointsDrawer, FindObjectOfType<Canvas>().transform);
+        var v = Instantiate(_ballPointsDrawer, _parentForPointsDrawer);
         v.StartDrawing(scorre.GetScorre(), ball.GetPosition());
 
         _pointsCounter.AddingScorre(scorre.GetScorre());
