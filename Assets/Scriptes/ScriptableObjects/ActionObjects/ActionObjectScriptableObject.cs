@@ -7,15 +7,15 @@ public class ActionObjectScriptableObject : ScriptableObject, IGeneratedBy
     [SerializeField] private MonoBehaviour _actionObjectPrefab;
     [SerializeField] private ActionObjectType _type;
 
-    private IBuyable _actionObject => (IBuyable)_actionObjectPrefab;
+    public IBuyable BuyableObject => (IBuyable)_actionObjectPrefab;
     public GameObject Avatar => _actionObjectAvatar;
-    public ActionObject ActionObject => _actionObject as ActionObject;
-    public IBuyable BuyableObject => _actionObject;
+    public ActionObject ActionObject => BuyableObject as ActionObject;
     ActionObjectType IGeneratedBy.GetType => _type;
 
     public enum ActionObjectType
     {
         ActionObject,
-        SpawnObject
+        SpawnObject,
+        EvolveObject
     }
 }

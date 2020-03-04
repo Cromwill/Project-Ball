@@ -23,7 +23,8 @@ public class ActionObjectSpawner : MonoBehaviour
 
     public void ChangeAvatarPositionOnScene(IActionObjectAnchor anchor)
     {
-        if (_currenObject != null && anchor.IsFree)
+        Debug.Log("ChangeAnchoronScene");
+        if (_currenObject != null)
             _currenObject.ChangeAnchor(anchor);
     }
 
@@ -32,16 +33,18 @@ public class ActionObjectSpawner : MonoBehaviour
         var avatar = Instantiate(actionObject.Avatar).GetComponent<Transform>();
         _currenObject = new ObjectSpawner(actionObject, avatar);
         ToggleAnchors();
-        var anchors = GetCorrectAnchorsArray();
-        _currenObject.ChangeAnchor(anchors.First(a => a.IsFree));
+        _currenObject.ChangeAnchor(GetCorrectAnchorsArray().First(a => a.IsFree == !_currenObject.IsUpgrade()));
     }
 
     public void ConfirmSetObject()
     {
         if (_currenObject.IsActionObject())
             _currenObject.SetObjectOnScene(Instantiate(_currenObject.ActionObject));
+        else if (_currenObject.IsUpgrade())
+            _currenObject.SetObjectOnScene(_currenObject.ActionObject);
         else
             _currenObject.SetObjectOnScene(_spawnPool.GetObject() as IBuyable);
+
         _gameEconomy.OnPurchaseCompleted(_currenObject.BuyableObject);
         EndUse();
     }

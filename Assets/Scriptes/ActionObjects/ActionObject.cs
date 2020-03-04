@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ActionObject : MonoBehaviour, IBuyable
+public class ActionObject : MonoBehaviour, IBuyable, IChangeable
 {
     [SerializeField] protected float _price;
     [SerializeField] protected string _name;
@@ -18,5 +18,10 @@ public class ActionObject : MonoBehaviour, IBuyable
     public virtual void SetPosition(Vector2 position)
     {
         _selfTransform.position = position;
+    }
+
+    public void ChangeCondition(float value)
+    {
+        throw new System.NotImplementedException();
     }
 }

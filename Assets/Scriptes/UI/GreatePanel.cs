@@ -15,7 +15,6 @@ public class GreatePanel : MonoBehaviour
         _confirmPanel.SetConfirmListener(_objectSpawner.ConfirmSetObject, _confirmPanel.ToggleActiveButtons);
         _confirmPanel.SetCancelListener(_objectSpawner.DeclineSetObject, _confirmPanel.ToggleActiveButtons);
         _productPanels = GetComponentsInChildren<ProductPanel>();
-        Debug.Log("ProductPanel count - " + _productPanels.Length);
 
         foreach (var product in _productPanels)
         {

@@ -30,7 +30,6 @@ public class MouseInput : MonoBehaviour
 
     private bool SearchObject(Vector2 inputPosition)
     {
-
         var hit = Physics2D.OverlapCircle(inputPosition, 0.1f);
         if (hit != null)
         {

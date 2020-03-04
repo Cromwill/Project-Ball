@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class Spawn : ObjectPool, IBuyable
+public class Spawn : ObjectPool, IBuyable, IChangeable
 {
     [SerializeField] private float _price;
     [SerializeField] private string _name;
@@ -10,6 +10,7 @@ public class Spawn : ObjectPool, IBuyable
     private IPoolForObjects _runablePool;
     private IRunable<float> _loadLine;
     private float _stratSpawnTime;
+    private Coroutine _spawning;
 
     public bool IsUsing { get; set; }
     public float Price => _price;
@@ -26,7 +27,7 @@ public class Spawn : ObjectPool, IBuyable
         IsInThePool = false;
         _selfTransform.position = position;
         IsUsing = true;
-        StartCoroutine(SpawnObjects(_stratSpawnTime));
+        _spawning = StartCoroutine(SpawnObjects());
     }
 
     public void FillObject(IPoolForObjects selfPool, IPoolForObjects runablePool, float startTime)
@@ -36,7 +37,12 @@ public class Spawn : ObjectPool, IBuyable
         _stratSpawnTime = startTime;
     }
 
-    private IEnumerator SpawnObjects(float time)
+    public void ChangeCondition(float value)
+    {
+        _stratSpawnTime *= value;
+    }
+
+    private IEnumerator SpawnObjects()
     {
         while (IsUsing)
         {
@@ -44,7 +50,7 @@ public class Spawn : ObjectPool, IBuyable
             if (_loadLine == null)
                 _loadLine = GetComponentInChildren<IRunable<float>>();
                 _loadLine.Run(_stratSpawnTime);
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSeconds(_stratSpawnTime);
         }
     }
 }

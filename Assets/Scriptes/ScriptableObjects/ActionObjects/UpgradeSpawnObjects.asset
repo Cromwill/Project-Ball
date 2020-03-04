@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
+  m_Name: UpgradeSpawnObjects
+  m_EditorClassIdentifier: 
+  _actionObjectAvatar: {fileID: 817456370776377702, guid: 811120a2447018840bbf6f20203a234f,
+    type: 3}
+  _actionObjectPrefab: {fileID: 3288249847205780602, guid: b5304b2d89eae524f94fb1dba80dbb0c,
+    type: 3}
+  _type: 2
