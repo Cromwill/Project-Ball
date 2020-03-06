@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,6 +9,9 @@ public class ActionObjectSpawner : MonoBehaviour
     [SerializeField] private Tilemap _spawnObjectTilemap;
     [SerializeField] private PoolForObjects _spawnPool;
     [SerializeField] private GameEconomy _gameEconomy;
+    [SerializeField] private ActionObjectScriptableObject _deletedObject;
+
+    public event Action DeletingObject;
 
     private IActionObjectAnchor[] _anchorsForActionObject;
     private IActionObjectAnchor[] _anchorsForSpawnObject;
@@ -23,27 +27,30 @@ public class ActionObjectSpawner : MonoBehaviour
 
     public void ChangeAvatarPositionOnScene(IActionObjectAnchor anchor)
     {
-        Debug.Log("ChangeAnchoronScene");
         if (_currenObject != null)
             _currenObject.ChangeAnchor(anchor);
     }
 
     public void SetObjectOnScene(IGeneratedBy actionObject)
     {
-        var avatar = Instantiate(actionObject.Avatar).GetComponent<Transform>();
-        _currenObject = new ObjectSpawner(actionObject, avatar);
-        ToggleAnchors();
-        _currenObject.ChangeAnchor(GetCorrectAnchorsArray().First(a => a.IsFree == !_currenObject.IsUpgrade()));
+        FillingObjectSpawner(actionObject, null);
+    }
+
+    public void DeletedObject(ActionObject actionObject)
+    {
+        var anchor = _anchorsForActionObject.Where(a => !a.IsFree).First(a => a.InstalledFacility.Equals(actionObject as IChangeable));
+        FillingObjectSpawner(_deletedObject, anchor);
+        OnDeletingObject();
     }
 
     public void ConfirmSetObject()
     {
-        if (_currenObject.IsActionObject())
+        if (_currenObject.IsActionObject() && !_currenObject.IsUpgrade())
             _currenObject.SetObjectOnScene(Instantiate(_currenObject.ActionObject));
         else if (_currenObject.IsUpgrade())
-            _currenObject.SetObjectOnScene(_currenObject.ActionObject);
+            _currenObject.SetObjectOnScene(_currenObject.ActionObject as UpgradeObject);
         else
-            _currenObject.SetObjectOnScene(_spawnPool.GetObject() as IBuyable);
+            _currenObject.SetObjectOnScene(_spawnPool.GetObject() as ObjectPool);
 
         _gameEconomy.OnPurchaseCompleted(_currenObject.BuyableObject);
         EndUse();
@@ -61,9 +68,24 @@ public class ActionObjectSpawner : MonoBehaviour
         _currenObject = null;
     }
 
+    private void FillingObjectSpawner(IGeneratedBy actionObject, IActionObjectAnchor anchor)
+    {
+        var avatar = Instantiate(actionObject.Avatar).GetComponent<Transform>();
+        _currenObject = new ObjectSpawner(actionObject, avatar);
+        anchor = anchor ?? GetCorrectAnchorsArray().First();
+        _currenObject.ChangeAnchor(anchor);
+        ToggleAnchors();
+    }
+
+    private void OnDeletingObject()
+    {
+        DeletingObject?.Invoke();
+    }
+
     private IActionObjectAnchor[] GetCorrectAnchorsArray()
     {
-        return _currenObject.IsActionObject() ? _anchorsForActionObject : _anchorsForSpawnObject;
+        return _currenObject.IsActionObject() ? _anchorsForActionObject.Where(a => a.IsFree == !_currenObject.IsUpgrade()).ToArray() : 
+            _anchorsForSpawnObject.Where(a => a.IsFree == !_currenObject.IsUpgrade()).ToArray();
     }
 
     private void ToggleAnchors()

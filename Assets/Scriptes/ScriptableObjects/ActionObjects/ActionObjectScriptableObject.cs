@@ -5,17 +5,26 @@ public class ActionObjectScriptableObject : ScriptableObject, IGeneratedBy
 {
     [SerializeField] private GameObject _actionObjectAvatar;
     [SerializeField] private MonoBehaviour _actionObjectPrefab;
-    [SerializeField] private ActionObjectType _type;
+    [SerializeField] private UsedPlace _place;
 
     public IBuyable BuyableObject => (IBuyable)_actionObjectPrefab;
     public GameObject Avatar => _actionObjectAvatar;
     public ActionObject ActionObject => BuyableObject as ActionObject;
-    ActionObjectType IGeneratedBy.GetType => _type;
+    UsedPlace IGeneratedBy.UsedPlace => _place;
 
-    public enum ActionObjectType
-    {
-        ActionObject,
-        SpawnObject,
-        EvolveObject
-    }
 }
+
+public enum UsedPlace
+{
+    ActionObjectFree,
+    ActionObjectBound,
+    SpawnObjectFree,
+    SpawnObjectBound
+}
+
+public enum TypeForAnchor
+{
+    ActionObject,
+    SpawnObject
+}
+

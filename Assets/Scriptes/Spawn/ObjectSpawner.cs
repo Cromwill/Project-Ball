@@ -18,43 +18,50 @@ public class ObjectSpawner
 
     public bool IsActionObject()
     {
-        return _actionObject.GetType == ActionObjectScriptableObject.ActionObjectType.ActionObject;
+        return _actionObject.UsedPlace == UsedPlace.ActionObjectBound || _actionObject.UsedPlace == UsedPlace.ActionObjectFree;
     }
 
     public bool IsUpgrade()
     {
-        return _actionObject.GetType == ActionObjectScriptableObject.ActionObjectType.EvolveObject;
+        return _actionObject.UsedPlace == UsedPlace.ActionObjectBound || _actionObject.UsedPlace == UsedPlace.SpawnObjectBound;
     }
 
     public void ChangeAnchor(IActionObjectAnchor anchor)
     {
-        Debug.Log("Type - " + _actionObject.GetType);
-
-        if (_actionObject.GetType == anchor.GetType && anchor.IsFree)
+        if (CompairObjectWithAnchor(_actionObject.UsedPlace, anchor.GetAnchorType) && anchor.IsFree)
             ChangeCurrentAnchor(anchor);
 
-        if (_actionObject.GetType == ActionObjectScriptableObject.ActionObjectType.EvolveObject && !anchor.IsFree)
-        {
+        if (IsUpgrade() && !anchor.IsFree)
             ChangeCurrentAnchor(anchor);
-            Debug.Log("change Avatar");
-        }
     }
 
-    public void SetObjectOnScene(IBuyable actionObject)
+    public void SetObjectOnScene(UpgradeObject upgradeObject)
     {
+        _anchor.InstalledFacility.ChangeCondition(upgradeObject.ChangingValue);
         if (IsActionObject())
-            (actionObject as ActionObject).SetPosition(_anchor.GetPosition());
-        else if (IsUpgrade())
-        {
-            _anchor.InstalledFacility.ChangeCondition((actionObject as UpgradeObject).ChangingValue);
-            return;
-        }
-        else
-            (actionObject as ObjectPool).LeaveThePoolAndRun(_anchor.GetPosition());
+            _anchor.IsFree = true;
+    }
 
-        if (!IsUpgrade())
-            _anchor.SetChangeableObject(actionObject as IChangeable);
-        _anchor.IsFree = false;
+    public void SetObjectOnScene(ActionObject actionObject)
+    {
+        actionObject.SetPosition(_anchor.GetPosition()); ;
+        _anchor.SetChangeableObject(actionObject as IChangeable);
+    }
+
+    public void SetObjectOnScene(ObjectPool poolObject)
+    {
+        poolObject.LeaveThePoolAndRun(_anchor.GetPosition());
+        _anchor.SetChangeableObject(poolObject as IChangeable);
+    }
+
+    private bool CompairObjectWithAnchor(UsedPlace placeForObject, TypeForAnchor typeForAnchor)
+    {
+        if (typeForAnchor == TypeForAnchor.ActionObject)
+            return placeForObject == UsedPlace.ActionObjectBound || placeForObject == UsedPlace.ActionObjectFree;
+        else if (typeForAnchor == TypeForAnchor.SpawnObject)
+            return placeForObject == UsedPlace.SpawnObjectBound || placeForObject == UsedPlace.SpawnObjectFree;
+        else
+            return false;
     }
 
     private void ChangeCurrentAnchor(IActionObjectAnchor anchor)

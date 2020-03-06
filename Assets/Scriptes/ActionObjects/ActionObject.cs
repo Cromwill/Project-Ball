@@ -22,6 +22,6 @@ public class ActionObject : MonoBehaviour, IBuyable, IChangeable
 
     public void ChangeCondition(float value)
     {
-        throw new System.NotImplementedException();
+        Destroy(gameObject);
     }
 }

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
-  m_Name: Spawn
+  m_Name: Deleted
   m_EditorClassIdentifier: 
-  _actionObjectAvatar: {fileID: 4194651063488282247, guid: f0f73bfeff3697d468a3bc9a3fa5133a,
+  _actionObjectAvatar: {fileID: 2479226737958015254, guid: aae447ffe99fffa4a8c56256305454f6,
     type: 3}
-  _actionObjectPrefab: {fileID: 7474405339627391608, guid: 1cc7e12ca09550a43b1b8f2e4dc34d0c,
+  _actionObjectPrefab: {fileID: 5022436762159793530, guid: 5d0051f7c8225144d9b2878606a9e694,
     type: 3}
-  _place: 2
+  _place: 1

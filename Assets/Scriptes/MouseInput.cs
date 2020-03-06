@@ -38,10 +38,13 @@ public class MouseInput : MonoBehaviour
                 _objectSpawner.ChangeAvatarPositionOnScene(hit.GetComponent<IActionObjectAnchor>());
                 return true;
             }
-            else
+            else if (hit.GetComponent<ActionObject>() != null && !_objectSpawner.IsUsing)
             {
-                return false;
+                _objectSpawner.DeletedObject(hit.GetComponent<ActionObject>());
+                return true;
             }
+            else
+                return false;
         }
         else
             return false;

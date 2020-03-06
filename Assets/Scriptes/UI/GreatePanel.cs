@@ -10,12 +10,13 @@ public class GreatePanel : MonoBehaviour
 
     private ProductPanel[] _productPanels;
 
+
     private void Start()
     {
         _confirmPanel.SetConfirmListener(_objectSpawner.ConfirmSetObject, _confirmPanel.ToggleActiveButtons);
         _confirmPanel.SetCancelListener(_objectSpawner.DeclineSetObject, _confirmPanel.ToggleActiveButtons);
         _productPanels = GetComponentsInChildren<ProductPanel>();
-
+        _objectSpawner.DeletingObject += _confirmPanel.ToggleActiveButtons;
         foreach (var product in _productPanels)
         {
             product.AddListenerToButton(SendActionObjectToSpawner, ToggleActive, _confirmPanel.ToggleActiveButtons, _economy);

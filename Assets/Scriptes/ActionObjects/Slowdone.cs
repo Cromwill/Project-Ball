@@ -7,7 +7,6 @@ public class Slowdone : ActionObject
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
         Rigidbody2D rigidbody = collision.GetComponent<Rigidbody2D>();
         rigidbody.velocity = RetentionSpeed(rigidbody.velocity);
     }

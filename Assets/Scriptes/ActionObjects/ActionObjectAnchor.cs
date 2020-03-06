@@ -4,14 +4,14 @@ public class ActionObjectAnchor : MonoBehaviour, IActionObjectAnchor
 {
     [SerializeField] private Color _idleColor;
     [SerializeField] private Color _activeColor;
-    [SerializeField] private ActionObjectScriptableObject.ActionObjectType _type;
+    [SerializeField] private TypeForAnchor _type;
     private Transform _selfTransform;
     private SpriteRenderer _selfSpriteRenderer;
     private IChangeable _instaledObject;
 
     public bool IsFree { get; set; }
     public IChangeable InstalledFacility => _instaledObject;
-    ActionObjectScriptableObject.ActionObjectType IActionObjectAnchor.GetType => _type;
+    public TypeForAnchor GetAnchorType => _type;
 
     private void Awake()
     {
@@ -38,5 +38,6 @@ public class ActionObjectAnchor : MonoBehaviour, IActionObjectAnchor
     {
         if (changeableObject as IChangeable != null)
             _instaledObject = changeableObject as IChangeable;
+        IsFree = false;
     }
 }
