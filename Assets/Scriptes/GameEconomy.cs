@@ -25,4 +25,10 @@ public class GameEconomy : MonoBehaviour
     {
         return scorre <= _scorreCounter.Scorre;
     }
+
+    public void ScorreUpgrade(UpgradeObject upgradeObject)
+    {
+        _scorreCounter.Upgrade(upgradeObject.ChangingValue);
+        OnPurchaseCompleted(upgradeObject);
+    }
 }

@@ -23,7 +23,7 @@ public class Ball : ObjectPool, IHaveScorre
     public int GetScorre()
     {
         _finishTime = Time.time;
-        return Mathf.FloorToInt(_finishTime - _startTime) * _scoreMultiplier;
+        return Mathf.FloorToInt(_finishTime - _startTime);
     }
 
     public override void LeaveThePool(Vector2 position)

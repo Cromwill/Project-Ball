@@ -3,9 +3,9 @@
 public interface IActionObjectAnchor
 {
     bool IsFree { get; set; }
-    IChangeable InstalledFacility { get;}
+    IUpgradeable InstalledFacility { get;}
     TypeForAnchor GetAnchorType { get; }
     Vector2 GetPosition();
     void ToggleColor();
-    void SetChangeableObject(IChangeable changeableObject);
+    void SetChangeableObject(IUpgradeable changeableObject);
 }

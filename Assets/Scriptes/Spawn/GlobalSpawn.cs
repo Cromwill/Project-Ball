@@ -15,7 +15,7 @@ public class GlobalSpawn : PoolForObjects
         _poolObjects = new IObjectPool[objectCount];
         GenerateObject();
         (_poolObjects[_currentObjectsIndex] as ObjectPool).LeaveThePoolAndRun(_startAnchor.GetPosition());
-        _startAnchor.SetChangeableObject(_poolObjects[_currentObjectsIndex] as IChangeable);
+        _startAnchor.SetChangeableObject(_poolObjects[_currentObjectsIndex] as IUpgradeable);
         _startAnchor.IsFree = false;
     }
 

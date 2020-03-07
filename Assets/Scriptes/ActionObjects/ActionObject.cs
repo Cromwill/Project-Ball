@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ActionObject : MonoBehaviour, IBuyable, IChangeable
+public class ActionObject : MonoBehaviour, IBuyable, IUpgradeable
 {
     [SerializeField] protected float _price;
     [SerializeField] protected string _name;
@@ -20,7 +20,7 @@ public class ActionObject : MonoBehaviour, IBuyable, IChangeable
         _selfTransform.position = position;
     }
 
-    public void ChangeCondition(float value)
+    public void Upgrade(float value)
     {
         Destroy(gameObject);
     }

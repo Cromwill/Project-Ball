@@ -38,7 +38,7 @@ public class ActionObjectSpawner : MonoBehaviour
 
     public void DeletedObject(ActionObject actionObject)
     {
-        var anchor = _anchorsForActionObject.Where(a => !a.IsFree).First(a => a.InstalledFacility.Equals(actionObject as IChangeable));
+        var anchor = _anchorsForActionObject.Where(a => !a.IsFree).First(a => a.InstalledFacility.Equals(actionObject as IUpgradeable));
         FillingObjectSpawner(_deletedObject, anchor);
         OnDeletingObject();
     }

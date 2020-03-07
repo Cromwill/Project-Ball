@@ -37,7 +37,7 @@ public class ObjectSpawner
 
     public void SetObjectOnScene(UpgradeObject upgradeObject)
     {
-        _anchor.InstalledFacility.ChangeCondition(upgradeObject.ChangingValue);
+        _anchor.InstalledFacility.Upgrade(upgradeObject.ChangingValue);
         if (IsActionObject())
             _anchor.IsFree = true;
     }
@@ -45,13 +45,13 @@ public class ObjectSpawner
     public void SetObjectOnScene(ActionObject actionObject)
     {
         actionObject.SetPosition(_anchor.GetPosition()); ;
-        _anchor.SetChangeableObject(actionObject as IChangeable);
+        _anchor.SetChangeableObject(actionObject as IUpgradeable);
     }
 
     public void SetObjectOnScene(ObjectPool poolObject)
     {
         poolObject.LeaveThePoolAndRun(_anchor.GetPosition());
-        _anchor.SetChangeableObject(poolObject as IChangeable);
+        _anchor.SetChangeableObject(poolObject as IUpgradeable);
     }
 
     private bool CompairObjectWithAnchor(UsedPlace placeForObject, TypeForAnchor typeForAnchor)

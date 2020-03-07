@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class Spawn : ObjectPool, IBuyable, IChangeable
+public class Spawn : ObjectPool, IBuyable, IUpgradeable
 {
     [SerializeField] private float _price;
     [SerializeField] private string _name;
@@ -37,7 +37,7 @@ public class Spawn : ObjectPool, IBuyable, IChangeable
         _stratSpawnTime = startTime;
     }
 
-    public void ChangeCondition(float value)
+    public void Upgrade(float value)
     {
         _stratSpawnTime *= value;
     }

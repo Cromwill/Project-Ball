@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Receiver : MonoBehaviour
 {
     [SerializeField] private MonoBehaviour _objectsPool;
-    [SerializeField] private ScorreCounter _pointsCounter;
+    [SerializeField] private ScorreCounter _scorreCounter;
     [SerializeField] private BallPointsDrawer _ballPointsDrawer;
     [SerializeField] private RectTransform _parentForPointsDrawer;
 
@@ -22,10 +20,12 @@ public class Receiver : MonoBehaviour
     {
         IObjectPool ball = collision.GetComponent<IObjectPool>();
         IHaveScorre scorre = collision.GetComponent<IHaveScorre>();
-        var v = Instantiate(_ballPointsDrawer, _parentForPointsDrawer);
-        v.StartDrawing(scorre.GetScorre(), ball.GetPosition());
+        int points = _scorreCounter.GetScorre(scorre.GetScorre());
 
-        _pointsCounter.AddingScorre(scorre.GetScorre());
+        var scorreDrawer = Instantiate(_ballPointsDrawer, _parentForPointsDrawer);
+        scorreDrawer.StartDrawing(points, ball.GetPosition());
+
+        _scorreCounter.AddingScorre(points);
         _pool.ReturnObjectToPool(ball);
     }
 }

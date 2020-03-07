@@ -19,7 +19,8 @@ public enum UsedPlace
     ActionObjectFree,
     ActionObjectBound,
     SpawnObjectFree,
-    SpawnObjectBound
+    SpawnObjectBound,
+    Upgrade
 }
 
 public enum TypeForAnchor
