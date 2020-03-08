@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 1627605529933172073, guid: 5ab0a80b0bc5ca34e8184ec1b6adfb6e,
         type: 3}
       propertyPath: m_Name
-      value: Slowdone Horizonta rightl Variant
+      value: SlowdoneHorizontaRight
       objectReference: {fileID: 0}
     - target: {fileID: 1627605529933172075, guid: 5ab0a80b0bc5ca34e8184ec1b6adfb6e,
         type: 3}

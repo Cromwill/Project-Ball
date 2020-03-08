@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 3318001292225028734, guid: 852d27b3abe8fa74081579484e27a069,
         type: 3}
       propertyPath: m_Name
-      value: Propeller Left
+      value: PropellerLeft
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 852d27b3abe8fa74081579484e27a069, type: 3}

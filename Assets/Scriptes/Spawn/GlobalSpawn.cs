@@ -9,7 +9,7 @@ public class GlobalSpawn : PoolForObjects
 
     private int _currentObjectsIndex;
 
-    public override void GeneratePool(int objectCount)
+    public override void GeneratePool(int objectCount, bool isFirstGame, string levelName)
     {
         _currentObjectsIndex = -1;
         _poolObjects = new IObjectPool[objectCount];
@@ -23,6 +23,19 @@ public class GlobalSpawn : PoolForObjects
     {
         GenerateObject();
         return _poolObjects[_currentObjectsIndex];
+    }
+
+    public override void Save(string level)
+    {
+        for (int i = 0; i < _poolObjects.Length; i++)
+        {
+            if (_poolObjects[i] != null)
+            {
+                CustomPlayerPrefs.SetFloat(level + "_spawnIndex_" + i + "_positionX", _poolObjects[i].GetPosition().x);
+                CustomPlayerPrefs.SetFloat(level + "_spawnIndex_" + i + "_positionY", _poolObjects[i].GetPosition().y);
+                CustomPlayerPrefs.SetFloat(level + "_spawnIndex_" + i + "_spawnTime", (_poolObjects[i] as Spawn).SpawnTime);
+            }
+        }
     }
 
     private void GenerateObject()

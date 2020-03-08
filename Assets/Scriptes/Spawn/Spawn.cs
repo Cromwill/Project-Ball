@@ -9,12 +9,12 @@ public class Spawn : ObjectPool, IBuyable, IUpgradeable
 
     private IPoolForObjects _runablePool;
     private IRunable<float> _loadLine;
-    private float _stratSpawnTime;
     private Coroutine _spawning;
 
     public bool IsUsing { get; set; }
     public float Price => _price;
     public string Name => _name;
+    public float SpawnTime { get; private set; }
 
     private void OnEnable()
     {
@@ -34,12 +34,12 @@ public class Spawn : ObjectPool, IBuyable, IUpgradeable
     {
         _selfPoolForObjects = selfPool;
         _runablePool = runablePool;
-        _stratSpawnTime = startTime;
+        SpawnTime = startTime;
     }
 
     public void Upgrade(float value)
     {
-        _stratSpawnTime *= value;
+        SpawnTime *= value;
     }
 
     private IEnumerator SpawnObjects()
@@ -49,8 +49,8 @@ public class Spawn : ObjectPool, IBuyable, IUpgradeable
             _runablePool.GetObject().LeaveThePool(_selfTransform.position);
             if (_loadLine == null)
                 _loadLine = GetComponentInChildren<IRunable<float>>();
-                _loadLine.Run(_stratSpawnTime);
-            yield return new WaitForSeconds(_stratSpawnTime);
+                _loadLine.Run(SpawnTime);
+            yield return new WaitForSeconds(SpawnTime);
         }
     }
 }

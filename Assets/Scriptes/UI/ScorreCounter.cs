@@ -1,19 +1,32 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(LevelData))]
 public class ScorreCounter : MonoBehaviour, IUpgradeable
 {
     [SerializeField] ScorreDrawer _scorreDrawer;
     [SerializeField] float _scorreFactor;
-    [SerializeField] float _speedRange;
 
     private int _scorre;
     private ScorrePerTime _scorrePerTime;
+    private string _levelName;
 
     public int Scorre => _scorre;
 
     private void OnEnable()
     {
         _scorrePerTime = new ScorrePerTime(30, Time.time);
+    }
+
+    private void OnDisable()
+    {
+        CustomPlayerPrefs.SetInt(_levelName + "_scorre", _scorre);
+    }
+
+    private void Start()
+    {
+        _levelName = GetComponent<LevelData>().LevelName;
+        _scorre = PlayerPrefs.GetInt(_levelName + "_scorre");
+        ChangeScorre(0);
     }
 
     public void AddingScorre(int scorre)

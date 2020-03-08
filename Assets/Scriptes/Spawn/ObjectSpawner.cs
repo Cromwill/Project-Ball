@@ -42,7 +42,7 @@ public class ObjectSpawner
             _anchor.IsFree = true;
     }
 
-    public void SetObjectOnScene(ActionObject actionObject)
+    public void SetObjectOnScene(ActionObject actionObject, string levelName)
     {
         actionObject.SetPosition(_anchor.GetPosition()); ;
         _anchor.SetChangeableObject(actionObject as IUpgradeable);

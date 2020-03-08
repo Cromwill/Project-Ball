@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[RequireComponent(typeof(LevelData))]
 public class ActionObjectSpawner : MonoBehaviour
 {
     [SerializeField] private Tilemap _actionObjectTilemap;
@@ -16,14 +17,16 @@ public class ActionObjectSpawner : MonoBehaviour
     private IActionObjectAnchor[] _anchorsForActionObject;
     private IActionObjectAnchor[] _anchorsForSpawnObject;
     private ObjectSpawner _currenObject;
+    private string _levelName;
 
     public bool IsUsing => _currenObject != null;
 
-    private void Start()
+    private void OnEnable()
     {
         _anchorsForActionObject = _actionObjectTilemap.GetComponentsInChildren<IActionObjectAnchor>();
         _anchorsForSpawnObject = _spawnObjectTilemap.GetComponentsInChildren<IActionObjectAnchor>();
     }
+
 
     public void ChangeAvatarPositionOnScene(IActionObjectAnchor anchor)
     {
@@ -46,7 +49,7 @@ public class ActionObjectSpawner : MonoBehaviour
     public void ConfirmSetObject()
     {
         if (_currenObject.IsActionObject() && !_currenObject.IsUpgrade())
-            _currenObject.SetObjectOnScene(Instantiate(_currenObject.ActionObject));
+            _currenObject.SetObjectOnScene(Instantiate(_currenObject.ActionObject), _levelName);
         else if (_currenObject.IsUpgrade())
             _currenObject.SetObjectOnScene(_currenObject.ActionObject as UpgradeObject);
         else
@@ -61,10 +64,42 @@ public class ActionObjectSpawner : MonoBehaviour
         EndUse();
     }
 
+    public void Save(string level)
+    {
+        for (int i = 0; i < _anchorsForActionObject.Length; i++)
+        {
+            if (!_anchorsForActionObject[i].IsFree)
+            {
+                CustomPlayerPrefs.SetFloat(_levelName + "_actionAnchorIndex_" + i + "_positionX", _anchorsForActionObject[i].GetPosition().x);
+                CustomPlayerPrefs.SetFloat(_levelName + "_actionAnchorIndex_" + i + "_positionY", _anchorsForActionObject[i].GetPosition().y);
+                CustomPlayerPrefs.SetString(_levelName + "_actionAnchorIndex_" + i + "_object",
+                    (_anchorsForActionObject[i].InstalledFacility as ActionObject).name.Split(new char[] { '(', ')' }, System.StringSplitOptions.RemoveEmptyEntries)[0]);
+            }
+        }
+    }
+
+    public void Load(string level)
+    {
+        for (int i = 0; i < _anchorsForActionObject.Length; i++)
+        {
+            if (PlayerPrefs.HasKey(level + "_actionAnchorIndex_" + i + "_positionX"))
+            {
+                Vector2 savedPosition = new Vector2(PlayerPrefs.GetFloat(level + "_actionAnchorIndex_" + i + "_positionX"),
+                    PlayerPrefs.GetFloat(level + "_actionAnchorIndex_" + i + "_positionY"));
+                var actionObject = Instantiate(Resources.Load<ActionObject>("Prefabs/ActionObject/" + PlayerPrefs.GetString(level + "_actionAnchorIndex_" + i + "_object")));
+                var anchor = _anchorsForActionObject.Where(a => a.GetPosition() == savedPosition).First();
+                actionObject.SetPosition(anchor.GetPosition());
+                anchor.SetChangeableObject(actionObject);
+            }
+        }
+        _levelName = level;
+    }
+
     private void EndUse()
     {
         Destroy(_currenObject.Avatar.gameObject);
         ToggleAnchors();
+        Save(_levelName);
         _currenObject = null;
     }
 
@@ -84,7 +119,7 @@ public class ActionObjectSpawner : MonoBehaviour
 
     private IActionObjectAnchor[] GetCorrectAnchorsArray()
     {
-        return _currenObject.IsActionObject() ? _anchorsForActionObject.Where(a => a.IsFree == !_currenObject.IsUpgrade()).ToArray() : 
+        return _currenObject.IsActionObject() ? _anchorsForActionObject.Where(a => a.IsFree == !_currenObject.IsUpgrade()).ToArray() :
             _anchorsForSpawnObject.Where(a => a.IsFree == !_currenObject.IsUpgrade()).ToArray();
     }
 
