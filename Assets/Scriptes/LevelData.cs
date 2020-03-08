@@ -18,7 +18,6 @@ public class LevelData : MonoBehaviour
         _actionObjectSpawner = GetComponent<ActionObjectSpawner>();
         _actionObjectSpawner.Load(_levelName);
         bool isFirstLavel = !PlayerPrefs.HasKey(_levelName);
-        Debug.Log(isFirstLavel);
         _objectPoolForBalls.GeneratePool(_levelData.BallCount, isFirstLavel, _levelName);
         _globalSpawn.GeneratePool(_levelData.SpawnObjectCount, isFirstLavel, _levelName);
     }

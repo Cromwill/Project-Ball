@@ -16,9 +16,5 @@ public class StartScreenMouseInput : MonoBehaviour
         {
             _choseGameField.ScrollingFields((Vector2)Input.mousePosition - _startPosition);
         }
-        if(Input.GetMouseButtonUp(0))
-        {
-            _choseGameField.ScrollingFinish(Input.mousePosition);
-        }
     }
 }

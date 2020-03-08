@@ -5,12 +5,11 @@ public class ScorreCounter : MonoBehaviour, IUpgradeable
 {
     [SerializeField] ScorreDrawer _scorreDrawer;
     [SerializeField] float _scorreFactor;
-
-    private int _scorre;
     private ScorrePerTime _scorrePerTime;
     private string _levelName;
 
-    public int Scorre => _scorre;
+    public int Scorre { get; private set; }
+    public float ScorrePerSecond { get; private set; }
 
     private void OnEnable()
     {
@@ -19,19 +18,23 @@ public class ScorreCounter : MonoBehaviour, IUpgradeable
 
     private void OnDisable()
     {
-        CustomPlayerPrefs.SetInt(_levelName + "_scorre", _scorre);
+        CustomPlayerPrefs.SetInt(_levelName + "_scorre", Scorre);
+        CustomPlayerPrefs.SetFloat(_levelName + "_scorrePerSecond", ScorrePerSecond);
     }
 
     private void Start()
     {
         _levelName = GetComponent<LevelData>().LevelName;
-        _scorre = PlayerPrefs.GetInt(_levelName + "_scorre");
+        Scorre = PlayerPrefs.GetInt(_levelName + "_scorre");
+        ScorrePerSecond = PlayerPrefs.GetFloat(_levelName + "_scorrePerSecond");
         ChangeScorre(0);
+        _scorreDrawer.DrawSpeed(ScorrePerSecond);
     }
 
     public void AddingScorre(int scorre)
     {
-        _scorreDrawer.DrawSpeed(_scorrePerTime.GetValue(scorre, Time.time));
+        ScorrePerSecond = _scorrePerTime.GetValue(scorre, Time.time);
+        _scorreDrawer.DrawSpeed(ScorrePerSecond);
         ChangeScorre(scorre);
     }
 
@@ -52,8 +55,8 @@ public class ScorreCounter : MonoBehaviour, IUpgradeable
 
     private void ChangeScorre(int scorre)
     {
-        _scorre += scorre;
-        _scorreDrawer.Draw(_scorre);
+        Scorre += scorre;
+        _scorreDrawer.Draw(Scorre);
     }
 
 

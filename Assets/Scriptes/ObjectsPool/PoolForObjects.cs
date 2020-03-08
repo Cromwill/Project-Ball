@@ -37,7 +37,6 @@ public class PoolForObjects : MonoBehaviour, IPoolForObjects
                    PlayerPrefs.GetFloat(levelName + "_ballsIndex_" + i + "_positionY"));
                 if (PlayerPrefs.GetString(levelName + "_ballIndex_" + i + "_isInThePool") == false.ToString())
                 {
-                    Debug.Log("GetBall");
                     GetObject(i).LeaveThePool(savedPosition);
                 }
             }

@@ -75,6 +75,12 @@ public class ActionObjectSpawner : MonoBehaviour
                 CustomPlayerPrefs.SetString(_levelName + "_actionAnchorIndex_" + i + "_object",
                     (_anchorsForActionObject[i].InstalledFacility as ActionObject).name.Split(new char[] { '(', ')' }, System.StringSplitOptions.RemoveEmptyEntries)[0]);
             }
+            else
+            {
+                PlayerPrefs.DeleteKey(_levelName + "_actionAnchorIndex_" + i + "_positionX");
+                PlayerPrefs.DeleteKey(_levelName + "_actionAnchorIndex_" + i + "_positionY");
+                PlayerPrefs.DeleteKey(_levelName + "_actionAnchorIndex_" + i + "_object");
+            }
         }
     }
 

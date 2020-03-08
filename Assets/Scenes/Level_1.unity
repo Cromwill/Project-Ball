@@ -464,6 +464,16 @@ PrefabInstance:
       propertyPath: _objectPoolForBalls
       value: 
       objectReference: {fileID: 2082962392}
+    - target: {fileID: 3685843618631517575, guid: dfab9cd4db5034f4c98fb124572d292a,
+        type: 3}
+      propertyPath: _levelName
+      value: Level_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685843618631517575, guid: dfab9cd4db5034f4c98fb124572d292a,
+        type: 3}
+      propertyPath: _exitPanel
+      value: 
+      objectReference: {fileID: 464908808}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfab9cd4db5034f4c98fb124572d292a, type: 3}
 --- !u!114 &286062985
