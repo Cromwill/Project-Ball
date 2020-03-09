@@ -7,6 +7,7 @@ public class GameField : MonoBehaviour, IBuyable
     [SerializeField] private GameFieldData _gameFieldData;
     [SerializeField] private float _price;
     [SerializeField] private string _levelName;
+    [SerializeField] private LevelsFieldScorre _scorrePanel;
 
     private RectTransform _selfTransform;
     private Vector2 _startPosition;
@@ -17,6 +18,7 @@ public class GameField : MonoBehaviour, IBuyable
 
     public float Price => _price;
     public string Name => _levelName;
+    public LevelsFieldScorre ScorrePanel => _scorrePanel;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class GameField : MonoBehaviour, IBuyable
         IsOpenLevel = PlayerPrefs.GetInt(_levelName + "_isOpen") == 1 ? true : false;
         if (IsOpenLevel)
             OpeningField();
+        _selfButton.interactable = IsOpenLevel;
     }
 
     public void PreparationToMove()
@@ -43,22 +46,15 @@ public class GameField : MonoBehaviour, IBuyable
             _selfTransform.localScale = _gameFieldData.ScaleOnFocuse - new Vector2(step * distance, step * distance);
     }
 
-    public bool OpenField(float payment)
+    public void OpenLevel()
     {
-        if (payment >= Price)
-            OpenLevel();
-
-        return IsOpenLevel;
+        IsOpenLevel = true;
+        OpeningField();
     }
 
     public void LoadLevel()
     {
         SceneManager.LoadScene(_gameFieldData.SceneIndex, LoadSceneMode.Single);
-    }
-
-    private void OpenLevel()
-    {
-        IsOpenLevel = true;
     }
 
     private void OpeningField()
@@ -67,9 +63,10 @@ public class GameField : MonoBehaviour, IBuyable
         if (children != null)
         {
             for (int i = 0; i < children.Length; i++)
-            {
-                if (children[i].parent == transform) Destroy(children[i].gameObject);
-            }
+                if (children[i].parent == transform) children[i].gameObject.SetActive(false);
         }
+        _selfButton.interactable = IsOpenLevel;
+        _scorrePanel.Open(_levelName);
+        CustomPlayerPrefs.SetInt(_levelName + "_isOpen", 1);
     }
 }

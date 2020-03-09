@@ -1,10 +1,46 @@
-﻿static class GameDataStorage
-{
-    private static int _totalScorre;
+﻿using System;
+using UnityEngine;
 
-    public static void AddTotalScorre(int scorre)
+static class GameDataStorage
+{
+    public static string CurrentLevel;
+
+    public static SavedObject GetSavedObject(string anchorType, int index)
     {
-        _totalScorre += scorre;
+        string keyString = "_" + anchorType + "AnchorIndex_" + index;
+
+        Vector2 savedPosition = new Vector2(PlayerPrefs.GetFloat(CurrentLevel + keyString + "_positionX"),
+    PlayerPrefs.GetFloat(CurrentLevel + keyString + "_positionY"));
+
+        string name = PlayerPrefs.GetString(CurrentLevel + keyString + "_object");
+
+        return new SavedObject(name, savedPosition);
+    }
+
+    public static void SaveActionObjects(int anchorIndex, Vector2 position, ActionObject actionObject)
+    {
+        SaveObject("action", anchorIndex, position, actionObject.name.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries)[0]);
+    }
+
+    public static void SaveSpawnObjects(int anchorIndex, Vector2 position, Spawn spawnObject, float spawnTime)
+    {
+        SaveObject("spawn", anchorIndex, position, spawnObject.name.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries)[0]);
+        CustomPlayerPrefs.SetFloat(CurrentLevel + "_spawnIndex_" + anchorIndex + "_spawnTime", spawnTime);
+    }
+
+    public static void RemoveActionObject(int anchorIndex)
+    {
+        PlayerPrefs.DeleteKey(CurrentLevel + "_actionAnchorIndex_" + anchorIndex + "_positionX");
+        PlayerPrefs.DeleteKey(CurrentLevel + "_actionAnchorIndex_" + anchorIndex + "_positionY");
+        PlayerPrefs.DeleteKey(CurrentLevel + "_actionAnchorIndex_" + anchorIndex + "_object");
+    }
+
+    private static void SaveObject(string anchorType, int index, Vector2 position, string name)
+    {
+        string key = "_" + anchorType + "AnchorIndex_" + index;
+        CustomPlayerPrefs.SetFloat(CurrentLevel + key + "_positionX", position.x);
+        CustomPlayerPrefs.SetFloat(CurrentLevel + key + "_positionY", position.y);
+        CustomPlayerPrefs.SetString(CurrentLevel + key + "_object", name);
     }
 }
 
@@ -57,4 +93,16 @@ public class ScorrePerTime
         int index = _dataCounter + 1;
         return index == _datas.Length ? 0 : index;
     }
+}
+
+public class SavedObject
+{
+    public SavedObject(string name, Vector2 position)
+    {
+        Name = name;
+        Position = position;
+    }
+
+    public string Name { get; }
+    public Vector2 Position { get; }
 }

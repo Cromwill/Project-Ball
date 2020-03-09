@@ -21,7 +21,7 @@ public class ActionObjectSpawner : MonoBehaviour
 
     public bool IsUsing => _currenObject != null;
 
-    private void OnEnable()
+    private void Awake()
     {
         _anchorsForActionObject = _actionObjectTilemap.GetComponentsInChildren<IActionObjectAnchor>();
         _anchorsForSpawnObject = _spawnObjectTilemap.GetComponentsInChildren<IActionObjectAnchor>();
@@ -69,36 +69,45 @@ public class ActionObjectSpawner : MonoBehaviour
         for (int i = 0; i < _anchorsForActionObject.Length; i++)
         {
             if (!_anchorsForActionObject[i].IsFree)
-            {
-                CustomPlayerPrefs.SetFloat(_levelName + "_actionAnchorIndex_" + i + "_positionX", _anchorsForActionObject[i].GetPosition().x);
-                CustomPlayerPrefs.SetFloat(_levelName + "_actionAnchorIndex_" + i + "_positionY", _anchorsForActionObject[i].GetPosition().y);
-                CustomPlayerPrefs.SetString(_levelName + "_actionAnchorIndex_" + i + "_object",
-                    (_anchorsForActionObject[i].InstalledFacility as ActionObject).name.Split(new char[] { '(', ')' }, System.StringSplitOptions.RemoveEmptyEntries)[0]);
-            }
+                GameDataStorage.SaveActionObjects(i, _anchorsForActionObject[i].GetPosition(), _anchorsForActionObject[i].InstalledFacility as ActionObject);
             else
-            {
-                PlayerPrefs.DeleteKey(_levelName + "_actionAnchorIndex_" + i + "_positionX");
-                PlayerPrefs.DeleteKey(_levelName + "_actionAnchorIndex_" + i + "_positionY");
-                PlayerPrefs.DeleteKey(_levelName + "_actionAnchorIndex_" + i + "_object");
-            }
+                GameDataStorage.RemoveActionObject(i);
+        }
+
+        for(int i = 0; i < _anchorsForSpawnObject.Length; i++)
+        {
+            var spawn = _anchorsForSpawnObject[i].InstalledFacility as Spawn;
+            if (!_anchorsForSpawnObject[i].IsFree)
+                GameDataStorage.SaveSpawnObjects(i, _anchorsForSpawnObject[i].GetPosition(), spawn, spawn.SpawnTime);
         }
     }
 
     public void Load(string level)
     {
+        _levelName = level;
         for (int i = 0; i < _anchorsForActionObject.Length; i++)
         {
             if (PlayerPrefs.HasKey(level + "_actionAnchorIndex_" + i + "_positionX"))
             {
-                Vector2 savedPosition = new Vector2(PlayerPrefs.GetFloat(level + "_actionAnchorIndex_" + i + "_positionX"),
-                    PlayerPrefs.GetFloat(level + "_actionAnchorIndex_" + i + "_positionY"));
-                var actionObject = Instantiate(Resources.Load<ActionObject>("Prefabs/ActionObject/" + PlayerPrefs.GetString(level + "_actionAnchorIndex_" + i + "_object")));
-                var anchor = _anchorsForActionObject.Where(a => a.GetPosition() == savedPosition).First();
+                SavedObject savedObject = GameDataStorage.GetSavedObject("action", i);
+                var actionObject = Instantiate(Resources.Load<ActionObject>("Prefabs/ActionObject/" + savedObject.Name));
+                var anchor = _anchorsForActionObject.Where(a => a.GetPosition() == savedObject.Position).First();
                 actionObject.SetPosition(anchor.GetPosition());
                 anchor.SetChangeableObject(actionObject);
             }
         }
-        _levelName = level;
+        for(int i = 0; i < _anchorsForSpawnObject.Length; i++)
+        {
+            if(PlayerPrefs.HasKey(level + "_spawnAnchorIndex_" + i + "_positionX"))
+            {
+                SavedObject savedObject = GameDataStorage.GetSavedObject("spawn", i);
+                var spawn = _spawnPool.GetObject() as Spawn;
+                var anchor = _anchorsForSpawnObject.Where(a => a.GetPosition() == savedObject.Position).First();
+                spawn.Upgrade(spawn.SpawnTime / PlayerPrefs.GetFloat(level + "_spawnIndex_" + i + "_spawnTime"));
+                spawn.LeaveThePoolAndRun(anchor.GetPosition());
+                anchor.SetChangeableObject(spawn as IUpgradeable);
+            }
+        }
     }
 
     private void EndUse()

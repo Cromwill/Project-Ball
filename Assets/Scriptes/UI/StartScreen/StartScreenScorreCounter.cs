@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class StartScreenScorreCounter : MonoBehaviour
@@ -8,8 +7,7 @@ public class StartScreenScorreCounter : MonoBehaviour
     [SerializeField] private ChoseGameField _choseGameField;
     [SerializeField] private ScorreDrawer _scorreDrawer;
 
-    private string[] _levelNames;
-    private float[] _scorrePerSecond;
+    private LevelsFieldScorre[] _levelsScorre;
     
     public float TotalScorre { get; private set; }
 
@@ -18,23 +16,15 @@ public class StartScreenScorreCounter : MonoBehaviour
         CustomPlayerPrefs.SetString("ExitGameTime", DateTime.Now.ToString());
     }
 
-    private void OnDisable()
-    {
-        CustomPlayerPrefs.SetString("ExitGameTime", DateTime.Now.ToString());
-    }
-
     private void Start()
     {
-        _levelNames = _choseGameField.GetOpenLevelNames();
-        _scorrePerSecond = new float[_levelNames.Length];
+        GameField[] fields = _choseGameField.GameFields.Where(a => a.IsOpenLevel).ToArray();
+        _levelsScorre = new LevelsFieldScorre[fields.Length];
 
-        for(int i = 0; i < _scorrePerSecond.Length; i++)
+        for(int i = 0; i < _levelsScorre.Length; i++)
         {
-            _scorrePerSecond[i] = PlayerPrefs.GetFloat(_levelNames[i] + "_scorrePerSecond");
+            _levelsScorre[i] = fields[i].ScorrePanel;
         }
-
-        TotalScorre = StartScorreCounting();
-        _scorreDrawer.Draw((int)TotalScorre);
     }
 
     private void Update()
@@ -42,28 +32,25 @@ public class StartScreenScorreCounter : MonoBehaviour
         ShowScorre();
     }
 
-    private float StartScorreCounting()
+    public void ReductionScorre(int scorre)
     {
-        float scorre = 0;
+        TotalScorre -= scorre;
+    }
+
+    public float GetSleepTimeSecond()
+    {
         DateTime dateTime = DateTime.Parse(PlayerPrefs.GetString("ExitGameTime"));
         var sleepTime = DateTime.Now - dateTime;
-
-        for(int i = 0; i < _levelNames.Length; i++)
-        {
-            scorre += PlayerPrefs.GetInt(_levelNames[i] + "_scorre");
-            scorre += ((int)sleepTime.TotalSeconds * _scorrePerSecond[i]);
-        }
-
-        return scorre;
+        return (float)sleepTime.TotalSeconds;
     }
 
     private void ShowScorre()
     {
-        for (int i = 0; i < _levelNames.Length; i++)
-        {
-            TotalScorre += _scorrePerSecond[i] * Time.deltaTime;
-        }
+        TotalScorre = 0;
+
+        foreach (var field in _levelsScorre)
+            TotalScorre += field.Scorre;
+
         _scorreDrawer.Draw((int)TotalScorre);
     }
-
 }

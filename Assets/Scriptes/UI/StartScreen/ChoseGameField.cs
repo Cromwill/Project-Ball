@@ -1,10 +1,13 @@
 ﻿using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(LevelsShop))]
 public class ChoseGameField : MonoBehaviour
 {
     [SerializeField] private GameField[] _gameFields;
     [SerializeField] private RectTransform _startPosition;
+
+    public GameField[] GameFields => _gameFields;
 
     private void Start()
     {

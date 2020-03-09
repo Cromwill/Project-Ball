@@ -27,15 +27,7 @@ public class GlobalSpawn : PoolForObjects
 
     public override void Save(string level)
     {
-        for (int i = 0; i < _poolObjects.Length; i++)
-        {
-            if (_poolObjects[i] != null)
-            {
-                CustomPlayerPrefs.SetFloat(level + "_spawnIndex_" + i + "_positionX", _poolObjects[i].GetPosition().x);
-                CustomPlayerPrefs.SetFloat(level + "_spawnIndex_" + i + "_positionY", _poolObjects[i].GetPosition().y);
-                CustomPlayerPrefs.SetFloat(level + "_spawnIndex_" + i + "_spawnTime", (_poolObjects[i] as Spawn).SpawnTime);
-            }
-        }
+
     }
 
     private void GenerateObject()
