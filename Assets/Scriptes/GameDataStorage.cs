@@ -25,7 +25,7 @@ static class GameDataStorage
     public static void SaveSpawnObjects(int anchorIndex, Vector2 position, Spawn spawnObject, float spawnTime)
     {
         SaveObject("spawn", anchorIndex, position, spawnObject.name.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries)[0]);
-        CustomPlayerPrefs.SetFloat(CurrentLevel + "_spawnIndex_" + anchorIndex + "_spawnTime", spawnTime);
+        PlayerPrefs.SetFloat(CurrentLevel + "_spawnIndex_" + anchorIndex + "_spawnTime", spawnTime);
     }
 
     public static void RemoveActionObject(int anchorIndex)
@@ -35,12 +35,39 @@ static class GameDataStorage
         PlayerPrefs.DeleteKey(CurrentLevel + "_actionAnchorIndex_" + anchorIndex + "_object");
     }
 
+    public static void SaveUpgradeCount(UpgradesType type, int count)
+    {
+        string key = type == UpgradesType.Scorre ? "_scorreUpgradeCount" : "_spawnUpgradeCount";
+        PlayerPrefs.SetInt(CurrentLevel + key, count);
+    }
+
+    public static void SaveObjectsOnScene(ObjectsCountOnScene objectsOnScene)
+    {
+        PlayerPrefs.SetInt(CurrentLevel + "_actionObjectsOnScene", objectsOnScene.GetCount(ActionObjectType.Action));
+        PlayerPrefs.SetInt(CurrentLevel + "_physicsObjectsOnScene", objectsOnScene.GetCount(ActionObjectType.Phisics));
+        PlayerPrefs.SetInt(CurrentLevel + "_spawnObjectsOnScene", objectsOnScene.GetCount(ActionObjectType.Spawn));
+        PlayerPrefs.SetInt(CurrentLevel + "_scorreUpgradeOnScene", objectsOnScene.GetCount(ActionObjectType.UpgradeScorre));
+        PlayerPrefs.SetInt(CurrentLevel + "_spawnUpgradeOnScene", objectsOnScene.GetCount(ActionObjectType.UpgradeSpawn));
+    }
+
+    public static ObjectsCountOnScene GetObjectsOnCurrentScene()
+    {
+        ObjectsCountOnScene objectsOnScene = new ObjectsCountOnScene();
+        objectsOnScene.SetCount(ActionObjectType.Action, PlayerPrefs.GetInt(CurrentLevel + "_actionObjectsOnScene"));
+        objectsOnScene.SetCount(ActionObjectType.Phisics, PlayerPrefs.GetInt(CurrentLevel + "_physicsObjectsOnScene"));
+        objectsOnScene.SetCount(ActionObjectType.Spawn, PlayerPrefs.GetInt(CurrentLevel + "_spawnObjectsOnScene"));
+        objectsOnScene.SetCount(ActionObjectType.UpgradeScorre, PlayerPrefs.GetInt(CurrentLevel + "_scorreUpgradeOnScene"));
+        objectsOnScene.SetCount(ActionObjectType.UpgradeSpawn, PlayerPrefs.GetInt(CurrentLevel + "_spawnUpgradeOnScene"));
+
+        return objectsOnScene;
+    }
+
     private static void SaveObject(string anchorType, int index, Vector2 position, string name)
     {
         string key = "_" + anchorType + "AnchorIndex_" + index;
-        CustomPlayerPrefs.SetFloat(CurrentLevel + key + "_positionX", position.x);
-        CustomPlayerPrefs.SetFloat(CurrentLevel + key + "_positionY", position.y);
-        CustomPlayerPrefs.SetString(CurrentLevel + key + "_object", name);
+        PlayerPrefs.SetFloat(CurrentLevel + key + "_positionX", position.x);
+        PlayerPrefs.SetFloat(CurrentLevel + key + "_positionY", position.y);
+        PlayerPrefs.SetString(CurrentLevel + key + "_object", name);
     }
 }
 
@@ -77,7 +104,6 @@ public class ScorrePerTime
         firstIndex = _datas[_dataCounter] == null ? 0 : GetNextIndex();
         _datas[_dataCounter] = new TimeScorreData(point, time);
 
-
         for (int i = 0; i < _datas.Length; i++)
         {
             if (_datas[i] != null)
@@ -105,4 +131,10 @@ public class SavedObject
 
     public string Name { get; }
     public Vector2 Position { get; }
+}
+
+public enum UpgradesType
+{
+    Scorre,
+    Spawn
 }

@@ -96,4 +96,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _price: 0
   _name: Deleted
+  _type: 5
   _changingValue: 0

@@ -8,7 +8,6 @@ public class BallPointsDrawer : MonoBehaviour
 
     private RectTransform _selfTransform;
     private Text _points;
-    private bool _isDraw;
 
     private void OnEnable()
     {
@@ -33,6 +32,4 @@ public class BallPointsDrawer : MonoBehaviour
         _selfTransform.position = Camera.main.WorldToScreenPoint(position);
         _points.text = point.ToString();
     }
-
-
 }

@@ -5,14 +5,14 @@ using UnityEngine.Events;
 
 public class ProductPanel : MonoBehaviour
 {
-    [SerializeField] ActionObjectScriptableObject _product;
-    [SerializeField] private Text _nameViewer;
-    [SerializeField] private Text _priceViewer;
+    [SerializeField] protected ActionObjectScriptableObject _product;
+    [SerializeField] protected Text _nameViewer;
+    [SerializeField] protected Text _priceViewer;
 
-    private Button _productButton;
-    private GameEconomy _economy;
+    protected Button _productButton;
+    protected GameEconomy _economy;
 
-    private event Action<IGeneratedBy> _chooseProduct;
+    protected event Action<IGeneratedBy> _chooseProduct;
 
     private void OnEnable()
     {
@@ -21,9 +21,7 @@ public class ProductPanel : MonoBehaviour
 
     private void Start()
     {
-        _nameViewer.text = _product.BuyableObject.Name;
-        _priceViewer.text = _product.BuyableObject.Price.ToString();
-
+        _nameViewer.text = _product.ActionObject.Name;
         _productButton.onClick.AddListener(OnChooseProduct);
     }
 
@@ -32,7 +30,7 @@ public class ProductPanel : MonoBehaviour
         OpportunityBuy();
     }
 
-    public void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy)
+    public virtual void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy)
     {
         _chooseProduct += listener;
         _productButton.onClick.AddListener(closePanel);
@@ -42,17 +40,17 @@ public class ProductPanel : MonoBehaviour
         ChangePrice();
     }
 
-    public void ChangePrice()
+    public virtual void ChangePrice()
     {
-        _priceViewer.text = _economy.GetPrice(_product.BuyableObject.Price).ToString();
+        _priceViewer.text = _economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType).ToString();
     }
 
-    private void OpportunityBuy()
+    protected void OpportunityBuy()
     {
-        _productButton.interactable = _economy.EnoughPoints(_economy.GetPrice(_product.BuyableObject.Price));
+        _productButton.interactable = _economy.EnoughPoints(_economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType));
     }
 
-    private void OnChooseProduct()
+    protected void OnChooseProduct()
     {
         _chooseProduct?.Invoke(_product);
     }

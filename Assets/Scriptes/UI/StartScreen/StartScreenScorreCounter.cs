@@ -13,7 +13,7 @@ public class StartScreenScorreCounter : MonoBehaviour
 
     private void OnApplicationPause(bool pause)
     {
-        CustomPlayerPrefs.SetString("ExitGameTime", DateTime.Now.ToString());
+        PlayerPrefs.SetString("ExitGameTime", DateTime.Now.ToString());
     }
 
     private void Start()
@@ -32,16 +32,52 @@ public class StartScreenScorreCounter : MonoBehaviour
         ShowScorre();
     }
 
-    public void ReductionScorre(int scorre)
+    public void ReductionScorre(float scorre)
     {
+        GameField[] fields = _choseGameField.GameFields.Where(a => a.IsOpenLevel).ToArray();
+        float[] percentageOfAmounts = new float[fields.Length];
+        int[] subtractions = new int[fields.Length];
+
+        for(int i = 0; i < fields.Length; i++)
+        {
+            percentageOfAmounts[i] = fields[i].Price / TotalScorre;
+            subtractions[i] = (int)(scorre * percentageOfAmounts[i]);
+            subtractions[i] = subtractions[i] > fields[i].ScorrePanel.Scorre ? (int)fields[i].ScorrePanel.Scorre : subtractions[i];
+        }
+
+        if(subtractions.Sum() < scorre)
+        {
+            int difference = (int)scorre - subtractions.Sum();
+
+            for (int i = 0; i < fields.Length && difference != 0; i++)
+            {
+                if (fields[i].ScorrePanel.Scorre - subtractions[i] > difference)
+                    subtractions[i] += difference;
+                else
+                {
+                    subtractions[i] += (int)(fields[i].ScorrePanel.Scorre - subtractions[i]);
+                }
+            }
+        }
+
+        for (int i = 0; i < fields.Length; i++)
+        {
+            fields[i].ScorrePanel.ReductionScorre(subtractions[i]);
+        }
+
         TotalScorre -= scorre;
     }
 
     public float GetSleepTimeSecond()
     {
-        DateTime dateTime = DateTime.Parse(PlayerPrefs.GetString("ExitGameTime"));
-        var sleepTime = DateTime.Now - dateTime;
-        return (float)sleepTime.TotalSeconds;
+        if (PlayerPrefs.HasKey("ExitGameTime"))
+        {
+            DateTime dateTime = DateTime.Parse(PlayerPrefs.GetString("ExitGameTime"));
+            var sleepTime = DateTime.Now - dateTime;
+            return (float)sleepTime.TotalSeconds;
+        }
+        else
+            return 0;
     }
 
     private void ShowScorre()

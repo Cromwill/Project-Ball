@@ -24,7 +24,7 @@ public class PoolForObjects : MonoBehaviour, IPoolForObjects
 
         for (int i = 0; i < _poolObjects.Length; i++)
         {
-            IObjectPool obj = (IObjectPool)Instantiate(_objectPrefab);
+            ObjectPool obj = (ObjectPool)Instantiate(_objectPrefab);
             obj.SelfObjectForPool = this;
             obj.ReturnToPool(transform.position);
             _poolObjects[i] = obj;
@@ -72,9 +72,12 @@ public class PoolForObjects : MonoBehaviour, IPoolForObjects
         {
             for (int i = 0; i < _poolObjects.Length; i++)
             {
-                CustomPlayerPrefs.SetFloat(level + "_ballsIndex_" + i + "_positionX", _poolObjects[i].GetPosition().x);
-                CustomPlayerPrefs.SetFloat(level + "_ballsIndex_" + i + "_positionY", _poolObjects[i].GetPosition().y);
-                CustomPlayerPrefs.SetString(level + "_ballIndex_" + i + "_isInThePool", _poolObjects[i].IsInThePool.ToString());
+                if(_poolObjects[i].GetPosition() != null)
+                {
+                    PlayerPrefs.SetFloat(level + "_ballsIndex_" + i + "_positionX", _poolObjects[i].GetPosition().x);
+                    PlayerPrefs.SetFloat(level + "_ballsIndex_" + i + "_positionY", _poolObjects[i].GetPosition().y);
+                    PlayerPrefs.SetString(level + "_ballIndex_" + i + "_isInThePool", _poolObjects[i].IsInThePool.ToString());
+                }
             }
         }
     }

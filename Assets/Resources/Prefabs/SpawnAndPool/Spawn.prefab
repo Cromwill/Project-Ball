@@ -216,5 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31067a950935372478e4b215b53642fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _price: 10
+  _price: 250
   _name: Spawn
+  _type: 2

@@ -4,7 +4,6 @@ public class GlobalSpawn : PoolForObjects
 {
     [SerializeField] private PoolForObjects _objectPoolForBall;
     [SerializeField] private ActionObjectAnchor _startAnchor;
-    [SerializeField] private int _spawnCount;
     [SerializeField] private float _startSpawnTime;
 
     private int _currentObjectsIndex;
@@ -13,21 +12,19 @@ public class GlobalSpawn : PoolForObjects
     {
         _currentObjectsIndex = -1;
         _poolObjects = new IObjectPool[objectCount];
-        GenerateObject();
-        (_poolObjects[_currentObjectsIndex] as ObjectPool).LeaveThePoolAndRun(_startAnchor.GetPosition());
-        _startAnchor.SetChangeableObject(_poolObjects[_currentObjectsIndex] as IUpgradeable);
-        _startAnchor.IsFree = false;
+        if (isFirstGame)
+        {
+            GenerateObject();
+            (_poolObjects[_currentObjectsIndex] as Spawn).LeaveThePoolAndRun(_startAnchor.GetPosition());
+            _startAnchor.SetChangeableObject(_poolObjects[_currentObjectsIndex] as IUpgradeable);
+            _startAnchor.IsFree = false;
+        }
     }
 
     public override IObjectPool GetObject()
     {
         GenerateObject();
         return _poolObjects[_currentObjectsIndex];
-    }
-
-    public override void Save(string level)
-    {
-
     }
 
     private void GenerateObject()

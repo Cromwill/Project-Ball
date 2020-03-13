@@ -1,31 +1,24 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class DisappearingPlatform : ActionObject
 {
     [SerializeField] private float _cicleTime;
-    [SerializeField] private float _colorDeltaAlpha;
+    [SerializeField] private Color _colorOn;
+    [SerializeField] private Color _colorOff;
 
-    [SerializeField] private SpriteRenderer[] _sprites;
-    private BoxCollider2D[] _colliders;
+    private BoxCollider2D _collider;
+    private SpriteRenderer _spriteRenderer;
     private Cicle _selfCicle;
-    private float _changeAlphaStep;
+    private Color _changingStep;
 
     private void Start()
     {
-        _colliders = new BoxCollider2D[_sprites.Length];
-
-        for(int i = 0; i < _colliders.Length; i++)
-        {
-            _colliders[i] = _sprites[i].GetComponent<BoxCollider2D>();
-        }
-
+        _collider = GetComponent<BoxCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.color = _colorOn;
         _selfCicle = Cicle.Dicrement;
-
-        for(int i = 0; i < _sprites.Length; i++)
-        {
-            _sprites[i].color = i % 2 == 0 ? _sprites[i].color : new Color(_sprites[i].color.r, _sprites[i].color.g, _sprites[i].color.b, _sprites[i].color.a - _colorDeltaAlpha);
-        }
-        _changeAlphaStep = _colorDeltaAlpha / _cicleTime;
+        _changingStep = (_colorOn - _colorOff) / _cicleTime;
     }
 
     private void Update()
@@ -35,22 +28,39 @@ public class DisappearingPlatform : ActionObject
 
     private void Work(Cicle cicle)
     {
-        for (int i = 0; i < _sprites.Length; i++)
-        {
-            _sprites[i].color = i % 2 == 0 ? GetColorWithChangedAlpha(_sprites[i].color, _changeAlphaStep * (int)cicle) : GetColorWithChangedAlpha(_sprites[i].color, _changeAlphaStep * -(int)cicle); ;
-            if (_sprites[i].color.a > 1 - _colorDeltaAlpha / 2)
-                _colliders[i].enabled = true;
-            else
-                _colliders[i].enabled = false;
-        }
-
-        if (_sprites[0].color.a >= 1 || _sprites[0].color.a <= 1 - _colorDeltaAlpha)
-            _selfCicle = _selfCicle == Cicle.Dicrement ? Cicle.Increment : Cicle.Dicrement;
+        _spriteRenderer.color = GetChangedColor(_spriteRenderer.color, _changingStep * (int)cicle);
+        _collider.enabled = IsHalfColor();
     }
 
-    private Color GetColorWithChangedAlpha(Color color, float alphaStep)
+    private Color GetChangedColor(Color color, Color step)
     {
-        return new Color(color.r, color.g, color.b, color.a + alphaStep * Time.deltaTime);
+        Color changedColor = color + step * Time.deltaTime;
+        if (changedColor.r < _colorOff.r)
+        {
+            _selfCicle = Cicle.Increment;
+            return _colorOff;
+        }
+        else if (changedColor.r > _colorOn.r)
+        {
+            _selfCicle = Cicle.Dicrement;
+            return _colorOn;
+        }
+        else
+            return changedColor;
+    }
+
+    private bool IsHalfColor()
+    {
+        Color color = _spriteRenderer.color;
+        if (IsHalfValue(color.r, _colorOn.r, _colorOff.r) && IsHalfValue(color.g, _colorOn.g, _colorOff.g) && IsHalfValue(color.b, _colorOn.b, _colorOff.b))
+            return true;
+        else
+            return false;
+    }
+
+    private bool IsHalfValue(float value, float onValue, float offValue)
+    {
+        return value > offValue + (onValue - offValue) / 2;
     }
 
     private enum Cicle

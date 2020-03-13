@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
+  m_Name: WindUp
+  m_EditorClassIdentifier: 
+  _actionObjectAvatar: {fileID: 3847295499399035040, guid: ab2ba6e138604224f8b8e81032113b08,
+    type: 3}
+  _actionObjectPrefab: {fileID: 6165935516948816281, guid: 31052546157f3224b85252af50e18115,
+    type: 3}
+  _place: 0

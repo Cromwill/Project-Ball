@@ -2,27 +2,26 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class Spawn : ObjectPool, IBuyable, IUpgradeable
+public class Spawn : ActionObject, IObjectPool
 {
-    [SerializeField] private float _price;
-    [SerializeField] private string _name;
-
     private IPoolForObjects _runablePool;
     private IRunable<float> _loadLine;
     private Coroutine _spawning;
 
     public bool IsUsing { get; set; }
-    public float Price => _price;
-    public string Name => _name;
     public float SpawnTime { get; private set; }
+
+    public bool IsInThePool { get; protected set; }
+    public IPoolForObjects SelfObjectForPool { get; private set; }
 
     private void OnEnable()
     {
         _selfTransform = GetComponent<Transform>();
         _loadLine = GetComponentInChildren<IRunable<float>>();
+        _selfTransform = GetComponent<Transform>();
     }
 
-    public override void LeaveThePoolAndRun(Vector2 position)
+    public void LeaveThePoolAndRun(Vector2 position)
     {
         IsInThePool = false;
         _selfTransform.position = position;
@@ -32,14 +31,28 @@ public class Spawn : ObjectPool, IBuyable, IUpgradeable
 
     public void FillObject(IPoolForObjects selfPool, IPoolForObjects runablePool, float startTime)
     {
-        _selfPoolForObjects = selfPool;
+        SelfObjectForPool = selfPool;
         _runablePool = runablePool;
         SpawnTime = startTime;
     }
 
-    public void Upgrade(float value)
+    public override void Upgrade(float value)
     {
-        SpawnTime *= value;
+        SpawnTime -= value;
+    }
+
+    public void LeaveThePool(Vector2 position)
+    {
+        throw new System.NotImplementedException("SpawnObject not leave the Pool without Run. Use method <<LeaveThePoolAndRun()>> ");
+    }
+    public void ReturnToPool(Vector2 position)
+    {
+        throw new System.NotImplementedException("SpawnObject can't return to the Pool");
+    }
+
+    public Vector2 GetPosition()
+    {
+        return _selfTransform.position;
     }
 
     private IEnumerator SpawnObjects()
@@ -49,7 +62,7 @@ public class Spawn : ObjectPool, IBuyable, IUpgradeable
             _runablePool.GetObject().LeaveThePool(_selfTransform.position);
             if (_loadLine == null)
                 _loadLine = GetComponentInChildren<IRunable<float>>();
-                _loadLine.Run(SpawnTime);
+            _loadLine.Run(SpawnTime);
             yield return new WaitForSeconds(SpawnTime);
         }
     }

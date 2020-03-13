@@ -8,7 +8,6 @@ public class ObjectSpawner
 
     public Transform Avatar => _avatarTransform;
     public ActionObject ActionObject => _actionObject.ActionObject;
-    public IBuyable BuyableObject => _actionObject.BuyableObject;
 
     public ObjectSpawner(IGeneratedBy actionObject, Transform avatar)
     {
@@ -42,16 +41,14 @@ public class ObjectSpawner
             _anchor.IsFree = true;
     }
 
-    public void SetObjectOnScene(ActionObject actionObject, string levelName)
+    public void SetObjectOnScene(ActionObject actionObject, bool isAction)
     {
-        actionObject.SetPosition(_anchor.GetPosition()); ;
-        _anchor.SetChangeableObject(actionObject as IUpgradeable);
-    }
+        if (isAction)
+            actionObject.SetPosition(_anchor.GetPosition());
+        else
+            (actionObject as Spawn).LeaveThePoolAndRun(_anchor.GetPosition());
 
-    public void SetObjectOnScene(ObjectPool poolObject)
-    {
-        poolObject.LeaveThePoolAndRun(_anchor.GetPosition());
-        _anchor.SetChangeableObject(poolObject as IUpgradeable);
+        _anchor.SetChangeableObject(actionObject as IUpgradeable);
     }
 
     private bool CompairObjectWithAnchor(UsedPlace placeForObject, TypeForAnchor typeForAnchor)

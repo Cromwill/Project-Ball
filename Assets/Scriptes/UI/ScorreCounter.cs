@@ -13,13 +13,13 @@ public class ScorreCounter : MonoBehaviour, IUpgradeable
 
     private void OnEnable()
     {
-        _scorrePerTime = new ScorrePerTime(30, Time.time);
+        _scorrePerTime = new ScorrePerTime(10, Time.timeSinceLevelLoad);
     }
 
     private void OnDisable()
     {
-        CustomPlayerPrefs.SetInt(_levelName + "_scorre", Scorre);
-        CustomPlayerPrefs.SetFloat(_levelName + "_scorrePerSecond", ScorrePerSecond);
+        PlayerPrefs.SetInt(_levelName + "_scorre", Scorre);
+        PlayerPrefs.SetFloat(_levelName + "_scorrePerSecond", ScorrePerSecond);
     }
 
     private void Start()
@@ -33,7 +33,7 @@ public class ScorreCounter : MonoBehaviour, IUpgradeable
 
     public void AddingScorre(int scorre)
     {
-        ScorrePerSecond = _scorrePerTime.GetValue(scorre, Time.time);
+        ScorrePerSecond = _scorrePerTime.GetValue(scorre, Time.timeSinceLevelLoad);
         _scorreDrawer.DrawSpeed(ScorrePerSecond);
         ChangeScorre(scorre);
     }
@@ -58,6 +58,4 @@ public class ScorreCounter : MonoBehaviour, IUpgradeable
         Scorre += scorre;
         _scorreDrawer.Draw(Scorre);
     }
-
-
 }

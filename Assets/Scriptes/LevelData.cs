@@ -13,6 +13,12 @@ public class LevelData : MonoBehaviour
 
     public string LevelName => _levelName;
 
+    private void OnEnable()
+    {
+        _actionObjectSpawner = GetComponent<ActionObjectSpawner>();
+        GameDataStorage.CurrentLevel = _levelName;
+    }
+
     private void OnDisable()
     {
         SaveDatas();
@@ -25,13 +31,12 @@ public class LevelData : MonoBehaviour
 
     private void Start()
     {
-        GameDataStorage.CurrentLevel = _levelName;
-        _actionObjectSpawner = GetComponent<ActionObjectSpawner>();
-        bool isFirstLavel = !PlayerPrefs.HasKey(_levelName + "_isOpen");
+        bool isFirstLavel = !PlayerPrefs.HasKey(_levelName + "_isFirstRun");
         _objectPoolForBalls.GeneratePool(_levelData.BallCount, isFirstLavel, _levelName);
         _globalSpawn.GeneratePool(_levelData.SpawnObjectCount, isFirstLavel, _levelName);
-
         _actionObjectSpawner.Load(_levelName);
+        if (isFirstLavel)
+            PlayerPrefs.SetString(_levelName + "_isFirstRun", true.ToString());
     }
 
     public void ExitLevel()

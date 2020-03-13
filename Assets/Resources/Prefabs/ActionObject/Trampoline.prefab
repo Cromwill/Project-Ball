@@ -122,8 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fae643af7adccb45a2efe6fc02194ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _price: 10
+  _price: 75
   _name: Trampoline
+  _type: 1
   _xPositionOffset: 2
 --- !u!1 &3581882321878453059
 GameObject:

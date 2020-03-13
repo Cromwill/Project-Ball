@@ -40,6 +40,12 @@ public class Ball : ObjectPool, IHaveScorre
         base.ReturnToPool(position);
     }
 
+    public void Run(Vector2 force)
+    {
+        _selfRigidbody.velocity = Vector2.zero;
+        _selfRigidbody.AddForce(force, ForceMode2D.Impulse);
+    }
+
     private void ControlSpeed()
     {
         if (Mathf.Abs(_selfRigidbody.velocity.x) > _maxVelocity.x)
@@ -47,5 +53,7 @@ public class Ball : ObjectPool, IHaveScorre
 
         if (Mathf.Abs(_selfRigidbody.velocity.y) > _maxVelocity.y)
             _selfRigidbody.velocity = new Vector2(_selfRigidbody.velocity.x, _maxVelocity.y * + Mathf.Sign(_selfRigidbody.velocity.y));
+
+        _savePosition = _selfTransform.position;
     }
 }

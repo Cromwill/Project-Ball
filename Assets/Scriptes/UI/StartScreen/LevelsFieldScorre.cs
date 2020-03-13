@@ -15,7 +15,7 @@ public class LevelsFieldScorre : MonoBehaviour
 
     private void OnDisable()
     {
-        CustomPlayerPrefs.SetInt(_levelName + "_scorre", (int)Scorre);
+        PlayerPrefs.SetInt(_levelName + "_scorre", (int)Scorre);
     }
 
     private void Update()
@@ -29,6 +29,11 @@ public class LevelsFieldScorre : MonoBehaviour
         _levelName = levelName;
         FillingScorreDatas();
         Show();
+    }
+
+    public void ReductionScorre(float scorre)
+    {
+        Scorre -= scorre;
     }
 
     private void FillingScorreDatas()

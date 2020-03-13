@@ -49,13 +49,13 @@ public class ActionObjectSpawner : MonoBehaviour
     public void ConfirmSetObject()
     {
         if (_currenObject.IsActionObject() && !_currenObject.IsUpgrade())
-            _currenObject.SetObjectOnScene(Instantiate(_currenObject.ActionObject), _levelName);
+            _currenObject.SetObjectOnScene(Instantiate(_currenObject.ActionObject), true);
         else if (_currenObject.IsUpgrade())
             _currenObject.SetObjectOnScene(_currenObject.ActionObject as UpgradeObject);
         else
-            _currenObject.SetObjectOnScene(_spawnPool.GetObject() as ObjectPool);
+            _currenObject.SetObjectOnScene(_spawnPool.GetObject() as ActionObject, false);
 
-        _gameEconomy.OnPurchaseCompleted(_currenObject.BuyableObject);
+        _gameEconomy.OnPurchaseCompleted(_currenObject.ActionObject);
         EndUse();
     }
 
@@ -103,9 +103,12 @@ public class ActionObjectSpawner : MonoBehaviour
                 SavedObject savedObject = GameDataStorage.GetSavedObject("spawn", i);
                 var spawn = _spawnPool.GetObject() as Spawn;
                 var anchor = _anchorsForSpawnObject.Where(a => a.GetPosition() == savedObject.Position).First();
-                spawn.Upgrade(spawn.SpawnTime / PlayerPrefs.GetFloat(level + "_spawnIndex_" + i + "_spawnTime"));
-                spawn.LeaveThePoolAndRun(anchor.GetPosition());
-                anchor.SetChangeableObject(spawn as IUpgradeable);
+                if (anchor.IsFree)
+                {
+                    spawn.Upgrade(spawn.SpawnTime - PlayerPrefs.GetFloat(level + "_spawnIndex_" + i + "_spawnTime"));
+                    spawn.LeaveThePoolAndRun(anchor.GetPosition());
+                    anchor.SetChangeableObject(spawn as IUpgradeable);
+                }
             }
         }
     }

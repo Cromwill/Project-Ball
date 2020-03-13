@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2511081926909277966, guid: 5d0051f7c8225144d9b2878606a9e694,
         type: 3}
       propertyPath: m_Name
-      value: DeleteObject (1)
+      value: DeleteObject Avatar
       objectReference: {fileID: 0}
     - target: {fileID: 3481248133440871414, guid: 5d0051f7c8225144d9b2878606a9e694,
         type: 3}

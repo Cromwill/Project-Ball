@@ -1,23 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class ScorreUpgradeButton : MonoBehaviour
+public class ScorreUpgradeButton : ProductPanel
 {
-    [SerializeField] private Text _name;
-    [SerializeField] private Text _price;
+    [SerializeField] private Text _scorreUpgradeViewer;
     [SerializeField] private ScorreCounter _scorreCounter;
-    [SerializeField] private ActionObjectScriptableObject _product;
-    [SerializeField] private GameEconomy _economy;
 
-    private Button _selfButton;
+    private int _upgradeCount;
+
+    private void OnEnable()
+    {
+        _productButton = GetComponentInChildren<Button>();
+    }
 
     private void Start()
     {
-        _selfButton = GetComponentInChildren<Button>();
-        _name.text = _product.BuyableObject.Name;
-        _price.text = _product.BuyableObject.Price.ToString();
-
-        _selfButton.onClick.AddListener(UpgradeScorre);
+        _nameViewer.text = _product.ActionObject.Name;
+        _productButton.onClick.AddListener(UpgradeScorre);
     }
 
     private void Update()
@@ -25,13 +26,28 @@ public class ScorreUpgradeButton : MonoBehaviour
         OpportunityBuy();
     }
 
-    private void OpportunityBuy()
+    public override void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy)
     {
-        _selfButton.interactable = _economy.EnoughPoints(_economy.GetPrice(_product.BuyableObject.Price));
+        _economy = economy;
+        _economy.PurchaseCompleted += ChangePrice;
+        ChangePrice();
+    }
+
+    public override void ChangePrice()
+    {
+        _priceViewer.text = _economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType).ToString();
+        _scorreUpgradeViewer.text = ConvertDatasDorUpgradeViewer(_economy.GetCount(_product.ActionObject.ObjectType), (_product.ActionObject as UpgradeObject).ChangingValue);
     }
 
     private void UpgradeScorre()
     {
         _economy.ScorreUpgrade(_product.ActionObject as UpgradeObject);
+    }
+
+    private string ConvertDatasDorUpgradeViewer(int upgradeCount, float changingValue)
+    {
+        string result = ((changingValue - 1) * upgradeCount).ToString("0.##");
+
+        return "+ " + result + " %";
     }
 }

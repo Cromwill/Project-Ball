@@ -11,9 +11,6 @@ public class ChoseGameField : MonoBehaviour
 
     private void Start()
     {
-        if (!PlayerPrefs.HasKey(_gameFields[0].Name + "_isOpen"))
-            CustomPlayerPrefs.SetInt(_gameFields[0].Name + "_isOpen", 1);
-
         foreach (var fields in _gameFields)
             fields.MoveSelf(new Vector2(0, 0), _startPosition.position);
     }

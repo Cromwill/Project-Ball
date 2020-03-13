@@ -7,11 +7,9 @@ public class ActionObjectScriptableObject : ScriptableObject, IGeneratedBy
     [SerializeField] private MonoBehaviour _actionObjectPrefab;
     [SerializeField] private UsedPlace _place;
 
-    public IBuyable BuyableObject => (IBuyable)_actionObjectPrefab;
     public GameObject Avatar => _actionObjectAvatar;
-    public ActionObject ActionObject => BuyableObject as ActionObject;
+    public ActionObject ActionObject => _actionObjectPrefab as ActionObject;
     UsedPlace IGeneratedBy.UsedPlace => _place;
-
 }
 
 public enum UsedPlace

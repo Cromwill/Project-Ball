@@ -2,29 +2,30 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameField : MonoBehaviour, IBuyable
+[RequireComponent(typeof(GameFieldSeller))]
+public class GameField : MonoBehaviour
 {
     [SerializeField] private GameFieldData _gameFieldData;
-    [SerializeField] private float _price;
-    [SerializeField] private string _levelName;
     [SerializeField] private LevelsFieldScorre _scorrePanel;
 
     private RectTransform _selfTransform;
     private Vector2 _startPosition;
     private Button _selfButton;
+    private GameFieldSeller _seller;
 
     public bool IsOpenLevel { get; private set; }
     public Vector2 Position => _selfTransform.position;
-
-    public float Price => _price;
-    public string Name => _levelName;
+    public float Price => _seller.Price;
+    public string Name => _seller.Name;
     public LevelsFieldScorre ScorrePanel => _scorrePanel;
 
     private void Awake()
     {
         _selfTransform = GetComponent<RectTransform>();
         _selfButton = GetComponent<Button>();
-        IsOpenLevel = PlayerPrefs.GetInt(_levelName + "_isOpen") == 1 ? true : false;
+        _seller = GetComponent<GameFieldSeller>();
+
+        IsOpenLevel = PlayerPrefs.HasKey(_seller.Name + "_isOpen");
         if (IsOpenLevel)
             OpeningField();
         _selfButton.interactable = IsOpenLevel;
@@ -46,10 +47,14 @@ public class GameField : MonoBehaviour, IBuyable
             _selfTransform.localScale = _gameFieldData.ScaleOnFocuse - new Vector2(step * distance, step * distance);
     }
 
-    public void OpenLevel()
+    public bool OpenLevel(int scorre)
     {
-        IsOpenLevel = true;
-        OpeningField();
+        if (_seller.isCanBuy(scorre))
+        {
+            IsOpenLevel = true;
+            OpeningField();
+        }
+        return IsOpenLevel;
     }
 
     public void LoadLevel()
@@ -59,14 +64,9 @@ public class GameField : MonoBehaviour, IBuyable
 
     private void OpeningField()
     {
-        var children = GetComponentsInChildren<Transform>();
-        if (children != null)
-        {
-            for (int i = 0; i < children.Length; i++)
-                if (children[i].parent == transform) children[i].gameObject.SetActive(false);
-        }
+        _seller.CloseSeller();
         _selfButton.interactable = IsOpenLevel;
-        _scorrePanel.Open(_levelName);
-        CustomPlayerPrefs.SetInt(_levelName + "_isOpen", 1);
+        _scorrePanel.Open(_seller.Name);
+        PlayerPrefs.SetString(_seller.Name + "_isOpen","isOpen");
     }
 }
