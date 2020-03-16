@@ -73,15 +73,19 @@ static class GameDataStorage
     {
         string placeKey = place == ColorPlace.Background ? "_backgroundColor" : "_midlegroundColor";
         string key = levelName + placeKey;
-
-        var value = PlayerPrefs.GetString(key).Trim(new char[] { 'R', 'G', 'B', 'A', '(', ')' }).Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-        float[] components = new float[4];
-        for (int i = 0; i < components.Length; i++)
+        if (PlayerPrefs.HasKey(key))
         {
-            components[i] = Convert.ToSingle(value[i].Replace(".", ","));
-        }
+            var value = PlayerPrefs.GetString(key).Trim(new char[] { 'R', 'G', 'B', 'A', '(', ')' }).Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            float[] components = new float[4];
+            for (int i = 0; i < components.Length; i++)
+            {
+                components[i] = Convert.ToSingle(value[i].Replace(".", ","));
+            }
 
-        return new Color(components[0], components[1], components[2], components[3]);
+            return new Color(components[0], components[1], components[2], components[3]);
+        }
+        else
+            return new Color(1, 1, 1, 1);
     }
 
     private static void SaveObject(string anchorType, int index, Vector2 position, string name)

@@ -33,9 +33,9 @@ public class GameEconomy : MonoBehaviour
         if (count != 0)
         {
             if(objectType == ActionObjectType.Action || objectType == ActionObjectType.Phisics || objectType == ActionObjectType.Spawn)
-                return (int)(price * GetFactorial(count) * _objectIncrease);
+                return (int)(price * GetСoefficient(count) * _objectIncrease);
             else if(objectType == ActionObjectType.UpgradeSpawn || objectType == ActionObjectType.UpgradeScorre)
-                return (int)(price * GetFactorial(count) * _upgradeIncrease);
+                return (int)(price * GetСoefficient(count) * _upgradeIncrease);
             return (int)price;
         }
         else
@@ -58,15 +58,8 @@ public class GameEconomy : MonoBehaviour
         return _objectsOnScene.GetCount(objectType);
     }
 
-    private int GetFactorial(int value)
+    private int GetСoefficient(int count)
     {
-        int n = value;
-        int factorial = 1;
-
-        for (int i = 2; i <= n; i++)
-        {
-            factorial *= i;
-        }
-        return factorial;
+        return (int)Mathf.Pow(2, count);
     }
 }

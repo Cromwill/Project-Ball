@@ -2768,6 +2768,11 @@ PrefabInstance:
       propertyPath: _objectSpawner
       value: 
       objectReference: {fileID: 1256215966}
+    - target: {fileID: 4119553213051565007, guid: 9c009d01b84f38043915291cb1455b10,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4119553213065102088, guid: 9c009d01b84f38043915291cb1455b10,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2996,7 +3001,7 @@ PrefabInstance:
     - target: {fileID: 4119553213457830854, guid: 9c009d01b84f38043915291cb1455b10,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000016119373
+      value: 0.000022777102
       objectReference: {fileID: 0}
     - target: {fileID: 4119553213460323065, guid: 9c009d01b84f38043915291cb1455b10,
         type: 3}
@@ -6863,7 +6868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _maxYPosition: 0
-  _minYPosition: -10
+  _minYPosition: -10.3
 --- !u!1001 &1433298619
 PrefabInstance:
   m_ObjectHideFlags: 0

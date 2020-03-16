@@ -36,6 +36,11 @@ public class LevelsFieldScorre : MonoBehaviour
         Scorre -= scorre;
     }
 
+    public void AddScorre(int value)
+    {
+        Scorre += value;
+    }
+
     private void FillingScorreDatas()
     {
         Scorre = PlayerPrefs.GetInt(_levelName + "_scorre");
