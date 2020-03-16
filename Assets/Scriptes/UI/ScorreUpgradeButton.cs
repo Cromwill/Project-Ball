@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class ScorreUpgradeButton : ProductPanel
 {
     [SerializeField] private Text _scorreUpgradeViewer;
-    [SerializeField] private ScorreCounter _scorreCounter;
-
-    private int _upgradeCount;
 
     private void OnEnable()
     {

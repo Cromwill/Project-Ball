@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
   m_Name: DisappearingPlatform
   m_EditorClassIdentifier: 
-  _actionObjectAvatar: {fileID: 3847295499399035040, guid: ab2ba6e138604224f8b8e81032113b08,
+  _actionObjectAvatar: {fileID: 6323878533385582864, guid: 731f1e2b83f4d564fba780c5dca81a0d,
     type: 3}
   _actionObjectPrefab: {fileID: 6268604012613432419, guid: 37b4e834fd6740040913347595f743fb,
     type: 3}
-  _type: 0
+  _place: 0

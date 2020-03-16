@@ -11,11 +11,6 @@ public class ScorreCounter : MonoBehaviour, IUpgradeable
     public int Scorre { get; private set; }
     public float ScorrePerSecond { get; private set; }
 
-    private void OnEnable()
-    {
-        _scorrePerTime = new ScorrePerTime(10, Time.timeSinceLevelLoad);
-    }
-
     private void OnDisable()
     {
         PlayerPrefs.SetInt(_levelName + "_scorre", Scorre);
@@ -27,6 +22,7 @@ public class ScorreCounter : MonoBehaviour, IUpgradeable
         _levelName = GetComponent<LevelData>().LevelName;
         Scorre = PlayerPrefs.GetInt(_levelName + "_scorre");
         ScorrePerSecond = PlayerPrefs.GetFloat(_levelName + "_scorrePerSecond");
+        _scorrePerTime = new ScorrePerTime(10, Time.timeSinceLevelLoad, ScorrePerSecond);
         ChangeScorre(0);
         _scorreDrawer.DrawSpeed(ScorrePerSecond);
     }

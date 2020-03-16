@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 262707808661337907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.837, y: 2.551, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -109,11 +109,13 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0, y: 0.25}
-      - {x: -0.25, y: 0}
-      - {x: -0.25, y: 0}
+      - {x: -0.22843972, y: 0.001045227}
+      - {x: -0.2297464, y: 0.0015678406}
+      - {x: -0.22647962, y: 0.0010454655}
+      - {x: -0.22778645, y: 0.001568079}
       - {x: 0.000000021855694, y: -0.25}
-      - {x: 0.25, y: 0}
-      - {x: 0.25, y: 0}
+      - {x: 0.22988528, y: -0.00039243698}
+      - {x: 0.22939473, y: -0.00078487396}
 --- !u!114 &8247351131893266295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,3 +130,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _price: 10
   _name: Rhomb
+  _type: 0

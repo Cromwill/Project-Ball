@@ -62,6 +62,28 @@ static class GameDataStorage
         return objectsOnScene;
     }
 
+    public static void SaveColorForLevel(string levelName, Color color, ColorPlace place)
+    {
+        string placeKey = place == ColorPlace.Background ? "_backgroundColor" : "_midlegroundColor";
+        string key = levelName + placeKey;
+        PlayerPrefs.SetString(key, color.ToString());
+    }
+
+    public static Color GetColorForLevel(string levelName, ColorPlace place)
+    {
+        string placeKey = place == ColorPlace.Background ? "_backgroundColor" : "_midlegroundColor";
+        string key = levelName + placeKey;
+
+        var value = PlayerPrefs.GetString(key).Trim(new char[] { 'R', 'G', 'B', 'A', '(', ')' }).Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+        float[] components = new float[4];
+        for (int i = 0; i < components.Length; i++)
+        {
+            components[i] = Convert.ToSingle(value[i].Replace(".", ","));
+        }
+
+        return new Color(components[0], components[1], components[2], components[3]);
+    }
+
     private static void SaveObject(string anchorType, int index, Vector2 position, string name)
     {
         string key = "_" + anchorType + "AnchorIndex_" + index;
@@ -88,10 +110,10 @@ public class ScorrePerTime
     private TimeScorreData[] _datas;
     private int _dataCounter = 0;
 
-    public ScorrePerTime(int count, float startTime)
+    public ScorrePerTime(int count, float startTime, float scorrePerSecond)
     {
         _datas = new TimeScorreData[count];
-        _datas[_dataCounter] = new TimeScorreData(0, startTime);
+        _datas[_dataCounter] = new TimeScorreData((int)scorrePerSecond, startTime);
     }
 
     public float GetValue(int point, float time)
@@ -137,4 +159,10 @@ public enum UpgradesType
 {
     Scorre,
     Spawn
+}
+
+public enum ColorPlace
+{
+    Background,
+    MidleGround
 }

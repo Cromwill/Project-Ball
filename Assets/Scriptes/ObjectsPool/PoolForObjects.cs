@@ -72,11 +72,12 @@ public class PoolForObjects : MonoBehaviour, IPoolForObjects
         {
             for (int i = 0; i < _poolObjects.Length; i++)
             {
-                if(_poolObjects[i].GetPosition() != null)
+                string key = level + "_ballsIndex_" + i;
+                if (_poolObjects[i].GetPosition() != null)
                 {
-                    PlayerPrefs.SetFloat(level + "_ballsIndex_" + i + "_positionX", _poolObjects[i].GetPosition().x);
-                    PlayerPrefs.SetFloat(level + "_ballsIndex_" + i + "_positionY", _poolObjects[i].GetPosition().y);
-                    PlayerPrefs.SetString(level + "_ballIndex_" + i + "_isInThePool", _poolObjects[i].IsInThePool.ToString());
+                    PlayerPrefs.SetFloat(key + "_positionX", _poolObjects[i].GetPosition().x);
+                    PlayerPrefs.SetFloat(key + "_positionY", _poolObjects[i].GetPosition().y);
+                    PlayerPrefs.SetString(key + "_isInThePool", _poolObjects[i].IsInThePool.ToString());
                 }
             }
         }

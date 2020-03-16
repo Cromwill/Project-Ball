@@ -9,6 +9,8 @@ public class Ball : ObjectPool, IHaveScorre
     private float _startTime;
     private float _finishTime;
 
+    public float StartTime => _startTime;
+
     private void OnEnable()
     {
         _selfRigidbody = GetComponent<Rigidbody2D>();

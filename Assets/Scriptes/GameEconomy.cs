@@ -9,16 +9,16 @@ public class GameEconomy : MonoBehaviour
 
     private ObjectsCountOnScene _objectsOnScene;
 
-    private void Start()
+    private void OnDisable()
+    {
+        GameDataStorage.SaveObjectsOnScene(_objectsOnScene);
+    }
+    public event Action PurchaseCompleted;
+
+    private void Awake()
     {
         _objectsOnScene = GameDataStorage.GetObjectsOnCurrentScene();
     }
-
-    private void OnDisable()
-    {
-        _objectsOnScene.Save();
-    }
-    public event Action PurchaseCompleted;
 
     public void OnPurchaseCompleted(IBuyable buyable)
     {
@@ -33,9 +33,9 @@ public class GameEconomy : MonoBehaviour
         if (count != 0)
         {
             if(objectType == ActionObjectType.Action || objectType == ActionObjectType.Phisics || objectType == ActionObjectType.Spawn)
-                return (int)(price * count * _objectIncrease);
+                return (int)(price * GetFactorial(count) * _objectIncrease);
             else if(objectType == ActionObjectType.UpgradeSpawn || objectType == ActionObjectType.UpgradeScorre)
-                return (int)(price * count * _upgradeIncrease);
+                return (int)(price * GetFactorial(count) * _upgradeIncrease);
             return (int)price;
         }
         else
@@ -56,5 +56,17 @@ public class GameEconomy : MonoBehaviour
     public int GetCount(ActionObjectType objectType)
     {
         return _objectsOnScene.GetCount(objectType);
+    }
+
+    private int GetFactorial(int value)
+    {
+        int n = value;
+        int factorial = 1;
+
+        for (int i = 2; i <= n; i++)
+        {
+            factorial *= i;
+        }
+        return factorial;
     }
 }

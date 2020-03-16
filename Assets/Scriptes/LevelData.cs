@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelData : MonoBehaviour
@@ -13,7 +14,7 @@ public class LevelData : MonoBehaviour
 
     public string LevelName => _levelName;
 
-    private void OnEnable()
+    private void Awake()
     {
         _actionObjectSpawner = GetComponent<ActionObjectSpawner>();
         GameDataStorage.CurrentLevel = _levelName;
@@ -21,11 +22,7 @@ public class LevelData : MonoBehaviour
 
     private void OnDisable()
     {
-        SaveDatas();
-    }
-
-    private void OnApplicationPause(bool pause)
-    {
+        PlayerPrefs.SetString("ExitGameTime", DateTime.Now.ToString());
         SaveDatas();
     }
 

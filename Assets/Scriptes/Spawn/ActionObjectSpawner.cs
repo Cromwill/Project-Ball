@@ -27,7 +27,6 @@ public class ActionObjectSpawner : MonoBehaviour
         _anchorsForSpawnObject = _spawnObjectTilemap.GetComponentsInChildren<IActionObjectAnchor>();
     }
 
-
     public void ChangeAvatarPositionOnScene(IActionObjectAnchor anchor)
     {
         if (_currenObject != null)
@@ -85,6 +84,7 @@ public class ActionObjectSpawner : MonoBehaviour
     public void Load(string level)
     {
         _levelName = level;
+
         for (int i = 0; i < _anchorsForActionObject.Length; i++)
         {
             if (PlayerPrefs.HasKey(level + "_actionAnchorIndex_" + i + "_positionX"))

@@ -3,34 +3,31 @@ using UnityEngine;
 
 class ObjectsCountOnScene
 {
-    private int _countActionObjectsOnStage = 0;
-    private int _countPhysicsObjectOnStage = 0;
-    private int _countSpawnObjectsOnStage = 1;
-    private int _spawnUpgradeCount = 0;
-    private int _scorreUpgrade = 0;
+    private int _countActionObjectsOnStage;
+    private int _countPhysicsObjectOnStage;
+    private int _countSpawnObjectsOnStage;
+    private int _spawnUpgradeCount;
+    private int _scorreUpgrade;
+    private int _deleted;
 
     public ObjectsCountOnScene()
     {
         _countActionObjectsOnStage = 0;
         _countPhysicsObjectOnStage = 0;
-        _countSpawnObjectsOnStage = 1;
+        _countSpawnObjectsOnStage = 0;
         _spawnUpgradeCount = 0;
         _scorreUpgrade = 0;
+        _deleted = -1;
     }
 
     public void AddCount(ActionObjectType objectType)
     {
-        if (objectType != ActionObjectType.Deleted)
-        {
-            ref int _currentCount = ref GetCorrectCounter(objectType);
-            _currentCount++;
-        }
+        ChangeCount(objectType, 1);
     }
 
     public void SetCount(ActionObjectType objectType, int value)
     {
-        ref int _currentCount = ref GetCorrectCounter(objectType);
-        _currentCount = value;
+        ChangeCount(objectType, value);
     }
 
     public int GetCount(ActionObjectType objectType)
@@ -38,14 +35,16 @@ class ObjectsCountOnScene
         return GetCorrectCounter(objectType);
     }
 
-    public void Save()
+    private void ChangeCount(ActionObjectType objectType, int value)
     {
-        GameDataStorage.SaveObjectsOnScene(this);
+        ref int _currentCount = ref GetCorrectCounter(objectType);
+        if (_currentCount != _deleted)
+            _currentCount += value;
     }
 
     private ref int GetCorrectCounter(ActionObjectType objectType)
     {
-        switch(objectType)
+        switch (objectType)
         {
             case ActionObjectType.Action:
                 return ref _countActionObjectsOnStage;
@@ -59,7 +58,7 @@ class ObjectsCountOnScene
                 return ref _spawnUpgradeCount;
         }
 
-        throw new IndexOutOfRangeException("ObjectType not found");
+        return ref _deleted;
     }
 }
 
