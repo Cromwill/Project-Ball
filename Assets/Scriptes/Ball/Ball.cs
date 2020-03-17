@@ -6,10 +6,8 @@ public class Ball : ObjectPool, IHaveScorre
     [SerializeField] private int _scoreMultiplier;
 
     private Rigidbody2D _selfRigidbody;
-    private float _startTime;
     private float _finishTime;
-
-    public float StartTime => _startTime;
+    public float StartTime { get; private set; }
 
     private void OnEnable()
     {
@@ -25,12 +23,12 @@ public class Ball : ObjectPool, IHaveScorre
     public int GetScorre()
     {
         _finishTime = Time.time;
-        return Mathf.FloorToInt(_finishTime - _startTime);
+        return Mathf.FloorToInt(_finishTime - StartTime);
     }
 
     public override void LeaveThePool(Vector2 position)
     {
-        _startTime = Time.time;
+        StartTime = Time.time;
         _selfRigidbody.simulated = true;
         base.LeaveThePool(position);
     }

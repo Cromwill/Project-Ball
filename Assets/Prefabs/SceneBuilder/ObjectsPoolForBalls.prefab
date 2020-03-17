@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3426689769479034041}
   - component: {fileID: 3426689769479034040}
+  - component: {fileID: 188236464}
   m_Layer: 0
   m_Name: ObjectsPoolForBalls
   m_TagString: Untagged
@@ -45,3 +46,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectPrefab: {fileID: 7857358332688702654, guid: 715127922be2a7545a19838049bff0eb,
     type: 3}
+--- !u!114 &188236464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426689769479034047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0625c5966c6e39f45b0a13c6359ca2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _price: 0
+  _name: 
+  _type: 0
+  _force: {x: 0, y: 0}
+  _stopTime: 0
