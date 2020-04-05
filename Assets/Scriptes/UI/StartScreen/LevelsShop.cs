@@ -4,10 +4,30 @@
 public class LevelsShop : MonoBehaviour
 {
     [SerializeField] private StartScreenScorreCounter _scorreCounter;
+    [SerializeField] private ConfirmingBuyPanel _confirmingBuyPanel;
 
-    public void Buy(GameField gameField)
+    private GameField _buyableGameField;
+    public void OpenConfirmedBuyPanel(GameField gameField)
     {
-        if (gameField.OpenLevel((int)_scorreCounter.TotalScorre))
-            _scorreCounter.ReductionScorre((int)gameField.Price);
+        _buyableGameField = gameField;
+        _confirmingBuyPanel.gameObject.SetActive(true);
+        _confirmingBuyPanel.ShowCoast(_buyableGameField.Price);
+    }
+
+    public void Cancel()
+    {
+        _confirmingBuyPanel.gameObject.SetActive(false);
+    }
+    public void Buy()
+    {
+        if (_buyableGameField.OpenLevel(_scorreCounter.TotalScorre))
+        {
+            _scorreCounter.ReductionScorre((int)_buyableGameField.Price);
+            Cancel();
+        }
+        else
+        {
+            _confirmingBuyPanel.PlayDangeringAnimation();
+        }
     }
 }

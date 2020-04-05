@@ -19,6 +19,8 @@ public class ActionObjectSpawner : MonoBehaviour
     private ObjectSpawner _currenObject;
     private string _levelName;
 
+    public event Action OutOfSpawnAnchors;
+    public event Action OutOfSpawnUpgrade;
     public bool IsUsing => _currenObject != null;
 
     private void Awake()
@@ -27,16 +29,8 @@ public class ActionObjectSpawner : MonoBehaviour
         _anchorsForSpawnObject = _spawnObjectTilemap.GetComponentsInChildren<IActionObjectAnchor>();
     }
 
-    public void ChangeAvatarPositionOnScene(IActionObjectAnchor anchor)
-    {
-        if (_currenObject != null)
-            _currenObject.ChangeAnchor(anchor);
-    }
-
-    public void SetObjectOnScene(IGeneratedBy actionObject)
-    {
-        FillingObjectSpawner(actionObject, null);
-    }
+    public void ChangeAvatarPositionOnScene(IActionObjectAnchor anchor) => _currenObject.ChangeAnchor(anchor);
+    public void SetObjectOnScene(IGeneratedBy actionObject) => FillingObjectSpawner(actionObject, null);
 
     public void DeletedObject(ActionObject actionObject)
     {
@@ -58,10 +52,7 @@ public class ActionObjectSpawner : MonoBehaviour
         EndUse();
     }
 
-    public void DeclineSetObject()
-    {
-        EndUse();
-    }
+    public void DeclineSetObject() => EndUse();
 
     public void Save(string level)
     {
@@ -73,7 +64,7 @@ public class ActionObjectSpawner : MonoBehaviour
                 GameDataStorage.RemoveActionObject(i);
         }
 
-        for(int i = 0; i < _anchorsForSpawnObject.Length; i++)
+        for (int i = 0; i < _anchorsForSpawnObject.Length; i++)
         {
             var spawn = _anchorsForSpawnObject[i].InstalledFacility as Spawn;
             if (!_anchorsForSpawnObject[i].IsFree)
@@ -96,9 +87,9 @@ public class ActionObjectSpawner : MonoBehaviour
                 anchor.SetChangeableObject(actionObject);
             }
         }
-        for(int i = 0; i < _anchorsForSpawnObject.Length; i++)
+        for (int i = 0; i < _anchorsForSpawnObject.Length; i++)
         {
-            if(PlayerPrefs.HasKey(level + "_spawnAnchorIndex_" + i + "_positionX"))
+            if (PlayerPrefs.HasKey(level + "_spawnAnchorIndex_" + i + "_positionX"))
             {
                 SavedObject savedObject = GameDataStorage.GetSavedObject("spawn", i);
                 var spawn = _spawnPool.GetObject() as Spawn;
@@ -130,10 +121,7 @@ public class ActionObjectSpawner : MonoBehaviour
         ToggleAnchors();
     }
 
-    private void OnDeletingObject()
-    {
-        DeletingObject?.Invoke();
-    }
+    private void OnDeletingObject() => DeletingObject?.Invoke();
 
     private IActionObjectAnchor[] GetCorrectAnchorsArray()
     {
@@ -146,5 +134,15 @@ public class ActionObjectSpawner : MonoBehaviour
         var anchors = GetCorrectAnchorsArray();
         for (int i = 0; i < anchors.Length; i++)
             anchors[i].ToggleColor();
+    }
+
+    private bool IsCanUsing(IGeneratedBy actionObject)
+    {
+        if(actionObject.UsedPlace == UsedPlace.SpawnObjectFree)
+        {
+            return _anchorsForSpawnObject.Where(a => a.IsFree == true).Count() > 0;
+        }
+        return true;
+
     }
 }

@@ -97,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scorreDrawer: {fileID: 0}
   _scorreFactor: 2
+  _scorreFormConvert: {fileID: 11400000, guid: f61bdb24f152a4841a0d706c2fe8f546, type: 2}
 --- !u!114 &6169094914062488118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,5 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e687bd6dda9f834e90c9367060fc938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _increase: 1.2
+  _objectIncrease: 0
+  _upgradeIncrease: 0
   _scorreCounter: {fileID: 6169094914062488116}

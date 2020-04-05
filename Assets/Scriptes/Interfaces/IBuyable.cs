@@ -1,7 +1,7 @@
 ﻿public interface IBuyable
 {
     float Price { get;}
-    string Name { get; }
+    string LevelName { get; }
      ActionObjectType ObjectType { get; }
 }
 

@@ -4,31 +4,27 @@ public class ObjectSpawner
 {
     private IGeneratedBy _actionObject;
     private IActionObjectAnchor _anchor;
-    private Transform _avatarTransform;
 
-    public Transform Avatar => _avatarTransform;
+    public Transform Avatar { get; }
     public ActionObject ActionObject => _actionObject.ActionObject;
 
     public ObjectSpawner(IGeneratedBy actionObject, Transform avatar)
     {
         _actionObject = actionObject;
-        _avatarTransform = avatar;
+        Avatar = avatar;
     }
 
-    public bool IsActionObject()
-    {
-        return _actionObject.UsedPlace == UsedPlace.ActionObjectBound || _actionObject.UsedPlace == UsedPlace.ActionObjectFree;
-    }
+    public bool IsActionObject() => _actionObject.UsedPlace == UsedPlace.ActionObjectBound || _actionObject.UsedPlace == UsedPlace.ActionObjectFree;
 
-    public bool IsUpgrade()
-    {
-        return _actionObject.UsedPlace == UsedPlace.ActionObjectBound || _actionObject.UsedPlace == UsedPlace.SpawnObjectBound;
-    }
+    public bool IsUpgrade() => _actionObject.UsedPlace == UsedPlace.ActionObjectBound || _actionObject.UsedPlace == UsedPlace.SpawnObjectBound;
 
     public void ChangeAnchor(IActionObjectAnchor anchor)
     {
         if (CompairObjectWithAnchor(_actionObject.UsedPlace, anchor.GetAnchorType) && anchor.IsFree)
-            ChangeCurrentAnchor(anchor);
+        {
+            if (!IsUpgrade())
+                ChangeCurrentAnchor(anchor);
+        }
 
         if (IsUpgrade() && !anchor.IsFree)
             ChangeCurrentAnchor(anchor);
@@ -64,6 +60,6 @@ public class ObjectSpawner
     private void ChangeCurrentAnchor(IActionObjectAnchor anchor)
     {
         _anchor = anchor;
-        _avatarTransform.position = anchor.GetPosition();
+        Avatar.position = anchor.GetPosition();
     }
 }

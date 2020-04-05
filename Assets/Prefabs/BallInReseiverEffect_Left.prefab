@@ -17,15 +17,30 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6077979705421984744, guid: fa3260f0dfd51054fbcbe111a2db9c02,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077979705421984744, guid: fa3260f0dfd51054fbcbe111a2db9c02,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077979705421984744, guid: fa3260f0dfd51054fbcbe111a2db9c02,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8476348598275799475, guid: fa3260f0dfd51054fbcbe111a2db9c02,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.2301533
+      value: -0.15405327
       objectReference: {fileID: 0}
     - target: {fileID: 8476348598275799475, guid: fa3260f0dfd51054fbcbe111a2db9c02,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.15
+      value: -10.115068
       objectReference: {fileID: 0}
     - target: {fileID: 8476348598275799475, guid: fa3260f0dfd51054fbcbe111a2db9c02,
         type: 3}

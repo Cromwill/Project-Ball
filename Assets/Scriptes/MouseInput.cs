@@ -6,6 +6,8 @@ public class MouseInput : MonoBehaviour
     [SerializeField] private MoverAroundLocation _objectMove;
     [SerializeField] private ActionObjectSpawner _objectSpawner;
 
+    private bool _isFindObject;
+
     private void Update()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
@@ -14,13 +16,14 @@ public class MouseInput : MonoBehaviour
             {
                 Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 _objectMove.SetMovePositionData(position);
+                _isFindObject = SearchObject(position);
             }
 
             if (Input.GetMouseButton(0))
             {
                 Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                if (!SearchObject(position))
+                if (!_isFindObject)
                 {
                     _objectMove.Move(position);
                 }

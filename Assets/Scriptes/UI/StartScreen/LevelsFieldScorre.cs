@@ -7,15 +7,16 @@ public class LevelsFieldScorre : MonoBehaviour
     [SerializeField] private Text _scorrePerSecondViewer;
     [SerializeField] private Text _lableViewer;
     [SerializeField] private StartScreenScorreCounter _totalScorre;
-
-    private float _scorrePerSecond;
+    [SerializeField] private ScorreFormConverter _scorreFormConverter;
+    [SerializeField] private GameObject _gamePanel;
     private string _levelName;
 
     public float Scorre { get; private set; }
+    public float ScorrePerSecond { get; private set; }
 
     private void OnDisable()
     {
-        PlayerPrefs.SetInt(_levelName + "_scorre", (int)Scorre);
+        PlayerPrefs.SetFloat(_levelName + "_scorre", Scorre);
     }
 
     private void Update()
@@ -25,41 +26,27 @@ public class LevelsFieldScorre : MonoBehaviour
 
     public void Open(string levelName)
     {
-        GameObjectSetActive(true, _scorreViewer.gameObject, _scorrePerSecondViewer.gameObject, _lableViewer.gameObject);
+        _gamePanel.SetActive(true);
         _levelName = levelName;
         FillingScorreDatas();
         Show();
     }
 
-    public void ReductionScorre(float scorre)
-    {
-        Scorre -= scorre;
-    }
+    public void ReductionScorre(float scorre) => Scorre -= scorre;
 
-    public void AddScorre(int value)
-    {
-        Scorre += value;
-    }
+    public void AddScorre(int value) => Scorre += value;
 
     private void FillingScorreDatas()
     {
-        Scorre = PlayerPrefs.GetInt(_levelName + "_scorre");
-        _scorrePerSecond = PlayerPrefs.GetFloat(_levelName + "_scorrePerSecond");
-        Scorre += (_totalScorre.GetSleepTimeSecond() * _scorrePerSecond);
+        Scorre = PlayerPrefs.GetFloat(_levelName + "_scorre");
+        ScorrePerSecond = PlayerPrefs.GetFloat(_levelName + "_scorrePerSecond");
+        Scorre += _totalScorre.GetSleepTimeSecond() * ScorrePerSecond;
     }
 
     private void Show()
     {
-        _scorrePerSecondViewer.text = _scorrePerSecond.ToString("0.##") + " point/sec";
-        Scorre += _scorrePerSecond * Time.deltaTime;
-        _scorreViewer.text = ((int)Scorre).ToString() + " points";
-    }
-
-    private void GameObjectSetActive(bool state, params GameObject[] objects)
-    {
-        foreach(var obj in objects)
-        {
-            obj.SetActive(state);
-        }
+        _scorrePerSecondViewer.text = _scorreFormConverter.GetConvertedScorrePerSecond(ScorrePerSecond);
+        Scorre += ScorrePerSecond * Time.deltaTime;
+        _scorreViewer.text = _scorreFormConverter.GetConvertedScorre(Scorre);
     }
 }

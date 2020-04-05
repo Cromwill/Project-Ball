@@ -2,47 +2,47 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(GameFieldSeller))]
+[RequireComponent(typeof(GameFieldSeller), typeof(LevelsFieldScorre))]
 public class GameField : MonoBehaviour
 {
-    [SerializeField] private LevelsFieldScorre _scorrePanel;
-    [SerializeField] private Button _openColorPanel;
-    [SerializeField] private ColorPanel _colorPanel;
-    [SerializeField] private LevelDrawer _levelDrawer;
     [SerializeField] private int _levelIndex;
+    [SerializeField] private Sprite _closePanel;
+    [SerializeField] private Sprite _openPanel;
+
 
     private Button _selfButton;
     private GameFieldSeller _seller;
+    private Image _selfPanel;
+    private Animator _selfAnimator;
+    private AudioSource _audioSours;
 
     public bool IsOpenLevel { get; private set; }
+    public LevelsFieldScorre ScorrePanel { get; private set; }
     public float Price => _seller.Price;
-    public string Name => _seller.Name;
-    public LevelsFieldScorre ScorrePanel => _scorrePanel;
+    public string LevelName => _seller.LevelName;
+
 
     private void Awake()
     {
         _selfButton = GetComponent<Button>();
         _seller = GetComponent<GameFieldSeller>();
-        _openColorPanel.interactable = false;
-        _levelDrawer.gameObject.SetActive(false);
+        ScorrePanel = GetComponent<LevelsFieldScorre>();
+        _selfPanel = GetComponent<Image>();
+        _selfAnimator = GetComponent<Animator>();
+        _audioSours = GetComponent<AudioSource>();
 
-        IsOpenLevel = PlayerPrefs.HasKey(_seller.Name + "_isOpen");
+        IsOpenLevel = PlayerPrefs.HasKey(LevelName + "_isOpen");
         if (IsOpenLevel)
             OpeningField();
         _selfButton.interactable = IsOpenLevel;
     }
 
-    private void Start()
-    {
-        _openColorPanel.onClick.AddListener(OpenColorPanel);
-    }
-
-    public bool OpenLevel(int scorre)
+    public bool OpenLevel(float scorre)
     {
         if (_seller.isCanBuy(scorre))
         {
             IsOpenLevel = true;
-            OpeningField();
+            _selfAnimator.Play("OpeningGamePanel");
         }
         return IsOpenLevel;
     }
@@ -52,18 +52,14 @@ public class GameField : MonoBehaviour
         SceneManager.LoadScene(_levelIndex, LoadSceneMode.Single);
     }
 
-    private void OpenColorPanel()
-    {
-        _colorPanel.OpenPanel(Name, _levelDrawer);
-    }
+    public void PlayOpeningSound() => _audioSours.Play();
 
-    private void OpeningField()
+    public void OpeningField()
     {
         _seller.CloseSeller();
         _selfButton.interactable = IsOpenLevel;
-        _levelDrawer.gameObject.SetActive(IsOpenLevel);
-        _scorrePanel.Open(_seller.Name);
-        _openColorPanel.interactable = IsOpenLevel;
-        PlayerPrefs.SetString(_seller.Name + "_isOpen","isOpen");
+        ScorrePanel.Open(LevelName);
+        _selfPanel.sprite = _openPanel;
+        PlayerPrefs.SetString(LevelName + "_isOpen","isOpen");
     }
 }

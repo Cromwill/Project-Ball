@@ -10,6 +10,6 @@ public class ChoseGameField : MonoBehaviour
 
     public string[] GetOpenLevelNames()
     {
-        return _gameFields.Where(a => a.IsOpenLevel).Select(a => a.Name).ToArray();
+        return _gameFields.Where(a => a.IsOpenLevel).Select(a => a.LevelName).ToArray();
     }
 }

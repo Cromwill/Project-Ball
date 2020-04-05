@@ -26,6 +26,7 @@ static class GameDataStorage
     {
         SaveObject("spawn", anchorIndex, position, spawnObject.name.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries)[0]);
         PlayerPrefs.SetFloat(CurrentLevel + "_spawnIndex_" + anchorIndex + "_spawnTime", spawnTime);
+        PlayerPrefs.Save();
     }
 
     public static void RemoveActionObject(int anchorIndex)
@@ -33,12 +34,14 @@ static class GameDataStorage
         PlayerPrefs.DeleteKey(CurrentLevel + "_actionAnchorIndex_" + anchorIndex + "_positionX");
         PlayerPrefs.DeleteKey(CurrentLevel + "_actionAnchorIndex_" + anchorIndex + "_positionY");
         PlayerPrefs.DeleteKey(CurrentLevel + "_actionAnchorIndex_" + anchorIndex + "_object");
+        PlayerPrefs.Save();
     }
 
     public static void SaveUpgradeCount(UpgradesType type, int count)
     {
         string key = type == UpgradesType.Scorre ? "_scorreUpgradeCount" : "_spawnUpgradeCount";
         PlayerPrefs.SetInt(CurrentLevel + key, count);
+        PlayerPrefs.Save();
     }
 
     public static void SaveObjectsOnScene(ObjectsCountOnScene objectsOnScene)
@@ -48,6 +51,7 @@ static class GameDataStorage
         PlayerPrefs.SetInt(CurrentLevel + "_spawnObjectsOnScene", objectsOnScene.GetCount(ActionObjectType.Spawn));
         PlayerPrefs.SetInt(CurrentLevel + "_scorreUpgradeOnScene", objectsOnScene.GetCount(ActionObjectType.UpgradeScorre));
         PlayerPrefs.SetInt(CurrentLevel + "_spawnUpgradeOnScene", objectsOnScene.GetCount(ActionObjectType.UpgradeSpawn));
+        PlayerPrefs.Save();
     }
 
     public static ObjectsCountOnScene GetObjectsOnCurrentScene()
@@ -62,38 +66,13 @@ static class GameDataStorage
         return objectsOnScene;
     }
 
-    public static void SaveColorForLevel(string levelName, Color color, ColorPlace place)
-    {
-        string placeKey = place == ColorPlace.Background ? "_backgroundColor" : "_midlegroundColor";
-        string key = levelName + placeKey;
-        PlayerPrefs.SetString(key, color.ToString());
-    }
-
-    public static Color GetColorForLevel(string levelName, ColorPlace place)
-    {
-        string placeKey = place == ColorPlace.Background ? "_backgroundColor" : "_midlegroundColor";
-        string key = levelName + placeKey;
-        if (PlayerPrefs.HasKey(key))
-        {
-            var value = PlayerPrefs.GetString(key).Trim(new char[] { 'R', 'G', 'B', 'A', '(', ')' }).Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            float[] components = new float[4];
-            for (int i = 0; i < components.Length; i++)
-            {
-                components[i] = Convert.ToSingle(value[i].Replace(".", ","));
-            }
-
-            return new Color(components[0], components[1], components[2], components[3]);
-        }
-        else
-            return new Color(1, 1, 1, 1);
-    }
-
     private static void SaveObject(string anchorType, int index, Vector2 position, string name)
     {
         string key = "_" + anchorType + "AnchorIndex_" + index;
         PlayerPrefs.SetFloat(CurrentLevel + key + "_positionX", position.x);
         PlayerPrefs.SetFloat(CurrentLevel + key + "_positionY", position.y);
         PlayerPrefs.SetString(CurrentLevel + key + "_object", name);
+        PlayerPrefs.Save();
     }
 }
 
@@ -113,31 +92,40 @@ public class ScorrePerTime
 {
     private TimeScorreData[] _datas;
     private int _dataCounter = 0;
+    private float _currentValue;
 
     public ScorrePerTime(int count, float startTime, float scorrePerSecond)
     {
         _datas = new TimeScorreData[count];
         _datas[_dataCounter] = new TimeScorreData((int)scorrePerSecond, startTime);
+        _currentValue = scorrePerSecond;
     }
 
     public float GetValue(int point, float time)
     {
-        int scorreSum = 0;
-        float averageTime = 0;
-        int firstIndex = 0;
-
-        _dataCounter = GetNextIndex();
-        firstIndex = _datas[_dataCounter] == null ? 0 : GetNextIndex();
-        _datas[_dataCounter] = new TimeScorreData(point, time);
-
-        for (int i = 0; i < _datas.Length; i++)
+        if (_dataCounter == 0)
         {
-            if (_datas[i] != null)
-                scorreSum += _datas[i].Scorre;
+            int scorreSum = 0;
+            float averageTime;
+            int firstIndex;
+
+            _dataCounter = GetNextIndex();
+            firstIndex = _datas[_dataCounter] == null ? 0 : GetNextIndex();
+            _datas[_dataCounter] = new TimeScorreData(point, time);
+
+            for (int i = 0; i < _datas.Length; i++)
+            {
+                if (_datas[i] != null)
+                    scorreSum += _datas[i].Scorre;
+            }
+
+            averageTime = _datas[_dataCounter].Time - _datas[firstIndex].Time;
+            var value = scorreSum / averageTime;
+            if (value > _currentValue)
+                _currentValue = value;
         }
 
-        averageTime = _datas[_dataCounter].Time - _datas[firstIndex].Time;
-        return scorreSum / averageTime;
+        return _currentValue;
     }
 
     private int GetNextIndex()

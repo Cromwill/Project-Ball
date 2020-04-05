@@ -20,7 +20,7 @@ public class LevelData : MonoBehaviour
         GameDataStorage.CurrentLevel = _levelName;
     }
 
-    private void OnDisable()
+    private void OnApplicationQuit()
     {
         PlayerPrefs.SetString("ExitGameTime", DateTime.Now.ToString());
         SaveDatas();

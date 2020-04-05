@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TestingActions : MonoBehaviour
@@ -16,7 +17,7 @@ public class TestingActions : MonoBehaviour
         _scorre.AddScorre(value);
     }
 
-    public void ReduseScorre(int value)
+    public void ReduseScorre(float value)
     {
         _scorre.ReductionScorre(value);
     }
