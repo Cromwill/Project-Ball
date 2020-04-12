@@ -3,26 +3,63 @@ using UnityEngine;
 
 public class GameEconomy : MonoBehaviour
 {
-    [SerializeField] private float _increase;
+    [SerializeField] private float _objectIncrease;
+    [SerializeField] private float _upgradeIncrease; 
     [SerializeField] private ScorreCounter _scorreCounter;
 
-    private int _countObjectsOnStage = 1;
+    private ObjectsCountOnScene _objectsOnScene;
+
+    private void OnDisable()
+    {
+        GameDataStorage.SaveObjectsOnScene(_objectsOnScene);
+    }
     public event Action PurchaseCompleted;
+
+    private void Awake()
+    {
+        _objectsOnScene = GameDataStorage.GetObjectsOnCurrentScene();
+    }
 
     public void OnPurchaseCompleted(IBuyable buyable)
     {
-        _scorreCounter.ReductionScorre(GetPrice(buyable.Price));
-        _countObjectsOnStage++;
+        _scorreCounter.ReductionScorre(GetPrice(buyable.Price, buyable.ObjectType));
+        _objectsOnScene.AddCount(buyable.ObjectType);
         PurchaseCompleted?.Invoke();
     }
 
-    public int GetPrice(float price)
+    public int GetPrice(float price, ActionObjectType objectType)
     {
-        return (int)(price * _countObjectsOnStage * _increase);
+        int count = _objectsOnScene.GetCount(objectType);
+        if (count != 0)
+        {
+            if(objectType == ActionObjectType.Action || objectType == ActionObjectType.Phisics || objectType == ActionObjectType.Spawn)
+                return (int)(price * GetСoefficient(count) * _objectIncrease);
+            else if(objectType == ActionObjectType.UpgradeSpawn || objectType == ActionObjectType.UpgradeScorre)
+                return (int)(price * GetСoefficient(count) * _upgradeIncrease);
+            return (int)price;
+        }
+        else
+            return (int)price;
     }
 
     public bool EnoughPoints(int scorre)
     {
         return scorre <= _scorreCounter.Scorre;
+    }
+
+    public void ScorreUpgrade(UpgradeObject upgradeObject)
+    {
+        _scorreCounter.Upgrade(upgradeObject.ChangingValue);
+        OnPurchaseCompleted(upgradeObject);
+    }
+
+    public int GetCount(ActionObjectType objectType)
+    {
+        return _objectsOnScene.GetCount(objectType);
+    }
+
+    private int GetСoefficient(int count)
+    {
+        return (int)Mathf.Pow(2, count);
     }
 }

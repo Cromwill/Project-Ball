@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
+  m_Name: Trampoline
+  m_EditorClassIdentifier: 
+  _actionObjectAvatar: {fileID: 8479185329941406461, guid: c9eb2fca75ec99d43926a28a859f31b4,
+    type: 3}
+  _actionObjectPrefab: {fileID: 3581882321284271214, guid: f92677f1a57f11144b2bfce40698bb38,
+    type: 3}
+  _type: 0

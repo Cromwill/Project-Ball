@@ -6,15 +6,17 @@ public class Propeller : ActionObject
     [SerializeField] private float _startSpeed;
 
     private float _actionSpeed;
+    private Rigidbody2D _selfRigidbody;
 
-    private void Update()
+    private void Start()
     {
+        _selfRigidbody = GetComponent<Rigidbody2D>();
         Work();
     }
 
     private void Work()
     {
-        _selfTransform.Rotate(Vector3.forward * (int)_direction * _startSpeed * Time.deltaTime);
+        _selfRigidbody.angularVelocity = (int)_direction * _startSpeed;
     }
 
     public enum PropellerDirection

@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 
-public class Slowdone : MonoBehaviour
+public class Slowdone : ActionObject
 {
     [SerializeField] private Vector2 _maxSpeed;
     [SerializeField] private Direction _direction;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
         Rigidbody2D rigidbody = collision.GetComponent<Rigidbody2D>();
         rigidbody.velocity = RetentionSpeed(rigidbody.velocity);
     }

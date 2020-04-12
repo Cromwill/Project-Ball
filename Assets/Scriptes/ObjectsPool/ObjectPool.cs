@@ -4,6 +4,7 @@ public class ObjectPool : MonoBehaviour, IObjectPool, IRunable
 {
     protected IPoolForObjects _selfPoolForObjects;
     protected Transform _selfTransform;
+    protected Vector2 _savePosition;
 
     public bool IsInThePool { get; protected set; }
     public IPoolForObjects SelfObjectForPool { get; set; }
@@ -12,7 +13,10 @@ public class ObjectPool : MonoBehaviour, IObjectPool, IRunable
 
     public Vector2 GetPosition()
     {
-        return _selfTransform.position;
+        if (_selfTransform != null)
+            return _selfTransform.position;
+        else
+            return _savePosition;
     }
 
     public virtual void LeaveThePool(Vector2 position)

@@ -2,9 +2,10 @@
 
 public interface IActionObjectAnchor
 {
-    Transform Avatar { get; set; }
     bool IsFree { get; set; }
-    ActionObjectScriptableObject.ActionObjectType GetType { get; }
+    IUpgradeable InstalledFacility { get;}
+    TypeForAnchor GetAnchorType { get; }
     Vector2 GetPosition();
     void ToggleColor();
+    void SetChangeableObject(IUpgradeable changeableObject);
 }
