@@ -21,6 +21,7 @@ public class ActionObjectSpawner : MonoBehaviour
 
     public event Action OutOfSpawnAnchors;
     public event Action OutOfSpawnUpgrade;
+    public event Action OutOfActionAnchors;
     public bool IsUsing => _currenObject != null;
 
     private void Awake()
@@ -51,8 +52,6 @@ public class ActionObjectSpawner : MonoBehaviour
         _gameEconomy.OnPurchaseCompleted(_currenObject.ActionObject);
         EndUse();
     }
-
-    public void DeclineSetObject() => EndUse();
 
     public void Save(string level)
     {
@@ -104,7 +103,7 @@ public class ActionObjectSpawner : MonoBehaviour
         }
     }
 
-    private void EndUse()
+    public void EndUse()
     {
         Destroy(_currenObject.Avatar.gameObject);
         ToggleAnchors();

@@ -14,6 +14,7 @@ public class UpgradeProductPanel : ProductPanel
     {
         _nameViewer.text = _product.ActionObject.LevelName;
         _productButton.onClick.AddListener(OnChooseProduct);
+        _buttonImage = _productButton.GetComponent<Image>();
     }
 
     public override void ChangePrice()

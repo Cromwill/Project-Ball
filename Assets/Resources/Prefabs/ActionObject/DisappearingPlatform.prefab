@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 10
-  _name: Disappearing Platform
+  _name: DISAPPEARING PLATFORM
   _type: 0
   _cicleTime: 2
   _colorOn: {r: 1, g: 1, b: 1, a: 1}

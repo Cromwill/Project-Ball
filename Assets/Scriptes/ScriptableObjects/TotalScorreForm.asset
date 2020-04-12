@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scorrePerSecondEnding: ' / sec'
   _scorreEnding:
-  - ' point'
+  - ' points'
   - Th
   - ' M'
   - ' B'

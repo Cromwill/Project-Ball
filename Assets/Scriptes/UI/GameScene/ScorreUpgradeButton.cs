@@ -16,6 +16,7 @@ public class ScorreUpgradeButton : ProductPanel
     {
         _nameViewer.text = _product.ActionObject.LevelName;
         _productButton.onClick.AddListener(UpgradeScorre);
+        _buttonImage = _productButton.GetComponent<Image>();
     }
 
     private void Update()

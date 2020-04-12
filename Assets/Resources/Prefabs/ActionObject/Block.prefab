@@ -122,5 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 10
-  _name: Block
+  _name: BLOCK
   _type: 0

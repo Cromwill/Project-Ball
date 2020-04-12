@@ -1,7 +1,55 @@
 fileFormatVersion: 2
 guid: 96feb5a42cfc3dd47b17219018a8806c
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7432844144301801400
+    second: LevelBacgground
+  - first:
+      213: -548038576150251398
+    second: GreatPanelBackground
+  - first:
+      213: 2467915620610164150
+    second: BottomPanel
+  - first:
+      213: 1855269311437407135
+    second: PhysicsButton
+  - first:
+      213: -6633269947207418617
+    second: ActionButton
+  - first:
+      213: -8769148904829168725
+    second: SpawnAndUpgradeButton
+  - first:
+      213: -2322142333397480701
+    second: BackButton
+  - first:
+      213: -6825025490490993399
+    second: ProductPanel
+  - first:
+      213: -8333926435178513428
+    second: ShopPanel_8
+  - first:
+      213: -8616850665602719101
+    second: ShopPanel_9
+  - first:
+      213: -7909873834842184500
+    second: ShopPanel_10
+  - first:
+      213: -3406295772738160573
+    second: ProductButtonOff
+  - first:
+      213: 5852906041023276660
+    second: Lock
+  - first:
+      213: 6480755298223999207
+    second: ProductButtonOn
+  - first:
+      213: -4814280447618226816
+    second: ShopPanelBackground
+  - first:
+      213: -2877958445891362855
+    second: Check
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +88,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -70,9 +118,366 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: LevelBacgground
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 433
+        width: 360
+        height: 737
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bf73fb4e54c62760800000000000000
+      internalID: 7432844144301801400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BottomPanel
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 283
+        width: 327
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b54b1e6e2ccf3220800000000000000
+      internalID: 2467915620610164150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PhysicsButton
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 223
+        width: 81
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9309eeeb9d3fb910800000000000000
+      internalID: 1855269311437407135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionButton
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 223
+        width: 75
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70d7d69a024e1f3a0800000000000000
+      internalID: -6633269947207418617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpawnAndUpgradeButton
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 223
+        width: 75
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba3d6213889bd4680800000000000000
+      internalID: -8769148904829168725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackButton
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 223
+        width: 80
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30b42fbd9d716cfd0800000000000000
+      internalID: -2322142333397480701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ProductPanel
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 135
+        width: 287
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9055c481a73a841a0800000000000000
+      internalID: -6825025490490993399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShopPanel_8
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 125
+        width: 287
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceb72feef02f75c80800000000000000
+      internalID: -8333926435178513428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShopPanel_9
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 68
+        width: 128
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 382692249fbca6880800000000000000
+      internalID: -8616850665602719101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ProductButtonOff
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 35
+        width: 141
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 348f602ca086ab0d0800000000000000
+      internalID: -3406295772738160573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lock
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 56
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4762ee6c803b93150800000000000000
+      internalID: 5852906041023276660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ProductButtonOn
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 141
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e84fd27b9440f950800000000000000
+      internalID: 6480755298223999207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreatPanelBackground
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 270
+        width: 327
+        height: 326
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a787a5191d9f468f0800000000000000
+      internalID: -548038576150251398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShopPanelBackground
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 624
+        width: 309
+        height: 269
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -132.5, y: -134.5}
+        - {x: -154.5, y: -114.5}
+        - {x: -154.5, y: 134.5}
+        - {x: 123.5, y: 134.5}
+        - {x: 154.5, y: 110.5}
+        - {x: 154.5, y: -134.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0856b96a07d303db0800000000000000
+      internalID: -4814280447618226816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Check
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 85
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df5f42aa007f08d0800000000000000
+      internalID: -2877958445891362855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

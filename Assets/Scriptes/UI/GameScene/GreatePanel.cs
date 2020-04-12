@@ -13,7 +13,7 @@ public class GreatePanel : MonoBehaviour
     private void Start()
     {
         _confirmPanel.SetConfirmListener(_objectSpawner.ConfirmSetObject, _confirmPanel.ToggleActiveButtons);
-        _confirmPanel.SetCancelListener(_objectSpawner.DeclineSetObject, _confirmPanel.ToggleActiveButtons);
+        _confirmPanel.SetCancelListener(_objectSpawner.EndUse, _confirmPanel.ToggleActiveButtons);
         _economy = _objectSpawner.GetComponent<GameEconomy>();
         _productPanels = GetComponentsInChildren<ProductPanel>();
         _objectSpawner.DeletingObject += _confirmPanel.ToggleActiveButtons;

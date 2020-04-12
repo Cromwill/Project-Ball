@@ -6,7 +6,7 @@ public class ConfirmPanel : MonoBehaviour
 {
     [SerializeField] private Button _confirm;
     [SerializeField] private Button _cancel;
-    [SerializeField] private Button _shop;
+    [SerializeField] private GameObject _shop;
 
     public void SetConfirmListener(params UnityAction[] listeners)
     {
@@ -21,7 +21,7 @@ public class ConfirmPanel : MonoBehaviour
     public void ToggleActiveButtons()
     {
         gameObject.SetActive(!gameObject.activeSelf);
-        _shop.gameObject.SetActive(!gameObject.activeSelf);
+        _shop.SetActive(!gameObject.activeSelf);
     }
 
     private void SetListeners(Button button, UnityAction[] listeners)
