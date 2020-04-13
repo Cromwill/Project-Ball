@@ -6,8 +6,11 @@ public class ScorreFormConverter : ScriptableObject
     [SerializeField] private string _scorrePerSecondEnding;
     [SerializeField] private string[] _scorreEnding;
     [SerializeField] private string _stringFormat;
+    [SerializeField] private string _outOfAnchorsMessage;
 
     private const int _scorrePowerStep = 3;
+
+    public string OutOfAnchorsMessage => _outOfAnchorsMessage;
 
     public string GetConvertedScorre(float scorre)
     {

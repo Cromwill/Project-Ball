@@ -13,10 +13,13 @@ public class ProductPanel : MonoBehaviour
 
     protected Button _productButton;
     protected GameEconomy _economy;
-    private bool _currentState;
+    protected bool _currentState;
     protected event Action<IGeneratedBy> _chooseProduct;
     protected Image _buttonImage;
+    protected bool _isPossibleToUse;
+    protected ScorreFormConverter _scorreForm;
 
+    public ActionObjectType ProductType => _product.ActionObject.ObjectType;
     private void OnEnable()
     {
         _productButton = GetComponentInChildren<Button>();
@@ -28,15 +31,21 @@ public class ProductPanel : MonoBehaviour
         _productButton.onClick.AddListener(OnChooseProduct);
         _currentState = _productButton.interactable;
         _buttonImage = _productButton.GetComponent<Image>();
+        _isPossibleToUse = true;
     }
 
     private void Update()
     {
-        OpportunityBuy();
+        if (_isPossibleToUse)
+        {
+            OpportunityBuy();
+        }
     }
 
-    public virtual void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy)
+    public virtual void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy,
+        ScorreFormConverter scorreForm)
     {
+        _scorreForm = scorreForm;
         _chooseProduct += listener;
         _productButton.onClick.AddListener(closePanel);
         _productButton.onClick.AddListener(openConfirmPanel);
@@ -45,9 +54,22 @@ public class ProductPanel : MonoBehaviour
         ChangePrice();
     }
 
+    public void ClosePanel()
+    {
+        _isPossibleToUse = _productButton.interactable = false;
+        _priceViewer.text = _scorreForm.OutOfAnchorsMessage;
+    }
+
+    public void OpenPanel()
+    {
+        _isPossibleToUse = true;
+        ChangePrice();
+    }
+
     public virtual void ChangePrice()
     {
-        _priceViewer.text = _economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType).ToString();
+        var price = _economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType);
+        _priceViewer.text = _scorreForm.GetConvertedScorre(price).ToString();
     }
 
     protected void OpportunityBuy()

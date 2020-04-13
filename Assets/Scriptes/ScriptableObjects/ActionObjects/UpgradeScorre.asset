@@ -15,4 +15,4 @@ MonoBehaviour:
   _actionObjectAvatar: {fileID: 0}
   _actionObjectPrefab: {fileID: 2426671856497128943, guid: 6d2261a821555c34fa81a206be1ec083,
     type: 3}
-  _place: 4
+  _place: 1

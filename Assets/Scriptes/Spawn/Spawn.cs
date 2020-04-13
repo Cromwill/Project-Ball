@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Spawn : ActionObject, IObjectPool
 {
+    [SerializeField] private SpawnTimeViewer _spawnTimeViewer;
     private IPoolForObjects _runablePool;
     private IRunable<float> _loadLine;
-    private Coroutine _spawning;
 
     public bool IsUsing { get; set; }
     public float SpawnTime { get; private set; }
@@ -18,15 +19,19 @@ public class Spawn : ActionObject, IObjectPool
     {
         _selfTransform = GetComponent<Transform>();
         _loadLine = GetComponentInChildren<IRunable<float>>();
-        _selfTransform = GetComponent<Transform>();
+        var spawnTime = Instantiate(_spawnTimeViewer, FindObjectOfType<Canvas>().transform);
+        _spawnTimeViewer = spawnTime.GetComponent<SpawnTimeViewer>();
     }
 
     public void LeaveThePoolAndRun(Vector2 position)
     {
         IsInThePool = false;
         _selfTransform.position = position;
+        position.y += 0.2f;
+        _spawnTimeViewer.SetPosition(position);
+        _spawnTimeViewer.ShowValue(SpawnTime.ToString("0.00"));
         IsUsing = true;
-        _spawning = StartCoroutine(SpawnObjects());
+        StartCoroutine(SpawnObjects());
     }
 
     public void FillObject(IPoolForObjects selfPool, IPoolForObjects runablePool, float startTime)
@@ -39,6 +44,7 @@ public class Spawn : ActionObject, IObjectPool
     public override void Upgrade(float value)
     {
         SpawnTime -= value;
+        _spawnTimeViewer.ShowValue(SpawnTime.ToString("0.00"));
     }
 
     public void LeaveThePool(Vector2 position)

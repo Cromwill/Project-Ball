@@ -24,17 +24,20 @@ public class ScorreUpgradeButton : ProductPanel
         OpportunityBuy();
     }
 
-    public override void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy)
+    public override void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy,
+        ScorreFormConverter scorreForm)
     {
         _economy = economy;
         _economy.PurchaseCompleted += ChangePrice;
+        _scorreForm = scorreForm;
         ChangePrice();
     }
 
     public override void ChangePrice()
     {
-        _priceViewer.text = _economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType).ToString();
-        _scorreUpgradeViewer.text = ConvertDatasDorUpgradeViewer(_economy.GetCount(_product.ActionObject.ObjectType), (_product.ActionObject as UpgradeObject).ChangingValue);
+        var price = _economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType);
+        _priceViewer.text = _scorreForm.GetConvertedScorre(price);
+        _scorreUpgradeViewer.text = ConvertDatasForUpgradeViewer(_economy.GetCount(_product.ActionObject.ObjectType), (_product.ActionObject as UpgradeObject).ChangingValue);
     }
 
     private void UpgradeScorre()
@@ -42,9 +45,9 @@ public class ScorreUpgradeButton : ProductPanel
         _economy.ScorreUpgrade(_product.ActionObject as UpgradeObject);
     }
 
-    private string ConvertDatasDorUpgradeViewer(int upgradeCount, float changingValue)
+    private string ConvertDatasForUpgradeViewer(int upgradeCount, float changingValue)
     {
-        string result = ((changingValue - 1) * upgradeCount).ToString("0.##");
+        string result = ((changingValue - 1) * upgradeCount).ToString("0.00");
 
         return "+ " + result + " %";
     }

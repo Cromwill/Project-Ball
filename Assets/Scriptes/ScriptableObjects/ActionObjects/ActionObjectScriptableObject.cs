@@ -14,11 +14,8 @@ public class ActionObjectScriptableObject : ScriptableObject, IGeneratedBy
 
 public enum UsedPlace
 {
-    ActionObjectFree,
-    ActionObjectBound,
-    SpawnObjectFree,
-    SpawnObjectBound,
-    Upgrade
+    Free,
+    Bound
 }
 
 public enum TypeForAnchor

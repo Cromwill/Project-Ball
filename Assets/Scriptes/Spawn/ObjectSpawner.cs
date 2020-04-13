@@ -1,65 +1,84 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.Tilemaps;
 
-public class ObjectSpawner
+[RequireComponent(typeof(GameEconomy), typeof(LevelData))]
+public class ObjectSpawner : MonoBehaviour
 {
-    private IGeneratedBy _actionObject;
-    private IActionObjectAnchor _anchor;
+    [SerializeField] protected Tilemap _objectTilemap;
 
-    public Transform Avatar { get; }
-    public ActionObject ActionObject => _actionObject.ActionObject;
+    protected GameEconomy _gameEconomy;
+    protected IActionObjectAnchor[] _anchors;
+    protected ObjectSpawnerData _currentObject;
+    protected string _levelName;
 
-    public ObjectSpawner(IGeneratedBy actionObject, Transform avatar)
+    public event Action<TypeForAnchor> OutOfAnchors;
+
+    public bool IsUsing => _currentObject != null;
+
+    private void Awake()
     {
-        _actionObject = actionObject;
-        Avatar = avatar;
+        _anchors = _objectTilemap.GetComponentsInChildren<IActionObjectAnchor>();
+        _gameEconomy = GetComponent<GameEconomy>();
     }
 
-    public bool IsActionObject() => _actionObject.UsedPlace == UsedPlace.ActionObjectBound || _actionObject.UsedPlace == UsedPlace.ActionObjectFree;
+    public void ChangeAvatarPositionOnScene(IActionObjectAnchor anchor) => _currentObject.ChangeAnchor(anchor);
+    public virtual void SetObjectOnScene(IGeneratedBy actionObject) => FillingObjectSpawner(actionObject, null);
 
-    public bool IsUpgrade() => _actionObject.UsedPlace == UsedPlace.ActionObjectBound || _actionObject.UsedPlace == UsedPlace.SpawnObjectBound;
 
-    public void ChangeAnchor(IActionObjectAnchor anchor)
+    public virtual void DeletedObject(ActionObject actionObject) { }
+
+    public virtual void ConfirmSetObject()
     {
-        if (CompairObjectWithAnchor(_actionObject.UsedPlace, anchor.GetAnchorType) && anchor.IsFree)
+        _gameEconomy.OnPurchaseCompleted(_currentObject.ActionObject);
+        EndUse();
+    }
+
+    public virtual void Save(string level) { }
+
+    public virtual void Load(string level) { }
+
+    public void EndUse()
+    {
+        if (IsUsing)
         {
-            if (!IsUpgrade())
-                ChangeCurrentAnchor(anchor);
+            Destroy(_currentObject.Avatar.gameObject);
+            ToggleAnchors();
+            Save(_levelName);
+            if (_anchors.Where(a => a.IsFree).Count() == 0)
+                OnOutOfAnchors(_anchors.First().GetAnchorType);
+
+            _currentObject = null;
         }
-
-        if (IsUpgrade() && !anchor.IsFree)
-            ChangeCurrentAnchor(anchor);
     }
 
-    public void SetObjectOnScene(UpgradeObject upgradeObject)
+    public void EnoughAnchors()
     {
-        _anchor.InstalledFacility.Upgrade(upgradeObject.ChangingValue);
-        if (IsActionObject())
-            _anchor.IsFree = true;
+        if (_anchors.Where(a => a.IsFree).Count() == 0)
+            OnOutOfAnchors(_anchors.First().GetAnchorType);
     }
 
-    public void SetObjectOnScene(ActionObject actionObject, bool isAction)
+    protected void FillingObjectSpawner(IGeneratedBy actionObject, IActionObjectAnchor anchor)
     {
-        if (isAction)
-            actionObject.SetPosition(_anchor.GetPosition());
-        else
-            (actionObject as Spawn).LeaveThePoolAndRun(_anchor.GetPosition());
-
-        _anchor.SetChangeableObject(actionObject as IUpgradeable);
+        var avatar = Instantiate(actionObject.Avatar).GetComponent<Transform>();
+        _currentObject = new ObjectSpawnerData(actionObject, avatar);
+        anchor = anchor ?? GetCorrectAnchorsArray().First();
+        _currentObject.ChangeAnchor(anchor);
+        ToggleAnchors();
     }
 
-    private bool CompairObjectWithAnchor(UsedPlace placeForObject, TypeForAnchor typeForAnchor)
+    protected void ToggleAnchors()
     {
-        if (typeForAnchor == TypeForAnchor.ActionObject)
-            return placeForObject == UsedPlace.ActionObjectBound || placeForObject == UsedPlace.ActionObjectFree;
-        else if (typeForAnchor == TypeForAnchor.SpawnObject)
-            return placeForObject == UsedPlace.SpawnObjectBound || placeForObject == UsedPlace.SpawnObjectFree;
-        else
-            return false;
+        for (int i = 0; i < _anchors.Length; i++)
+            _anchors[i].ToggleColor();
     }
 
-    private void ChangeCurrentAnchor(IActionObjectAnchor anchor)
+    protected virtual IActionObjectAnchor[] GetCorrectAnchorsArray()
     {
-        _anchor = anchor;
-        Avatar.position = anchor.GetPosition();
+        return _anchors.Where(a => a.IsFree == !_currentObject.IsUpgrade()).ToArray();
     }
+
+    protected void OnOutOfAnchors(TypeForAnchor anchorType) => OutOfAnchors?.Invoke(anchorType);
 }
+
