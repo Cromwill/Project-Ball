@@ -5,15 +5,16 @@ public class GameEconomy : MonoBehaviour
 {
     [SerializeField] private float _objectIncrease;
     [SerializeField] private float _upgradeIncrease; 
-    [SerializeField] private ScorreCounter _scorreCounter;
+    [SerializeField] private ScoreCounter _scorreCounter;
 
     private ObjectsCountOnScene _objectsOnScene;
+
+    public event Action PurchaseCompleted;
 
     private void OnDisable()
     {
         GameDataStorage.SaveObjectsOnScene(_objectsOnScene);
     }
-    public event Action PurchaseCompleted;
 
     private void Awake()
     {

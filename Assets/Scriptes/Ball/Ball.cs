@@ -4,6 +4,7 @@ public class Ball : ObjectPool, IHaveScorre
 {
     [SerializeField] private Vector2 _maxVelocity;
     [SerializeField] private int _scoreMultiplier;
+    [SerializeField] private BallEffect _ballEffect;
 
     private Rigidbody2D _selfRigidbody;
     private float _finishTime;
@@ -20,10 +21,16 @@ public class Ball : ObjectPool, IHaveScorre
         ControlSpeed();
     }
 
-    public int GetScorre()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var effect = Instantiate(_ballEffect);
+        effect.Play(collision.GetContact(0).point);
+    }
+
+    public float GetScorre()
     {
         _finishTime = Time.time;
-        return Mathf.FloorToInt(_finishTime - StartTime);
+        return (_finishTime - StartTime);
     }
 
     public override void LeaveThePool(Vector2 position)

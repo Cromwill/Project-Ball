@@ -27,6 +27,7 @@ public class MouseInput : MonoBehaviour
                 if (!_isFindObject)
                 {
                     _objectMove.Move(position);
+                    _spawnObjectSpawner.ChangeCameraPosition();
                 }
             }
         }

@@ -27,6 +27,17 @@ public class GlobalSpawn : PoolForObjects
         return _poolObjects[_currentObjectsIndex];
     }
 
+    public void ChangeSpawnTimeViewerPosition()
+    {
+        for(int i = 0; i < _poolObjects.Length; i++)
+        {
+            if(_poolObjects[i] != null)
+            {
+                (_poolObjects[i] as Spawn).UpdateSpawnTimeViewerPosition();
+            }
+        }
+    }
+
     private void GenerateObject()
     {
         if (IsPoolContainFreeObject())

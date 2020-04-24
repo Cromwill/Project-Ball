@@ -10,7 +10,7 @@ public class GreatePanel : MonoBehaviour
     [SerializeField] private SpawnObjectSpawner _spawnObjectSpawner;
     [SerializeField] private ConfirmPanel _confirmPanel;
     [SerializeField] private Button _startButton;
-    [SerializeField] private ScorreFormConverter _scorreForm;
+    [SerializeField] private ScoreFormConverter _scorreForm;
 
     private ProductPanel[] _productPanels;
     private GameEconomy _economy;
@@ -25,6 +25,7 @@ public class GreatePanel : MonoBehaviour
         _actionObjectSpawner.OutOfAnchors += OutOfAnchors;
         _actionObjectSpawner.AnchorsAppeared += ActionAnchorsAppeared;
         _spawnObjectSpawner.OutOfAnchors += OutOfAnchors;
+        _spawnObjectSpawner.UsedMaxUpgrade += MaxSpawnUpgrade;
 
         foreach (var product in _productPanels)
         {
@@ -98,5 +99,12 @@ public class GreatePanel : MonoBehaviour
                 panels[i].OpenPanel();
             }
         }
+    }
+
+    private void MaxSpawnUpgrade()
+    {
+        var spawnUpgradePanels = _productPanels.Where(a => a.ProductType == ActionObjectType.UpgradeSpawn).First();
+        if (spawnUpgradePanels != null)
+            spawnUpgradePanels.ClosePanel();
     }
 }

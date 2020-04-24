@@ -17,7 +17,7 @@ public class ProductPanel : MonoBehaviour
     protected event Action<IGeneratedBy> _chooseProduct;
     protected Image _buttonImage;
     protected bool _isPossibleToUse;
-    protected ScorreFormConverter _scorreForm;
+    protected ScoreFormConverter _scorreForm;
 
     public ActionObjectType ProductType => _product.ActionObject.ObjectType;
     private void OnEnable()
@@ -43,7 +43,7 @@ public class ProductPanel : MonoBehaviour
     }
 
     public virtual void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy,
-        ScorreFormConverter scorreForm)
+        ScoreFormConverter scorreForm)
     {
         _scorreForm = scorreForm;
         _chooseProduct += listener;
@@ -57,7 +57,7 @@ public class ProductPanel : MonoBehaviour
     public void ClosePanel()
     {
         _isPossibleToUse = _productButton.interactable = false;
-        _priceViewer.text = _scorreForm.OutOfAnchorsMessage;
+        _priceViewer.text = _productState.ClosedMessage;
     }
 
     public void OpenPanel()
@@ -69,7 +69,7 @@ public class ProductPanel : MonoBehaviour
     public virtual void ChangePrice()
     {
         var price = _economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType);
-        _priceViewer.text = _scorreForm.GetConvertedScorre(price).ToString();
+        _priceViewer.text = _scorreForm.GetConvertedScore(price).ToString();
     }
 
     protected void OpportunityBuy()

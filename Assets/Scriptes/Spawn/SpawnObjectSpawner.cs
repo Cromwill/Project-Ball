@@ -1,19 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 
 public class SpawnObjectSpawner : ObjectSpawner
 {
     [SerializeField] private PoolForObjects _spawnPool;
 
-    public override void SetObjectOnScene(IGeneratedBy actionObject)
-    {
-        if(actionObject.UsedPlace == UsedPlace.Bound)
-        {
-
-        }
-
-        base.SetObjectOnScene(actionObject);
-    }
+    public event Action UsedMaxUpgrade;
 
     public override void ConfirmSetObject()
     {
@@ -23,6 +16,10 @@ public class SpawnObjectSpawner : ObjectSpawner
                 _currentObject.UsedUpgrade(false);
             else
                 _currentObject.SetObjectOnScene(_spawnPool.GetObject() as ActionObject, false);
+            var anchors = _anchors.Where(a => !a.IsFree).ToArray();
+            anchors = anchors.Where(a => a.InstalledFacility.IsCanUpgrade()).ToArray();
+            if (anchors.Length == 0)
+                UsedMaxUpgrade?.Invoke();
 
             base.ConfirmSetObject();
         }
@@ -57,5 +54,18 @@ public class SpawnObjectSpawner : ObjectSpawner
             if (!_anchors[i].IsFree)
                 GameDataStorage.SaveSpawnObjects(i, _anchors[i].GetPosition(), spawn, spawn.SpawnTime);
         }
+    }
+
+    public void ChangeCameraPosition() => (_spawnPool as GlobalSpawn).ChangeSpawnTimeViewerPosition();
+
+    protected override IActionObjectAnchor[] GetCorrectAnchorsArray()
+    {
+        var array = _anchors.Where(a => a.IsFree == !_currentObject.IsUpgrade()).ToArray();
+        if(_currentObject.IsUpgrade())
+        {
+            return array.Where(a => a.InstalledFacility.IsCanUpgrade()).ToArray();
+        }
+
+        return array;
     }
 }

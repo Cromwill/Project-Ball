@@ -137,6 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxVelocity: {x: 8, y: 8}
   _scoreMultiplier: 5
+  _ballEffect: {fileID: 2619202953072368497, guid: 0844f60ce4c68764f9fdc5c5c27aeb11,
+    type: 3}
 --- !u!82 &3223703264166778298
 AudioSource:
   m_ObjectHideFlags: 0
@@ -247,5 +249,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aroundSound: {fileID: 0}
   _audioClips:
-  - {fileID: 8300000, guid: 336e15a2361b72247bdd810fabc9d64e, type: 3}
-  - {fileID: 8300000, guid: 008f2d578294ddb4288161f0936ae114, type: 3}
+  - {fileID: 8300000, guid: 5b873fb8622e69941afc00318c344776, type: 3}
+  - {fileID: 8300000, guid: 27c8c74de7a78c346bc93f274c13e515, type: 3}

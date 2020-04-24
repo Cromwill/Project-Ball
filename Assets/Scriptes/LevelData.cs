@@ -24,8 +24,12 @@ public class LevelData : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        PlayerPrefs.SetString("ExitGameTime", DateTime.Now.ToString());
-        SaveDatas();
+        QuitLevel();
+    }
+
+    private void OnDisable()
+    {
+        QuitLevel();
     }
 
     private void Start()
@@ -50,5 +54,11 @@ public class LevelData : MonoBehaviour
         _objectPoolForBalls.Save(_levelName);
         _actionObjectSpawner.Save(_levelName);
         _spawnObjectSpawner.Save(_levelName);
+    }
+
+    private void QuitLevel()
+    {
+        PlayerPrefs.SetString("ExitGameTime", DateTime.Now.ToString());
+        SaveDatas();
     }
 }

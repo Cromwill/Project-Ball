@@ -221,3 +221,4 @@ MonoBehaviour:
   _type: 2
   _spawnTimeViewer: {fileID: 5484315065608312907, guid: 6c8ff9d5fc525e247a851c5993c2d67a,
     type: 3}
+  _minSpawnTime: 1.1

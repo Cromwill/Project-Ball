@@ -5,7 +5,7 @@ using UnityEngine;
 public class Receiver : MonoBehaviour
 {
     [SerializeField] private MonoBehaviour _objectsPool;
-    [SerializeField] private ScorreCounter _scorreCounter;
+    [SerializeField] private ScoreCounter _scorreCounter;
     [SerializeField] private Effects _ballPointsDrawer;
     [SerializeField] private RectTransform _parentForPointsDrawer;
 
@@ -23,8 +23,7 @@ public class Receiver : MonoBehaviour
     {
         IObjectPool ball = collision.GetComponent<IObjectPool>();
         IHaveScorre scorre = collision.GetComponent<IHaveScorre>();
-        int points = _scorreCounter.GetScorre(scorre.GetScorre());
-
+        float points = _scorreCounter.GetScorre(scorre.GetScorre());
         var effectBall = Instantiate(_ballPointsDrawer);
         effectBall.Play(ball.GetPosition());
         _effects.Add(effectBall);

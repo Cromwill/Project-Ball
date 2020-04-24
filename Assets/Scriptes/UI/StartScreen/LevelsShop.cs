@@ -3,7 +3,7 @@
 [RequireComponent(typeof(ChoseGameField))]
 public class LevelsShop : MonoBehaviour
 {
-    [SerializeField] private StartScreenScorreCounter _scorreCounter;
+    [SerializeField] private StartScreenScoreCounter _scorreCounter;
     [SerializeField] private ConfirmingBuyPanel _confirmingBuyPanel;
 
     private GameField _buyableGameField;
@@ -20,7 +20,7 @@ public class LevelsShop : MonoBehaviour
     }
     public void Buy()
     {
-        if (_buyableGameField.OpenLevel(_scorreCounter.TotalScorre))
+        if (_buyableGameField.OpenLevel(_scorreCounter.TotalScore))
         {
             _scorreCounter.ReductionScorre((int)_buyableGameField.Price);
             Cancel();

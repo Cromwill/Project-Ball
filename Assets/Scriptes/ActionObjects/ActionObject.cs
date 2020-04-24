@@ -26,6 +26,11 @@ public class ActionObject : MonoBehaviour, IBuyable, IUpgradeable
     {
         Destroy(gameObject);
     }
+
+    public virtual bool IsCanUpgrade()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 public enum ActionObjectType

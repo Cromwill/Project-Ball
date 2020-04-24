@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Spawn : ActionObject, IObjectPool
 {
     [SerializeField] private SpawnTimeViewer _spawnTimeViewer;
+    [SerializeField] private float _minSpawnTime;
     private IPoolForObjects _runablePool;
     private IRunable<float> _loadLine;
 
@@ -44,21 +45,26 @@ public class Spawn : ActionObject, IObjectPool
     public override void Upgrade(float value)
     {
         SpawnTime -= value;
+        if (SpawnTime < _minSpawnTime)
+            SpawnTime = _minSpawnTime;
         _spawnTimeViewer.ShowValue(SpawnTime.ToString("0.00"));
     }
 
-    public void LeaveThePool(Vector2 position)
+    public void UpdateSpawnTimeViewerPosition()
     {
-        throw new System.NotImplementedException("SpawnObject not leave the Pool without Run. Use method <<LeaveThePoolAndRun()>> ");
-    }
-    public void ReturnToPool(Vector2 position)
-    {
-        throw new System.NotImplementedException("SpawnObject can't return to the Pool");
+        Vector3 position = _selfTransform.position;
+        position.y += 0.2f;
+        _spawnTimeViewer.SetPosition(position);
     }
 
-    public Vector2 GetPosition()
+    public void LeaveThePool(Vector2 position) => throw new System.NotImplementedException("SpawnObject not leave the Pool without Run. Use method <<LeaveThePoolAndRun()>>");
+    public void ReturnToPool(Vector2 position) => throw new System.NotImplementedException("SpawnObject can't return to the Pool");
+
+    public Vector2 GetPosition() => _selfTransform.position;
+
+    public override bool IsCanUpgrade()
     {
-        return _selfTransform.position;
+        return SpawnTime > _minSpawnTime;
     }
 
     private IEnumerator SpawnObjects()
