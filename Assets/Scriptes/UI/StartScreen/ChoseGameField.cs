@@ -15,7 +15,7 @@ public class ChoseGameField : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < _gameFields.Length; i++)
+        for (int i = 0; i < _gameFields.Length; i++)
         {
             _gameFields[i].SetChoseGameField(this);
         }
@@ -35,14 +35,11 @@ public class ChoseGameField : MonoBehaviour
 
     private void LevelLoad(ShowResult result)
     {
-        if(_canLoadLevel && _currentLevelIndex != 0)
+        if (_canLoadLevel && _currentLevelIndex != 0)
         {
-            if (result == ShowResult.Finished || result == ShowResult.Skipped)
-            {
-                _videoAds.UnityAdsDidFinish -= LevelLoad;
-                _canLoadLevel = false;
-                SceneManager.LoadScene(_currentLevelIndex, LoadSceneMode.Single);
-            }
+            _videoAds.UnityAdsDidFinish -= LevelLoad;
+            _canLoadLevel = false;
+            SceneManager.LoadScene(_currentLevelIndex, LoadSceneMode.Single);
         }
     }
 }

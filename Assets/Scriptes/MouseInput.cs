@@ -11,7 +11,8 @@ public class MouseInput : MonoBehaviour
 
     private void Update()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+        //if (!EventSystem.current.IsPointerOverGameObject())
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -48,7 +49,7 @@ public class MouseInput : MonoBehaviour
                     _spawnObjectSpawner.ChangeAvatarPositionOnScene(anchor);
                 return true;
             }
-            else if(hit.GetComponent<ActionObject>() != null && !_actionObjectSpawner.IsUsing)
+            else if (hit.GetComponent<ActionObject>() != null && !_actionObjectSpawner.IsUsing)
             {
                 _actionObjectSpawner.DeletedObject(hit.GetComponent<ActionObject>());
                 return true;

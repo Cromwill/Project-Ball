@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -20,6 +21,18 @@ public class ObjectSpawner : MonoBehaviour
     private void Awake()
     {
         _anchors = _objectTilemap.GetComponentsInChildren<IActionObjectAnchor>();
+
+        #region check dubleAnchor
+        List<Vector2> positions = new List<Vector2>();
+        for(int i = 0; i < _anchors.Length; i++)
+        {
+            if (!positions.Contains(_anchors[i].GetPosition()))
+                positions.Add(_anchors[i].GetPosition());
+            else
+                Debug.Log(_anchors[i].GetPosition());
+        }
+        #endregion
+
         _gameEconomy = GetComponent<GameEconomy>();
     }
 
