@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(GameFieldSeller), typeof(LevelsFieldScorre))]
+[RequireComponent(typeof(GameFieldSeller), typeof(LevelsFieldScore))]
 public class GameField : MonoBehaviour
 {
     [SerializeField] private int _levelIndex;
     [SerializeField] private Sprite _closePanel;
     [SerializeField] private Sprite _openPanel;
+    [SerializeField] private BuffCardsSetter _buffCardsSetter;
 
 
     private Button _selfButton;
@@ -15,9 +15,10 @@ public class GameField : MonoBehaviour
     private Image _selfPanel;
     private Animator _selfAnimator;
     private AudioSource _audioSours;
+    private ChoseGameField _choseGameField;
 
     public bool IsOpenLevel { get; private set; }
-    public LevelsFieldScorre ScorrePanel { get; private set; }
+    public LevelsFieldScore ScorrePanel { get; private set; }
     public float Price => _seller.Price;
     public string LevelName => _seller.LevelName;
 
@@ -26,16 +27,20 @@ public class GameField : MonoBehaviour
     {
         _selfButton = GetComponent<Button>();
         _seller = GetComponent<GameFieldSeller>();
-        ScorrePanel = GetComponent<LevelsFieldScorre>();
+        ScorrePanel = GetComponent<LevelsFieldScore>();
         _selfPanel = GetComponent<Image>();
         _selfAnimator = GetComponent<Animator>();
         _audioSours = GetComponent<AudioSource>();
 
         IsOpenLevel = PlayerPrefs.HasKey(LevelName + "_isOpen");
         if (IsOpenLevel)
+        {
             OpeningField();
+        }
         _selfButton.interactable = IsOpenLevel;
     }
+
+    public void SetChoseGameField(ChoseGameField choser) => _choseGameField = choser;
 
     public bool OpenLevel(float scorre)
     {
@@ -49,7 +54,7 @@ public class GameField : MonoBehaviour
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene(_levelIndex, LoadSceneMode.Single);
+        _choseGameField.LevelPlay(_levelIndex);
     }
 
     public void PlayOpeningSound() => _audioSours.Play();
@@ -58,8 +63,14 @@ public class GameField : MonoBehaviour
     {
         _seller.CloseSeller();
         _selfButton.interactable = IsOpenLevel;
+        _selfButton.onClick.AddListener(LoadLevel);
         ScorrePanel.Open(LevelName);
         _selfPanel.sprite = _openPanel;
         PlayerPrefs.SetString(LevelName + "_isOpen","isOpen");
+    }
+
+    public void OpenBuffCardSetter()
+    {
+        _buffCardsSetter.OpenPanel(LevelName);
     }
 }

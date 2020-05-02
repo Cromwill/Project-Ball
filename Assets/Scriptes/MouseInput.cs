@@ -4,13 +4,15 @@ using UnityEngine.EventSystems;
 public class MouseInput : MonoBehaviour
 {
     [SerializeField] private MoverAroundLocation _objectMove;
-    [SerializeField] private ActionObjectSpawner _objectSpawner;
+    [SerializeField] private ActionObjectSpawner _actionObjectSpawner;
+    [SerializeField] private SpawnObjectSpawner _spawnObjectSpawner;
 
     private bool _isFindObject;
 
     private void Update()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+        //if (!EventSystem.current.IsPointerOverGameObject())
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -26,6 +28,7 @@ public class MouseInput : MonoBehaviour
                 if (!_isFindObject)
                 {
                     _objectMove.Move(position);
+                    _spawnObjectSpawner.ChangeCameraPosition();
                 }
             }
         }
@@ -36,14 +39,19 @@ public class MouseInput : MonoBehaviour
         var hit = Physics2D.OverlapCircle(inputPosition, 0.1f);
         if (hit != null)
         {
-            if (hit.GetComponent<IActionObjectAnchor>() != null && _objectSpawner.IsUsing)
+            IActionObjectAnchor anchor = hit.GetComponent<IActionObjectAnchor>();
+
+            if (anchor != null)
             {
-                _objectSpawner.ChangeAvatarPositionOnScene(hit.GetComponent<IActionObjectAnchor>());
+                if (_actionObjectSpawner.IsUsing)
+                    _actionObjectSpawner.ChangeAvatarPositionOnScene(anchor);
+                else if (_spawnObjectSpawner.IsUsing)
+                    _spawnObjectSpawner.ChangeAvatarPositionOnScene(anchor);
                 return true;
             }
-            else if (hit.GetComponent<ActionObject>() != null && !_objectSpawner.IsUsing)
+            else if (hit.GetComponent<ActionObject>() != null && !_actionObjectSpawner.IsUsing)
             {
-                _objectSpawner.DeletedObject(hit.GetComponent<ActionObject>());
+                _actionObjectSpawner.DeletedObject(hit.GetComponent<ActionObject>());
                 return true;
             }
             else

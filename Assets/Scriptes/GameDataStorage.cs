@@ -22,6 +22,28 @@ static class GameDataStorage
         SaveObject("action", anchorIndex, position, actionObject.name.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries)[0]);
     }
 
+    public static void SaveScorreCounter(float scorre, float scorrePerSecond, float scorreFactor)
+    {
+        PlayerPrefs.SetFloat(CurrentLevel + "_scorre", scorre);
+        PlayerPrefs.SetFloat(CurrentLevel + "_scorrePerSecond", scorrePerSecond);
+        PlayerPrefs.SetFloat(CurrentLevel + "_scorreFactor", scorreFactor);
+        PlayerPrefs.Save();
+    }
+
+    public static SavedScorre GetScorreCounter()
+    {
+        if (PlayerPrefs.HasKey(CurrentLevel + "_scorre"))
+        {
+            float scorre = PlayerPrefs.GetFloat(CurrentLevel + "_scorre");
+            float scorrePerSecond = PlayerPrefs.GetFloat(CurrentLevel + "_scorrePerSecond");
+            float scorreFactor = PlayerPrefs.GetFloat(CurrentLevel + "_scorreFactor");
+
+            return new SavedScorre(scorre, scorrePerSecond, scorreFactor);
+        }
+
+        return null;
+    }
+
     public static void SaveSpawnObjects(int anchorIndex, Vector2 position, Spawn spawnObject, float spawnTime)
     {
         SaveObject("spawn", anchorIndex, position, spawnObject.name.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries)[0]);
@@ -66,6 +88,27 @@ static class GameDataStorage
         return objectsOnScene;
     }
 
+    public static void SaveInstalledBuffCards(string levelNmae, BuffCardData _cardData, int index)
+    {
+        string key = levelNmae + "_installedBuffCard_" + index;
+        string value = _cardData.NameCard;
+        PlayerPrefs.SetString(key, value);
+    }
+
+    public static string[] GetInstalledBuffCards(string levelNmae, int count)
+    {
+        string[] cards = new string[count];
+
+        for(int i = 0; i < count; i++)
+        {
+            string key = levelNmae + "_installedBuffCard_" + i;
+
+            cards[i] = PlayerPrefs.HasKey(key) ? PlayerPrefs.GetString(key) : null;
+        }
+
+        return cards;
+    }
+
     private static void SaveObject(string anchorType, int index, Vector2 position, string name)
     {
         string key = "_" + anchorType + "AnchorIndex_" + index;
@@ -73,65 +116,6 @@ static class GameDataStorage
         PlayerPrefs.SetFloat(CurrentLevel + key + "_positionY", position.y);
         PlayerPrefs.SetString(CurrentLevel + key + "_object", name);
         PlayerPrefs.Save();
-    }
-}
-
-public class TimeScorreData
-{
-    public int Scorre;
-    public float Time;
-
-    public TimeScorreData(int scorre, float time)
-    {
-        Scorre = scorre;
-        Time = time;
-    }
-}
-
-public class ScorrePerTime
-{
-    private TimeScorreData[] _datas;
-    private int _dataCounter = 0;
-    private float _currentValue;
-
-    public ScorrePerTime(int count, float startTime, float scorrePerSecond)
-    {
-        _datas = new TimeScorreData[count];
-        _datas[_dataCounter] = new TimeScorreData((int)scorrePerSecond, startTime);
-        _currentValue = scorrePerSecond;
-    }
-
-    public float GetValue(int point, float time)
-    {
-        if (_dataCounter == 0)
-        {
-            int scorreSum = 0;
-            float averageTime;
-            int firstIndex;
-
-            _dataCounter = GetNextIndex();
-            firstIndex = _datas[_dataCounter] == null ? 0 : GetNextIndex();
-            _datas[_dataCounter] = new TimeScorreData(point, time);
-
-            for (int i = 0; i < _datas.Length; i++)
-            {
-                if (_datas[i] != null)
-                    scorreSum += _datas[i].Scorre;
-            }
-
-            averageTime = _datas[_dataCounter].Time - _datas[firstIndex].Time;
-            var value = scorreSum / averageTime;
-            if (value > _currentValue)
-                _currentValue = value;
-        }
-
-        return _currentValue;
-    }
-
-    private int GetNextIndex()
-    {
-        int index = _dataCounter + 1;
-        return index == _datas.Length ? 0 : index;
     }
 }
 
@@ -146,6 +130,21 @@ public class SavedObject
     public string Name { get; }
     public Vector2 Position { get; }
 }
+
+public class SavedScorre
+{
+    public SavedScorre(float scorre, float scorrePerSecond, float scorreFactor)
+    {
+        Scorre = scorre;
+        ScorrePerSecond = scorrePerSecond;
+        ScorreFactor = scorreFactor;
+    }
+
+    public float Scorre { get; }
+    public float ScorrePerSecond { get; }
+    public float ScorreFactor { get; }
+}
+
 
 public enum UpgradesType
 {

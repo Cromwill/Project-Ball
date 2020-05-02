@@ -1,10 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 public class UpgradeProductPanel : ProductPanel
 {
-    private int _upgradeCount = 0;
-
     private void OnEnable()
     {
         _productButton = GetComponentInChildren<Button>();
@@ -12,13 +9,16 @@ public class UpgradeProductPanel : ProductPanel
 
     private void Start()
     {
-        _nameViewer.text = _product.ActionObject.LevelName;
+        _nameViewer.text = _product.ActionObject.LevelName.ToUpper();
         _productButton.onClick.AddListener(OnChooseProduct);
+        _currentState = _productButton.interactable;
         _buttonImage = _productButton.GetComponent<Image>();
+        _isPossibleToUse = true;
     }
 
     public override void ChangePrice()
     {
-        _priceViewer.text = _economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType).ToString();
+        var price = _economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType);
+        _priceViewer.text = _scorreForm.GetConvertedScore(price);
     }
 }

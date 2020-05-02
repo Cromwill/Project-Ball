@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6843501390213865714}
   - component: {fileID: 6843501390213865713}
   m_Layer: 5
-  m_Name: Scorre
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -901,6 +901,7 @@ MonoBehaviour:
     type: 3}
   _openPanel: {fileID: 3066153439329536139, guid: 88b6c319f9a3876419475f39181d83dc,
     type: 3}
+  _buffCardsSetter: {fileID: 0}
 --- !u!114 &6843501391430133554
 MonoBehaviour:
   m_ObjectHideFlags: 0
