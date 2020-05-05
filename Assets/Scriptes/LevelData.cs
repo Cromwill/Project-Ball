@@ -22,9 +22,16 @@ public class LevelData : MonoBehaviour
         GameDataStorage.CurrentLevel = _levelName;
     }
 
-    private void OnApplicationQuit()
+    //private void OnApplicationPause(bool pause)
+    //{
+    //    Debug.Log("Pause - " + pause);
+    //    QuitLevel();
+    //}
+
+    private void OnApplicationFocus(bool focus)
     {
-        QuitLevel();
+        if (!focus)
+            QuitLevel();
     }
 
     private void OnDisable()

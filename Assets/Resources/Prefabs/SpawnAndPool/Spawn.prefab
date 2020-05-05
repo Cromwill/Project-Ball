@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694613947}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.125, y: 0.035, z: 0}
+  m_LocalPosition: {x: -0.125, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 7474405339627391615}
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 250
-  _name: Spawn
+  _name: "\u0421\u041F\u0410\u0412\u041D"
   _type: 2
   _spawnTimeViewer: {fileID: 5484315065608312907, guid: 6c8ff9d5fc525e247a851c5993c2d67a,
     type: 3}

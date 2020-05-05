@@ -7,6 +7,7 @@ public class ObjectSpawnerData
 
     public Transform Avatar { get; }
     public ActionObject ActionObject => _actionObject.ActionObject;
+    public IActionObjectAnchor CurrentAnchor => _anchor;
 
     public ObjectSpawnerData(IGeneratedBy actionObject, Transform avatar)
     {

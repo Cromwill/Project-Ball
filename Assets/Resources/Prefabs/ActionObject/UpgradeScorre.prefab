@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 50
-  _name: Upgrade Scorre
+  _name: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 \u043E\u0447\u043A\u043E\u0432"
   _type: 4
   _changingValue: 1.1

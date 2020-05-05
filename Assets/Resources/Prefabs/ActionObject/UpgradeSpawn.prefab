@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 50
-  _name: UpgradeSpawn
+  _name: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 \u0441\u043F\u0430\u0432\u043D\u0430"
   _type: 3
   _changingValue: 0.04

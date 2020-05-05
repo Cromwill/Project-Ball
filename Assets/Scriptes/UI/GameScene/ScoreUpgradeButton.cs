@@ -14,7 +14,7 @@ public class ScoreUpgradeButton : ProductPanel
 
     private void Start()
     {
-        _nameViewer.text = _product.ActionObject.LevelName;
+        _nameViewer.text = _product.ActionObject.LevelName.ToUpper();
         _productButton.onClick.AddListener(UpgradeScorre);
         _buttonImage = _productButton.GetComponent<Image>();
         _currentState = _productButton.interactable;

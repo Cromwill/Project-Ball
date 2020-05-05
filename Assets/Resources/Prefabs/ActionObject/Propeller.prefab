@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _price: 50
   _name: Propeller Right
+  _type: 0
   _direction: -1
   _startSpeed: 50
 --- !u!1 &3318001292682352473

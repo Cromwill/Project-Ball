@@ -24,7 +24,7 @@ public class ObjectSpawner : MonoBehaviour
 
         #region check dubleAnchor
         List<Vector2> positions = new List<Vector2>();
-        for(int i = 0; i < _anchors.Length; i++)
+        for (int i = 0; i < _anchors.Length; i++)
         {
             if (!positions.Contains(_anchors[i].GetPosition()))
                 positions.Add(_anchors[i].GetPosition());
@@ -36,7 +36,11 @@ public class ObjectSpawner : MonoBehaviour
         _gameEconomy = GetComponent<GameEconomy>();
     }
 
-    public void ChangeAvatarPositionOnScene(IActionObjectAnchor anchor) => _currentObject.ChangeAnchor(anchor);
+    public void ChangeAvatarPositionOnScene(IActionObjectAnchor anchor)
+    {
+        if (_anchors.Contains(anchor))
+            _currentObject.ChangeAnchor(anchor);
+    }
     public virtual void SetObjectOnScene(IGeneratedBy actionObject) => FillingObjectSpawner(actionObject, null);
 
 
@@ -72,7 +76,7 @@ public class ObjectSpawner : MonoBehaviour
             OnOutOfAnchors(_anchors.First().GetAnchorType);
     }
 
-    protected void FillingObjectSpawner(IGeneratedBy actionObject, IActionObjectAnchor anchor)
+    protected virtual void FillingObjectSpawner(IGeneratedBy actionObject, IActionObjectAnchor anchor)
     {
         var avatar = Instantiate(actionObject.Avatar).GetComponent<Transform>();
         _currentObject = new ObjectSpawnerData(actionObject, avatar);

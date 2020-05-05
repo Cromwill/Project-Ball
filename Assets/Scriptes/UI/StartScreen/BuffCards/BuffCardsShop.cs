@@ -36,6 +36,6 @@ public class BuffCardsShop : MonoBehaviour
     {
         _currentProduct = product;
         _videoAds.UnityAdsDidFinish += ConfirmCardReceipt;
-        _videoAds.ShowRewardedVideo();
+        _videoAds.ShowRewardedVideo(false);
     }
 }

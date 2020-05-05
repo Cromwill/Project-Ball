@@ -108,7 +108,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.25}
+    - - {x: 0, y: 0.22912288}
       - {x: -0.22843972, y: 0.001045227}
       - {x: -0.2297464, y: 0.0015678406}
       - {x: -0.22647962, y: 0.0010454655}
@@ -129,5 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 10
-  _name: Rhomb
+  _name: "\u0420\u041E\u041C\u0411"
   _type: 0

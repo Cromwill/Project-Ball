@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 6165935516948816281, guid: 31052546157f3224b85252af50e18115,
         type: 3}
       propertyPath: _name
-      value: WindRight
+      value: "\u0412\u0435\u0442\u0435\u0440 (\u0432\u043F\u0440\u0430\u0432\u043E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6165935516948816281, guid: 31052546157f3224b85252af50e18115,
         type: 3}

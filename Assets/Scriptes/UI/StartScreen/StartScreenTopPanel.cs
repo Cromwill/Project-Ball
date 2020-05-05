@@ -43,7 +43,7 @@ public class StartScreenTopPanel : MonoBehaviour
     public void StartAds()
     {
         _videoAds.UnityAdsDidFinish += AdsResult;
-        _videoAds.ShowRewardedVideo();
+        _videoAds.ShowRewardedVideo(false);
     }
 
     private void AdsResult(ShowResult result)

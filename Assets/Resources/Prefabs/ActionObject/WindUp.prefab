@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 75
-  _name: WindUp
+  _name: "\u0412\u0435\u0442\u0435\u0440 (\u0432\u0435\u0440\u0445)"
   _type: 1
 --- !u!1 &1551241848817612318
 GameObject:

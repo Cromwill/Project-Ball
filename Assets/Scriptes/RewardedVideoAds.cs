@@ -5,6 +5,8 @@ using UnityEngine.Advertisements;
 public class RewardedVideoAds : MonoBehaviour, IUnityAdsListener
 {
     [SerializeField] private string _gameId;
+    [SerializeField] private bool _isTestAds;
+    [SerializeField] private string _noSkipAdsString;
 
     public event Action<ShowResult> UnityAdsDidFinish;
 
@@ -13,16 +15,18 @@ public class RewardedVideoAds : MonoBehaviour, IUnityAdsListener
         if (Advertisement.isSupported)
         {
             Advertisement.AddListener(this);
-            Advertisement.Initialize(_gameId, true);
+            Advertisement.Initialize(_gameId, _isTestAds);
         }
         else
             Debug.Log("Platform is not supported");
     }
 
-    public void ShowRewardedVideo()
+    public void ShowRewardedVideo(bool isCanSkipAds)
     {
+        string skipAds = isCanSkipAds ? "video" : _noSkipAdsString;
+
         if (Advertisement.IsReady())
-            Advertisement.Show();
+            Advertisement.Show(skipAds);
     }
 
     public void OnUnityAdsDidError(string message)

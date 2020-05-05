@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 20
-  _name: DOORRIGT
+  _name: "\u0414\u0412\u0415\u0420\u042C (\u041F\u0420\u0410\u0412\u041E)"
   _type: 0
   _cicleTime: 2.5
   _angleOfRotetion: {x: 0, y: 0, z: 90}

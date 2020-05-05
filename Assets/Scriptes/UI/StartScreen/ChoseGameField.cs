@@ -30,7 +30,7 @@ public class ChoseGameField : MonoBehaviour
         _currentLevelIndex = levelIndex;
         _canLoadLevel = true;
         _videoAds.UnityAdsDidFinish += LevelLoad;
-        _videoAds.ShowRewardedVideo();
+        _videoAds.ShowRewardedVideo(true);
     }
 
     private void LevelLoad(ShowResult result)

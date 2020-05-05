@@ -8,6 +8,8 @@ public class SpawnObjectSpawner : ObjectSpawner
 
     public event Action UsedMaxUpgrade;
 
+    private IActionObjectAnchor _currentAnchor;
+
     public override void ConfirmSetObject()
     {
         if (IsUsing)
@@ -20,6 +22,7 @@ public class SpawnObjectSpawner : ObjectSpawner
             anchors = anchors.Where(a => a.InstalledFacility.IsCanUpgrade()).ToArray();
             if (anchors.Length == 0)
                 UsedMaxUpgrade?.Invoke();
+            _currentAnchor = _currentObject.CurrentAnchor;
 
             base.ConfirmSetObject();
         }
@@ -57,6 +60,15 @@ public class SpawnObjectSpawner : ObjectSpawner
     }
 
     public void ChangeCameraPosition() => (_spawnPool as GlobalSpawn).ChangeSpawnTimeViewerPosition();
+
+    protected override void FillingObjectSpawner(IGeneratedBy actionObject, IActionObjectAnchor anchor)
+    {
+        var avatar = Instantiate(actionObject.Avatar).GetComponent<Transform>();
+        _currentObject = new ObjectSpawnerData(actionObject, avatar);
+        anchor = _currentAnchor != null ? _currentAnchor : GetCorrectAnchorsArray().First();
+        _currentObject.ChangeAnchor(anchor);
+        ToggleAnchors();
+    }
 
     protected override IActionObjectAnchor[] GetCorrectAnchorsArray()
     {

@@ -11,17 +11,19 @@ public class GreatePanel : MonoBehaviour
     [SerializeField] private ConfirmPanel _confirmPanel;
     [SerializeField] private Button _startButton;
     [SerializeField] private ScoreFormConverter _scorreForm;
+    [SerializeField] private DeletedPanel _deletedPanel;
 
     private ProductPanel[] _productPanels;
     private GameEconomy _economy;
 
     private void Start()
     {
-        _confirmPanel.SetConfirmListener(_actionObjectSpawner.ConfirmSetObject, _spawnObjectSpawner.ConfirmSetObject, _confirmPanel.ToggleActiveButtons);
-        _confirmPanel.SetCancelListener(_actionObjectSpawner.EndUse, _spawnObjectSpawner.EndUse, _confirmPanel.ToggleActiveButtons);
+        _confirmPanel.SetConfirmListener(_actionObjectSpawner.ConfirmSetObject, _spawnObjectSpawner.ConfirmSetObject, _confirmPanel.ToggleActiveButtons, _deletedPanel.ClosePanel);
+        _confirmPanel.SetCancelListener(_actionObjectSpawner.EndUse, _spawnObjectSpawner.EndUse, _confirmPanel.ToggleActiveButtons, _deletedPanel.ClosePanel);
         _economy = _actionObjectSpawner.GetComponent<GameEconomy>();
         _productPanels = GetComponentsInChildren<ProductPanel>();
         _actionObjectSpawner.DeletingObject += _confirmPanel.ToggleActiveButtons;
+        _actionObjectSpawner.DeletingObject += _deletedPanel.OpenPanel;
         _actionObjectSpawner.OutOfAnchors += OutOfAnchors;
         _actionObjectSpawner.AnchorsAppeared += ActionAnchorsAppeared;
         _spawnObjectSpawner.OutOfAnchors += OutOfAnchors;

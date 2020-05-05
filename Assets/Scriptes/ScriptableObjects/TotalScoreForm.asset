@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scorrePerSecondEnding: ' / sec'
   _scorreEnding:
-  - ' points'
+  - " \u043E\u0447\u043A\u043E\u0432"
   - Th
   - ' M'
   - ' B'
@@ -24,4 +24,5 @@ MonoBehaviour:
   - ' Sext'
   - ' Sept'
   _stringFormat: 0.000
-  _outOfAnchorsMessage: Out of anchors
+  _outOfAnchorsMessage: "\u041D\u0435\u0442 \u0441\u0432\u043E\u0431\u043E\u0434\u043D\u044B\u0445
+    \u0430\u043D\u043A\u0435\u0440\u043E\u0432"
