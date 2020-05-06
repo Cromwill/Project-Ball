@@ -5,9 +5,14 @@ public class Ball : ObjectPool, IHaveScorre
     [SerializeField] private Vector2 _maxVelocity;
     [SerializeField] private int _scoreMultiplier;
     [SerializeField] private BallEffect _ballEffect;
+    [SerializeField] private float _maxStayTime;
+    [SerializeField] private float _stayForce;
+
 
     private Rigidbody2D _selfRigidbody;
     private float _finishTime;
+    private float _currentStayTime;
+    private Vector2 _previousePosition;
     public float StartTime { get; private set; }
 
     private void OnEnable()
@@ -60,7 +65,6 @@ public class Ball : ObjectPool, IHaveScorre
 
         if (Mathf.Abs(_selfRigidbody.velocity.y) > _maxVelocity.y)
             _selfRigidbody.velocity = new Vector2(_selfRigidbody.velocity.x, _maxVelocity.y * + Mathf.Sign(_selfRigidbody.velocity.y));
-
         _savePosition = _selfTransform.position;
     }
 }

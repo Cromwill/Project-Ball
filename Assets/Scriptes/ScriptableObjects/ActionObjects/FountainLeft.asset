@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
   m_Name: FountainLeft
   m_EditorClassIdentifier: 
-  _actionObjectAvatar: {fileID: 2709819930718009433, guid: af75d131a21c4ab46aa9711be5686d23,
+  _actionObjectAvatar: {fileID: 4106200878345455221, guid: 8193510b08df25a4d9114ff65666cb5a,
     type: 3}
   _actionObjectPrefab: {fileID: 4941449325673877832, guid: 4b3d477b552941645b0cd1c65971c066,
     type: 3}

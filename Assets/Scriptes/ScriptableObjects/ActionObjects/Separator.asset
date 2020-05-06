@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
   m_Name: Separator
   m_EditorClassIdentifier: 
-  _actionObjectAvatar: {fileID: 6323878533385582864, guid: 731f1e2b83f4d564fba780c5dca81a0d,
+  _actionObjectAvatar: {fileID: 8671793259732027213, guid: d00bd05c16f47e24eac19df0c0688686,
     type: 3}
   _actionObjectPrefab: {fileID: 762456547487739714, guid: b68de26efc5fbe0419bfda7e32a1fecc,
     type: 3}

@@ -5762,6 +5762,11 @@ PrefabInstance:
       propertyPath: _spawnObjectSpawner
       value: 
       objectReference: {fileID: 391343248}
+    - target: {fileID: 4052470320363257462, guid: d7a73f491ec6c7446a4767f423c02c27,
+        type: 3}
+      propertyPath: _deletedPanel
+      value: 
+      objectReference: {fileID: 2125518928}
     - target: {fileID: 4052470320392248866, guid: d7a73f491ec6c7446a4767f423c02c27,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -6050,7 +6055,7 @@ PrefabInstance:
     - target: {fileID: 4052470320876254633, guid: d7a73f491ec6c7446a4767f423c02c27,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 58.403595
+      value: 58.403355
       objectReference: {fileID: 0}
     - target: {fileID: 4052470320876254633, guid: d7a73f491ec6c7446a4767f423c02c27,
         type: 3}
@@ -6460,7 +6465,7 @@ PrefabInstance:
     - target: {fileID: 4052470321694246273, guid: d7a73f491ec6c7446a4767f423c02c27,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 58.403595
+      value: 58.403355
       objectReference: {fileID: 0}
     - target: {fileID: 4052470321694246273, guid: d7a73f491ec6c7446a4767f423c02c27,
         type: 3}
@@ -6590,7 +6595,7 @@ PrefabInstance:
     - target: {fileID: 4052470322109636216, guid: d7a73f491ec6c7446a4767f423c02c27,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 58.403656
+      value: 58.403625
       objectReference: {fileID: 0}
     - target: {fileID: 4052470322109636216, guid: d7a73f491ec6c7446a4767f423c02c27,
         type: 3}
@@ -6734,6 +6739,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7a73f491ec6c7446a4767f423c02c27, type: 3}
+--- !u!114 &2125518928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 448328228073559987, guid: d7a73f491ec6c7446a4767f423c02c27,
+    type: 3}
+  m_PrefabInstance: {fileID: 2125518927}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b627038e6cde7a4abc4599f07657b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2129362348
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ public class MouseInput : MonoBehaviour
                     _spawnObjectSpawner.ChangeAvatarPositionOnScene(anchor);
                 return true;
             }
-            else if (hit.GetComponent<ActionObject>() != null && !_actionObjectSpawner.IsUsing)
+            else if (hit.GetComponent<ActionObject>() != null && !IsSpawnersUsing())
             {
                 _actionObjectSpawner.DeletedObject(hit.GetComponent<ActionObject>());
                 return true;
@@ -60,4 +60,6 @@ public class MouseInput : MonoBehaviour
         else
             return false;
     }
+
+    private bool IsSpawnersUsing() => _actionObjectSpawner.IsUsing || _spawnObjectSpawner.IsUsing;
 }

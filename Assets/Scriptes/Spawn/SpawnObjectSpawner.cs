@@ -8,22 +8,23 @@ public class SpawnObjectSpawner : ObjectSpawner
 
     public event Action UsedMaxUpgrade;
 
-    private IActionObjectAnchor _currentAnchor;
+    private IActionObjectAnchor _currenUpgradetAnchor;
 
     public override void ConfirmSetObject()
     {
         if (IsUsing)
         {
             if (_currentObject.IsUpgrade())
+            {
                 _currentObject.UsedUpgrade(false);
+                _currenUpgradetAnchor = _currentObject.CurrentAnchor;
+            }
             else
                 _currentObject.SetObjectOnScene(_spawnPool.GetObject() as ActionObject, false);
             var anchors = _anchors.Where(a => !a.IsFree).ToArray();
             anchors = anchors.Where(a => a.InstalledFacility.IsCanUpgrade()).ToArray();
             if (anchors.Length == 0)
                 UsedMaxUpgrade?.Invoke();
-            _currentAnchor = _currentObject.CurrentAnchor;
-
             base.ConfirmSetObject();
         }
     }
@@ -65,7 +66,14 @@ public class SpawnObjectSpawner : ObjectSpawner
     {
         var avatar = Instantiate(actionObject.Avatar).GetComponent<Transform>();
         _currentObject = new ObjectSpawnerData(actionObject, avatar);
-        anchor = _currentAnchor != null ? _currentAnchor : GetCorrectAnchorsArray().First();
+        if (_currentObject.IsUpgrade())
+        {
+            anchor = _currenUpgradetAnchor != null ? _currenUpgradetAnchor : GetCorrectAnchorsArray().First();
+        }
+        else
+        {
+            anchor = GetCorrectAnchorsArray().First();
+        }
         _currentObject.ChangeAnchor(anchor);
         ToggleAnchors();
     }

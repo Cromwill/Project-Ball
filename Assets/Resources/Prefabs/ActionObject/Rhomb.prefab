@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 773510009279290118}
   - component: {fileID: 8996957578896453255}
-  - component: {fileID: 8056217823760211129}
   - component: {fileID: 8247351131893266295}
+  - component: {fileID: 5193819153645978687}
   m_Layer: 0
   m_Name: Rhomb
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 262707808661337907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.837, y: 2.551, z: 0}
-  m_LocalScale: {x: 0.8, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dbcad7986eb198e459970692aceb7403, type: 3}
+  m_Sprite: {fileID: 273060093152811556, guid: c8111166ae0654f4382f66e5ced473aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,7 +83,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8056217823760211129
+--- !u!114 &8247351131893266295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262707808661337907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5886eb88a99170c44a7e84e150a6f0ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _price: 10
+  _name: "\u0420\u041E\u041C\u0411"
+  _type: 0
+--- !u!60 &5193819153645978687
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +115,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.424, y: 0.536}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -108,26 +123,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.22912288}
-      - {x: -0.22843972, y: 0.001045227}
-      - {x: -0.2297464, y: 0.0015678406}
-      - {x: -0.22647962, y: 0.0010454655}
-      - {x: -0.22778645, y: 0.001568079}
-      - {x: 0.000000021855694, y: -0.25}
-      - {x: 0.22988528, y: -0.00039243698}
-      - {x: 0.22939473, y: -0.00078487396}
---- !u!114 &8247351131893266295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262707808661337907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5886eb88a99170c44a7e84e150a6f0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _price: 10
-  _name: "\u0420\u041E\u041C\u0411"
-  _type: 0
+    - - {x: -0.0005312562, y: -0.23948836}
+      - {x: -0.19227183, y: 0.0012726784}
+      - {x: 0.005402565, y: 0.2351346}
+      - {x: 0.1923154, y: 0.0010545254}

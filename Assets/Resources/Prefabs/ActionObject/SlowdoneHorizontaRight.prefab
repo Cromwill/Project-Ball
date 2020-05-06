@@ -38,10 +38,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlowdoneHorizontaRight
       objectReference: {fileID: 0}
+    - target: {fileID: 1627605529933172074, guid: 5ab0a80b0bc5ca34e8184ec1b6adfb6e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6745389599033066527, guid: c8111166ae0654f4382f66e5ced473aa,
+        type: 3}
     - target: {fileID: 1627605529933172075, guid: 5ab0a80b0bc5ca34e8184ec1b6adfb6e,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.1
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627605529933172075, guid: 5ab0a80b0bc5ca34e8184ec1b6adfb6e,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.416
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627605529933172075, guid: 5ab0a80b0bc5ca34e8184ec1b6adfb6e,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.388
       objectReference: {fileID: 0}
     - target: {fileID: 1627605529933172085, guid: 5ab0a80b0bc5ca34e8184ec1b6adfb6e,
         type: 3}

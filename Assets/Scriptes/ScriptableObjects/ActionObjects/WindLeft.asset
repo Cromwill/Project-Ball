@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
   m_Name: WindLeft
   m_EditorClassIdentifier: 
-  _actionObjectAvatar: {fileID: 2123731525037544585, guid: 823aa5b5cd57e17498e01c2dc6a20ae9,
+  _actionObjectAvatar: {fileID: 9012899915967872172, guid: 087fd15f87bc108439e60721a8f040ec,
     type: 3}
   _actionObjectPrefab: {fileID: 6139144108188483518, guid: f55562f9bd7f30f47bf98d92cd48bd16,
     type: 3}

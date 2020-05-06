@@ -58,7 +58,7 @@ public class LevelData : MonoBehaviour
 
     private void SaveDatas()
     {
-        _objectPoolForBalls.Save(_levelName);
+        //_objectPoolForBalls.Save(_levelName);
         _actionObjectSpawner.Save(_levelName);
         _spawnObjectSpawner.Save(_levelName);
     }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
   m_Name: SlowdoneHorizontalRight
   m_EditorClassIdentifier: 
-  _actionObjectAvatar: {fileID: 1737143053733526323, guid: 2466f36ab46089849b2981f3ab62e527,
+  _actionObjectAvatar: {fileID: 341487882367531578, guid: 0d1b8b19231817a4faf5a34c567f1381,
     type: 3}
   _actionObjectPrefab: {fileID: 676793527929778520, guid: de6e6fff864f23943a152771e8914910,
     type: 3}
-  _type: 0
+  _place: 0

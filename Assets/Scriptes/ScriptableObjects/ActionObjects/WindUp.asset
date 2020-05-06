@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
   m_Name: WindUp
   m_EditorClassIdentifier: 
-  _actionObjectAvatar: {fileID: 6323878533385582864, guid: 731f1e2b83f4d564fba780c5dca81a0d,
+  _actionObjectAvatar: {fileID: 8495313609716248444, guid: 9dc454edbd18e744193d86d883832f7c,
     type: 3}
   _actionObjectPrefab: {fileID: 6165935516948816281, guid: 31052546157f3224b85252af50e18115,
     type: 3}

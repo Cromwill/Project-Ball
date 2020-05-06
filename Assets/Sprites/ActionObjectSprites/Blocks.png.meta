@@ -1,0 +1,699 @@
+fileFormatVersion: 2
+guid: c8111166ae0654f4382f66e5ced473aa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1515622694917723629
+    second: Blocks_0
+  - first:
+      213: 1503016370545623098
+    second: Blocks_1
+  - first:
+      213: 1489830567317918739
+    second: Blocks_2
+  - first:
+      213: 38433539612607256
+    second: Blocks_3
+  - first:
+      213: 5937300090042828850
+    second: Blocks_4
+  - first:
+      213: -2230640015494873224
+    second: Blocks_5
+  - first:
+      213: -8506558392696655332
+    second: Blocks_6
+  - first:
+      213: 6608634889621467271
+    second: Blocks_7
+  - first:
+      213: -2445883823613288998
+    second: Blocks_8
+  - first:
+      213: 6373870660395215810
+    second: Blocks_9
+  - first:
+      213: -7097341274207599037
+    second: Blocks_10
+  - first:
+      213: -6460359424736439037
+    second: Blocks_11
+  - first:
+      213: 7266596302296298328
+    second: Blocks_12
+  - first:
+      213: -2318941221067292905
+    second: Block
+  - first:
+      213: 273060093152811556
+    second: Romb
+  - first:
+      213: 4354781316875873519
+    second: TriangleRight
+  - first:
+      213: -3828748445219874928
+    second: TriangleLeft
+  - first:
+      213: 986209299252633420
+    second: Platform
+  - first:
+      213: 212898485578975189
+    second: Propeller
+  - first:
+      213: 7673338932271465318
+    second: Blocks_19
+  - first:
+      213: -637004521647427473
+    second: Blocks_20
+  - first:
+      213: 7799809764336630643
+    second: Blocks_21
+  - first:
+      213: 6979630779368465708
+    second: Blocks_22
+  - first:
+      213: -5474853141888705257
+    second: Blocks_23
+  - first:
+      213: -7641105520071801511
+    second: Blocks_24
+  - first:
+      213: 894039873071032581
+    second: Blocks_25
+  - first:
+      213: -8137063433491503359
+    second: Blocks_26
+  - first:
+      213: -102654197464639098
+    second: Blocks_27
+  - first:
+      213: 4893722272501744342
+    second: Blocks_28
+  - first:
+      213: 1833374003608817324
+    second: WindFooting
+  - first:
+      213: 848483762394598852
+    second: BladeRight
+  - first:
+      213: 1775686116614827342
+    second: BladeLeft
+  - first:
+      213: 4627212743430372070
+    second: Blocks_32
+  - first:
+      213: -1511360000684178966
+    second: Trampoline
+  - first:
+      213: 2191923513518390880
+    second: Blocks_34
+  - first:
+      213: 6741266914263454366
+    second: Blocks_35
+  - first:
+      213: -7940799869362492285
+    second: Blocks_36
+  - first:
+      213: 4828723151013041807
+    second: BladeUp
+  - first:
+      213: -7254671725847690978
+    second: Blocks_38
+  - first:
+      213: -2849796041330913305
+    second: Blocks_39
+  - first:
+      213: -620117825420460677
+    second: Blocks_40
+  - first:
+      213: 959900962684980225
+    second: Blocks_41
+  - first:
+      213: 8519844070910222411
+    second: WindBaseHorizontal
+  - first:
+      213: -8510296848243685162
+    second: Blocks_43
+  - first:
+      213: -1610482729617942329
+    second: Blocks_44
+  - first:
+      213: -6615166614792116592
+    second: Blocks_45
+  - first:
+      213: -9086423209051200666
+    second: Blocks_46
+  - first:
+      213: 188922552538148467
+    second: Blocks_47
+  - first:
+      213: -1256297114762274867
+    second: Blocks_48
+  - first:
+      213: -2533345720166153311
+    second: Blocks_49
+  - first:
+      213: 1445017956829664373
+    second: Blocks_50
+  - first:
+      213: 2823907140642873525
+    second: Blocks_51
+  - first:
+      213: -1818465223619708786
+    second: Blocks_52
+  - first:
+      213: 7098777697265182077
+    second: FontanRight
+  - first:
+      213: 8467807250101721933
+    second: FontanLeft
+  - first:
+      213: -6597248335992358047
+    second: Blocks_55
+  - first:
+      213: 6649468344765870708
+    second: Separator
+  - first:
+      213: -7763893982427723341
+    second: Blocks_57
+  - first:
+      213: -7294869718432531395
+    second: Slowdowne
+  - first:
+      213: -6803686003981501478
+    second: TriangleRight
+  - first:
+      213: 3205225649915552365
+    second: TriangleLeft
+  - first:
+      213: -4365297957429950362
+    second: Blocks_0
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 250
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Block
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 311
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71ff547ee3771dfd0800000000000000
+      internalID: -2318941221067292905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Romb
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 292
+        width: 106
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 0, y: -67}
+        - {x: -53, y: 0}
+        - {x: 0, y: 67}
+        - {x: 53, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42a55be35ba1ac300800000000000000
+      internalID: 273060093152811556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriangleRight
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 319
+        width: 106
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fece4eaf88a4f6c30800000000000000
+      internalID: 4354781316875873519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriangleLeft
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 319
+        width: 106
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 097175c139d8ddac0800000000000000
+      internalID: -3828748445219874928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform
+      rect:
+        serializedVersion: 2
+        x: 1178
+        y: 343
+        width: 192
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4fd32ce128bfad00800000000000000
+      internalID: 986209299252633420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Propeller
+      rect:
+        serializedVersion: 2
+        x: 1402
+        y: 294
+        width: 133
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7472e6b0e54f200800000000000000
+      internalID: 212898485578975189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WindFooting
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 153
+        width: 12
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae0a8151f3717910800000000000000
+      internalID: 1833374003608817324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BladeRight
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 153
+        width: 28
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd87378c7b66cb00800000000000000
+      internalID: 848483762394598852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BladeLeft
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 153
+        width: 28
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d6b657d1184a810800000000000000
+      internalID: 1775686116614827342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 179
+        width: 92
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae14c7f3612960be0800000000000000
+      internalID: -1511360000684178966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BladeUp
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 198
+        width: 100
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8656d64f12130340800000000000000
+      internalID: 4828723151013041807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WindBaseHorizontal
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 182
+        width: 100
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b40625cda019c3670800000000000000
+      internalID: 8519844070910222411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FontanRight
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 0
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 31, y: -40}
+        - {x: -40, y: 30.5}
+        - {x: -31, y: 40}
+        - {x: 40, y: -31}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75e4f864bce38260800000000000000
+      internalID: 7098777697265182077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FontanLeft
+      rect:
+        serializedVersion: 2
+        x: 1236
+        y: 1
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4b5ac064d1b38570800000000000000
+      internalID: 8467807250101721933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Separator
+      rect:
+        serializedVersion: 2
+        x: 1420
+        y: 25
+        width: 100
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47279faaa38a74c50800000000000000
+      internalID: 6649468344765870708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slowdowne
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 151
+        width: 96
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3c331614aa63ca90800000000000000
+      internalID: -7294869718432531395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlowdowneRight
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 154
+        width: 104
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adbb26970a37491a0800000000000000
+      internalID: -6803686003981501478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlowdowneLeft
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 2
+        width: 103
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d62ef202fbf3b7c20800000000000000
+      internalID: 3205225649915552365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

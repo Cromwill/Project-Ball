@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f44421e2c672a4f9aa16a2e906a54a, type: 3}
   m_Name: SlowdoneVertical
   m_EditorClassIdentifier: 
-  _actionObjectAvatar: {fileID: 1737143053733526323, guid: 2466f36ab46089849b2981f3ab62e527,
+  _actionObjectAvatar: {fileID: 6006178328668224534, guid: 8baeb6d116128874192d49048073d6f8,
     type: 3}
   _actionObjectPrefab: {fileID: 2090627765057877802, guid: 00b2848c051ec0c43805ec7deeeeea02,
     type: 3}
-  _type: 0
+  _place: 0
