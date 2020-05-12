@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class Ball : ObjectPool, IHaveScorre
 {
     [SerializeField] private Vector2 _maxVelocity;
     [SerializeField] private int _scoreMultiplier;
     [SerializeField] private BallEffect _ballEffect;
+    [SerializeField] private LayerMask _collisionEffectMask;
     [SerializeField] private float _maxStayTime;
     [SerializeField] private float _stayForce;
 
-
     private Rigidbody2D _selfRigidbody;
+    private CircleCollider2D _collider;
     private float _finishTime;
     private float _currentStayTime;
     private Vector2 _previousePosition;
@@ -19,6 +21,7 @@ public class Ball : ObjectPool, IHaveScorre
     {
         _selfRigidbody = GetComponent<Rigidbody2D>();
         _selfTransform = GetComponent<Transform>();
+        _collider = GetComponent<CircleCollider2D>();
     }
 
     private void FixedUpdate()
@@ -28,8 +31,11 @@ public class Ball : ObjectPool, IHaveScorre
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var effect = Instantiate(_ballEffect);
-        effect.Play(collision.GetContact(0).point);
+        if (_collider.IsTouchingLayers(_collisionEffectMask))
+        {
+            var effect = Instantiate(_ballEffect);
+            effect.Play(collision.GetContact(0).point);
+        }
     }
 
     public float GetScorre()
