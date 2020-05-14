@@ -10,6 +10,8 @@ public class RewardedVideoAds : MonoBehaviour, IUnityAdsListener
 
     public event Action<ShowResult> UnityAdsDidFinish;
 
+    public bool IsAdsReady => Advertisement.IsReady();
+
     private void Start()
     {
         if (Advertisement.isSupported)
@@ -26,7 +28,13 @@ public class RewardedVideoAds : MonoBehaviour, IUnityAdsListener
         string skipAds = isCanSkipAds ? "video" : _noSkipAdsString;
 
         if (Advertisement.IsReady())
+        {
             Advertisement.Show(skipAds);
+        }
+        else
+        {
+            OnUnityAdsDidFinish(skipAds, ShowResult.Failed);
+        }
     }
 
     public void OnUnityAdsDidError(string message)
@@ -36,12 +44,7 @@ public class RewardedVideoAds : MonoBehaviour, IUnityAdsListener
 
     public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
     {
-        if (showResult == ShowResult.Finished)
-            UnityAdsDidFinish?.Invoke(showResult);
-        else if (showResult == ShowResult.Failed)
-            Debug.Log("ads did finish with failed");
-        else if (showResult == ShowResult.Skipped)
-            UnityAdsDidFinish?.Invoke(showResult);
+        UnityAdsDidFinish?.Invoke(showResult);
     }
 
     public void OnUnityAdsDidStart(string placementId)

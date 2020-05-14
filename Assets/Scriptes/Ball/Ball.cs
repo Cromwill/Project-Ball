@@ -5,37 +5,26 @@ public class Ball : ObjectPool, IHaveScorre
 {
     [SerializeField] private Vector2 _maxVelocity;
     [SerializeField] private int _scoreMultiplier;
-    [SerializeField] private BallEffect _ballEffect;
-    [SerializeField] private LayerMask _collisionEffectMask;
+    [SerializeField] private float _maxTime;
     [SerializeField] private float _maxStayTime;
     [SerializeField] private float _stayForce;
 
     private Rigidbody2D _selfRigidbody;
-    private CircleCollider2D _collider;
     private float _finishTime;
     private float _currentStayTime;
-    private Vector2 _previousePosition;
+    private Vector2 _poolPosition;
     public float StartTime { get; private set; }
 
     private void OnEnable()
     {
         _selfRigidbody = GetComponent<Rigidbody2D>();
         _selfTransform = GetComponent<Transform>();
-        _collider = GetComponent<CircleCollider2D>();
     }
 
     private void FixedUpdate()
     {
         ControlSpeed();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (_collider.IsTouchingLayers(_collisionEffectMask))
-        {
-            var effect = Instantiate(_ballEffect);
-            effect.Play(collision.GetContact(0).point);
-        }
+        ControlTime();
     }
 
     public float GetScorre()
@@ -51,11 +40,16 @@ public class Ball : ObjectPool, IHaveScorre
         base.LeaveThePool(position);
     }
 
+    public void ReturnToPool() => ReturnToPool(_poolPosition);
+
     public override void ReturnToPool(Vector2 position)
     {
+        if (_poolPosition == null || _poolPosition != position)
+            _poolPosition = position;
+
         _selfRigidbody.simulated = false;
         _selfRigidbody.velocity = Vector2.zero;
-        base.ReturnToPool(position);
+        base.ReturnToPool(_poolPosition);
     }
 
     public void Run(Vector2 force)
@@ -72,5 +66,11 @@ public class Ball : ObjectPool, IHaveScorre
         if (Mathf.Abs(_selfRigidbody.velocity.y) > _maxVelocity.y)
             _selfRigidbody.velocity = new Vector2(_selfRigidbody.velocity.x, _maxVelocity.y * + Mathf.Sign(_selfRigidbody.velocity.y));
         _savePosition = _selfTransform.position;
+    }
+
+    private void ControlTime()
+    {
+        if (GetScorre() > _maxTime)
+            ReturnToPool();
     }
 }

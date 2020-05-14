@@ -23,8 +23,7 @@ public class StartScreenTopPanel : MonoBehaviour
     private void Update()
     {
         _currenWatchAdsTime -= Time.deltaTime;
-
-        _watchAdsButton.interactable = _currenWatchAdsTime < 0;
+        AdsButtonInteractableCheck();
     }
 
     public void DeletedSaves()
@@ -55,5 +54,11 @@ public class StartScreenTopPanel : MonoBehaviour
             _scoreCounter.AddScoreAllFields(900);
             _currenWatchAdsTime = _watchAdsTimeSleep;
         }
+    }
+
+    private void AdsButtonInteractableCheck()
+    {
+        _watchAdsButton.interactable = _currenWatchAdsTime < 0;
+        _watchAdsButton.interactable = _videoAds.IsAdsReady;
     }
 }

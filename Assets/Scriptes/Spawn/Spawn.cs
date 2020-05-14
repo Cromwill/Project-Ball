@@ -20,7 +20,7 @@ public class Spawn : ActionObject, IObjectPool
     {
         _selfTransform = GetComponent<Transform>();
         _loadLine = GetComponentInChildren<IRunable<float>>();
-        var spawnTime = Instantiate(_spawnTimeViewer, FindObjectOfType<Canvas>().transform);
+        var spawnTime = Instantiate(_spawnTimeViewer, FindObjectOfType<SpawnTimeParent>().transform);
         _spawnTimeViewer = spawnTime.GetComponent<SpawnTimeViewer>();
     }
 

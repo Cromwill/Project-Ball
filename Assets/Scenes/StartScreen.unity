@@ -10767,7 +10767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameId: 3584817
-  _isTestAds: 0
+  _isTestAds: 1
   _noSkipAdsString: rewardedVideo
 --- !u!1 &1802519826
 GameObject:

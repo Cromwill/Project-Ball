@@ -137,11 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxVelocity: {x: 8, y: 8}
   _scoreMultiplier: 5
-  _ballEffect: {fileID: 2619202953072368497, guid: 0844f60ce4c68764f9fdc5c5c27aeb11,
-    type: 3}
-  _collisionEffectMask:
-    serializedVersion: 2
-    m_Bits: 1591
+  _maxTime: 20
   _maxStayTime: 3
   _stayForce: 2
 --- !u!82 &3223703264166778298
