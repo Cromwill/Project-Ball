@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 75
-  _name: "\u0412\u0435\u0442\u0435\u0440 (\u0432\u0435\u0440\u0445)"
+  _name: Wind (up)
   _type: 1
 --- !u!61 &3082259320675995554
 BoxCollider2D:

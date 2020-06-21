@@ -9,6 +9,7 @@ public class ConfirmingBuyPanel : MonoBehaviour
 
     public void ShowCoast(float coast)
     {
+        gameObject.SetActive(true);
         _coast.text = _scorreFormConverter.GetConvertedScore(coast);
     }
 

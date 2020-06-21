@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
 
+
 public class RewardedVideoAds : MonoBehaviour, IUnityAdsListener
 {
     [SerializeField] private string _gameId;
@@ -21,6 +22,7 @@ public class RewardedVideoAds : MonoBehaviour, IUnityAdsListener
         }
         else
             Debug.Log("Platform is not supported");
+
     }
 
     public void ShowRewardedVideo(bool isCanSkipAds)

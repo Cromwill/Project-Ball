@@ -76,7 +76,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041A\u0423\u041F\u0418\u0422\u042C"
+  m_Text: BUY
 --- !u!1 &6843501390213865727
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041E\u0427\u041A\u0418"
+  m_Text: POINTS
 --- !u!1 &6843501390483745199
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +422,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041E\u0427\u041A\u0418"
+  m_Text: Points
 --- !u!1 &6843501390933988602
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,12 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0144c81a19dbe499ce747edc969f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelIndex: 1
-  _closePanel: {fileID: -4411457263903224882, guid: 2ffc432a76a2d7f44acea6631016456c,
-    type: 3}
-  _openPanel: {fileID: 3066153439329536139, guid: 88b6c319f9a3876419475f39181d83dc,
-    type: 3}
-  _buffCardsSetter: {fileID: 0}
+  _gameFieldData: {fileID: 0}
 --- !u!114 &6843501391430133554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -914,10 +909,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63e1544bc5ce90449a217b08b152257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scorreViewer: {fileID: 6843501391632059589}
-  _scorrePerSecondViewer: {fileID: 6843501391729916123}
-  _lableViewer: {fileID: 6843501390213865713}
-  _totalScorre: {fileID: 0}
+  _scoreViewer: {fileID: 6843501391632059589}
+  _scorePerSecondViewer: {fileID: 6843501391729916123}
+  _totalScore: {fileID: 0}
   _scoreFormConverter: {fileID: 0}
   _gamePanel: {fileID: 6843501391302050687}
 --- !u!114 &6843501391430133555
@@ -934,7 +928,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelName: Level_1
   _price: 0
-  _buyButton: {fileID: 6843501390933988604}
   _sellerPanel: {fileID: 6843501391820764381}
 --- !u!95 &6843501391430133557
 Animator:

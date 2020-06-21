@@ -6,7 +6,6 @@ using UnityEngine.Advertisements;
 
 public class StartScreenTopPanel : MonoBehaviour
 {
-    [SerializeField] private BuffCardsShop _buffCardsShop;
     [SerializeField] private RewardedVideoAds _videoAds;
     [SerializeField] private float _watchAdsTimeSleep;
     [SerializeField] private Button _watchAdsButton;
@@ -31,12 +30,6 @@ public class StartScreenTopPanel : MonoBehaviour
         PlayerPrefs.DeleteAll();
         PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(0, LoadSceneMode.Single);
-    }
-
-    public void OpenBuffCardsShop()
-    {
-        _buffCardsShop.gameObject.SetActive(true);
-        _buffCardsShop.Launch();
     }
 
     public void StartAds()

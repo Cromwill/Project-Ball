@@ -43,7 +43,6 @@ public class ObjectSpawner : MonoBehaviour
     }
     public virtual void SetObjectOnScene(IGeneratedBy actionObject) => FillingObjectSpawner(actionObject, null);
 
-
     public virtual void DeletedObject(ActionObject actionObject) { }
 
     public virtual void ConfirmSetObject()

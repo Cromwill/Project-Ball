@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 250
-  _name: "\u0421\u041F\u0410\u0412\u041D"
+  _name: SPAWN
   _type: 2
   _spawnTimeViewer: {fileID: 5484315065608312907, guid: 6c8ff9d5fc525e247a851c5993c2d67a,
     type: 3}

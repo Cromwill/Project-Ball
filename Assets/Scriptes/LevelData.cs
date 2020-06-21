@@ -19,14 +19,18 @@ public class LevelData : MonoBehaviour
     {
         _actionObjectSpawner = GetComponent<ActionObjectSpawner>();
         _spawnObjectSpawner = GetComponent<SpawnObjectSpawner>();
-        GameDataStorage.CurrentLevel = _levelName;
+        GameDataStorage.CurentLevel = _levelName;
     }
 
-    //private void OnApplicationPause(bool pause)
-    //{
-    //    Debug.Log("Pause - " + pause);
-    //    QuitLevel();
-    //}
+    #region ExitGame
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            Debug.Log("Pause - " + pause);
+            QuitLevel();
+        }
+    }
 
     private void OnApplicationFocus(bool focus)
     {
@@ -38,7 +42,7 @@ public class LevelData : MonoBehaviour
     {
         QuitLevel();
     }
-
+    #endregion
     private void Start()
     {
         bool isFirstLavel = !PlayerPrefs.HasKey(_levelName + "_isFirstRun");
@@ -52,20 +56,14 @@ public class LevelData : MonoBehaviour
 
     public void ExitLevel()
     {
-        SaveDatas();
+        QuitLevel();
         SceneManager.LoadScene(0, LoadSceneMode.Single);
-    }
-
-    private void SaveDatas()
-    {
-        //_objectPoolForBalls.Save(_levelName);
-        _actionObjectSpawner.Save(_levelName);
-        _spawnObjectSpawner.Save(_levelName);
     }
 
     private void QuitLevel()
     {
         PlayerPrefs.SetString("ExitGameTime", DateTime.Now.ToString());
-        SaveDatas();
+        _spawnObjectSpawner.Save(_levelName);
+        _actionObjectSpawner.Save(_levelName);
     }
 }

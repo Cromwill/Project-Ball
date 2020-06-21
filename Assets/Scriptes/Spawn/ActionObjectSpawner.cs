@@ -16,7 +16,10 @@ public class ActionObjectSpawner : ObjectSpawner
             if (_currentObject.IsUpgrade())
                 _currentObject.UsedUpgrade(true);
             else
+            {
                 _currentObject.SetObjectOnScene(Instantiate(_currentObject.ActionObject), true);
+                Save(_levelName);
+            }
 
             base.ConfirmSetObject();
         }
@@ -34,7 +37,6 @@ public class ActionObjectSpawner : ObjectSpawner
     public override void Load(string level)
     {
         _levelName = level;
-
         for (int i = 0; i < _anchors.Length; i++)
         {
             if (PlayerPrefs.HasKey(level + "_actionAnchorIndex_" + i + "_positionX"))

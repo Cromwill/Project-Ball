@@ -9,6 +9,7 @@ public class InformationPanel : MonoBehaviour
     private Button _closeButton;
     public void Show(string timeAway, string cashEarned)
     {
+        gameObject.SetActive(true);
         _closeButton = GetComponentInChildren<Button>();
         if (_closeButton.onClick == null)
             _closeButton.onClick?.AddListener(Close);

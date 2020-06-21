@@ -30,8 +30,7 @@ PrefabInstance:
     - target: {fileID: 1627605529933172072, guid: 5ab0a80b0bc5ca34e8184ec1b6adfb6e,
         type: 3}
       propertyPath: _name
-      value: "\u0437\u043E\u043D\u0430 \u0437\u0430\u043C\u0435\u0434\u043B\u0435\u043D\u0438\u044F
-        (\u0432\u043F\u0440\u0430\u0432\u043E)"
+      value: Slowing down zone (right)
       objectReference: {fileID: 0}
     - target: {fileID: 1627605529933172073, guid: 5ab0a80b0bc5ca34e8184ec1b6adfb6e,
         type: 3}

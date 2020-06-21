@@ -9,28 +9,29 @@ public class GameEconomy : MonoBehaviour
 
     private ObjectsCountOnScene _objectsOnScene;
 
+    private ObjectsCountOnScene ObjectOnScene
+    {
+        get
+        {
+            if(_objectsOnScene == null)
+                _objectsOnScene = GameDataStorage.GetObjectsOnCurrentScene();
+            return _objectsOnScene;
+        }
+    }
+
     public event Action PurchaseCompleted;
-
-    private void OnDisable()
-    {
-        GameDataStorage.SaveObjectsOnScene(_objectsOnScene);
-    }
-
-    private void Awake()
-    {
-        _objectsOnScene = GameDataStorage.GetObjectsOnCurrentScene();
-    }
 
     public void OnPurchaseCompleted(IBuyable buyable)
     {
         _scorreCounter.ReductionScorre(GetPrice(buyable.Price, buyable.ObjectType));
-        _objectsOnScene.AddCount(buyable.ObjectType);
+        ObjectOnScene.AddCount(buyable.ObjectType);
+        GameDataStorage.SaveObjectsOnScene(ObjectOnScene);
         PurchaseCompleted?.Invoke();
     }
 
     public int GetPrice(float price, ActionObjectType objectType)
     {
-        int count = _objectsOnScene.GetCount(objectType);
+        int count = ObjectOnScene.GetCount(objectType);
         if (count != 0)
         {
             if(objectType == ActionObjectType.Action || objectType == ActionObjectType.Phisics || objectType == ActionObjectType.Spawn)
@@ -45,7 +46,7 @@ public class GameEconomy : MonoBehaviour
 
     public bool EnoughPoints(int scorre)
     {
-        return scorre <= _scorreCounter.Scorre;
+        return scorre <= _scorreCounter.Score;
     }
 
     public void ScorreUpgrade(UpgradeObject upgradeObject)
@@ -56,7 +57,7 @@ public class GameEconomy : MonoBehaviour
 
     public int GetCount(ActionObjectType objectType)
     {
-        return _objectsOnScene.GetCount(objectType);
+        return ObjectOnScene.GetCount(objectType);
     }
 
     private int GetСoefficient(int count)

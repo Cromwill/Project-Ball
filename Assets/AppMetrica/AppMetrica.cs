@@ -13,6 +13,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class AppMetrica : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class AppMetrica : MonoBehaviour
     private bool _actualPauseStatus = false;
 
     private static IYandexAppMetrica _metrica = null;
-    private static object syncRoot = new Object ();
+    private static object syncRoot = new System.Object();
 
     public static IYandexAppMetrica Instance {
         get {
@@ -157,5 +158,4 @@ public class AppMetrica : MonoBehaviour
             Instance.ReportError (condition, stackTrace);
         }
     }
-
 }

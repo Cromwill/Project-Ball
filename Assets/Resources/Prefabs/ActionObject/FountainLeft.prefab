@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 6150839197797765676, guid: 68332ee7c432ac04ab11a293ddf755f9,
         type: 3}
       propertyPath: _name
-      value: "\u0424\u041E\u041D\u0422\u0410\u041D (\u041B\u0415\u0412\u041E)"
+      value: FOUNTAIN (LEFT)
       objectReference: {fileID: 0}
     - target: {fileID: 6150839197797765676, guid: 68332ee7c432ac04ab11a293ddf755f9,
         type: 3}

@@ -13,6 +13,7 @@ public class Ball : ObjectPool, IHaveScorre
     private float _finishTime;
     private float _currentStayTime;
     private Vector2 _poolPosition;
+
     public float StartTime { get; private set; }
 
     private void OnEnable()

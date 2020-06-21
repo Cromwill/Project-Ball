@@ -2057,8 +2057,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "- 0.04 \u0441\u0435\u043A. \u043A \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438
-    \u0441\u043F\u0430\u0432\u043D\u0430"
+  m_Text: -0,04 sec spawn speed
 --- !u!1 &340397772483238681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,7 +2988,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0412\u042B\u0425\u041E\u0414"
+  m_Text: EXIT
 --- !u!1 &2344082611074403168
 GameObject:
   m_ObjectHideFlags: 0
@@ -3066,8 +3065,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "(\u043F\u043E\u0442\u0440\u0430\u0447\u0435\u043D\u043D\u044B\u0435 \u043E\u0447\u043A\u0438
-    \u043D\u0435 \u0432\u0435\u0440\u043D\u0443\u0442\u0441\u044F)"
+  m_Text: ( you won't get your points back )
 --- !u!1 &2699280329102511051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3100,8 +3098,8 @@ RectTransform:
   m_Father: {fileID: 4467007382673205011}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.1, y: 0.25}
-  m_AnchorMax: {x: 0.9, y: 0.85}
+  m_AnchorMin: {x: 0.065, y: 0.45}
+  m_AnchorMax: {x: 0.935, y: 0.85}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3141,11 +3139,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0425\u041E\u0422\u0418\u0422\u0415 \u0423\u0414\u0410\u041B\u0418\u0422\u042C
-    \u041E\u0411\u042A\u0415\u041A\u0422?"
+  m_Text: WANT TO DELETE THIS OBJECT ?
 --- !u!1 &3234561385681220755
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,7 +3219,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041E\u0427\u041A\u0418"
+  m_Text: POINTS
 --- !u!1 &3234561386131745066
 GameObject:
   m_ObjectHideFlags: 0
@@ -3744,7 +3741,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410\n"
+  m_Text: PRICE
 --- !u!1 &4052470320074802739
 GameObject:
   m_ObjectHideFlags: 0
@@ -4549,7 +4546,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470320144561198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4822,7 +4819,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: "\u0421\u041F\u0410\u0412\u041D \u0418 \u0423\u041B\u0423\u0427\u0428\u0415\u041D\u0418\u042F"
+  m_Text: SPAWNS AND BOOSTERS
 --- !u!1 &4052470320251123797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5329,7 +5326,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470320316928976
 GameObject:
   m_ObjectHideFlags: 0
@@ -6737,7 +6734,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470320542658623
 GameObject:
   m_ObjectHideFlags: 0
@@ -6988,7 +6985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470320601649400
 GameObject:
   m_ObjectHideFlags: 0
@@ -7077,7 +7074,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_HandleRect: {fileID: 4052470320419329040}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7159,7 +7156,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470320637530872
 GameObject:
   m_ObjectHideFlags: 0
@@ -7236,7 +7233,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470320662794026
 GameObject:
   m_ObjectHideFlags: 0
@@ -8684,7 +8681,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470320956426670
 GameObject:
   m_ObjectHideFlags: 0
@@ -9463,7 +9460,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470321222341264
 GameObject:
   m_ObjectHideFlags: 0
@@ -9659,7 +9656,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410\n"
+  m_Text: PRICE
 --- !u!1 &4052470321239554805
 GameObject:
   m_ObjectHideFlags: 0
@@ -9855,7 +9852,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470321260041765
 GameObject:
   m_ObjectHideFlags: 0
@@ -10128,7 +10125,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470321316464456
 GameObject:
   m_ObjectHideFlags: 0
@@ -11018,7 +11015,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410\n"
+  m_Text: PRICE
 --- !u!1 &4052470321432117345
 GameObject:
   m_ObjectHideFlags: 0
@@ -11094,8 +11091,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.5
-  m_Text: "\u0424\u0418\u0417\u0418\u0427\u0415\u0421\u041A\u0418\u0415 \u041E\u0411\u042A\u0415\u041A\u0422\u042B"
+    m_LineSpacing: 1.1
+  m_Text: PHYSICAL OBJECTS
 --- !u!1 &4052470321436005063
 GameObject:
   m_ObjectHideFlags: 0
@@ -11410,7 +11407,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470321446414762
 GameObject:
   m_ObjectHideFlags: 0
@@ -11583,7 +11580,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470321455400102
 GameObject:
   m_ObjectHideFlags: 0
@@ -11862,7 +11859,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470321478297940
 GameObject:
   m_ObjectHideFlags: 0
@@ -12896,7 +12893,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041D\u0410\u0417\u0410\u0414"
+  m_Text: BACK
 --- !u!1 &4052470321625792570
 GameObject:
   m_ObjectHideFlags: 0
@@ -13063,7 +13060,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4052470322117937953}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.35714287
+  m_Size: 0.35713723
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13995,7 +13992,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470321776102810
 GameObject:
   m_ObjectHideFlags: 0
@@ -14242,7 +14239,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410\n"
+  m_Text: PRICE
 --- !u!1 &4052470321791330343
 GameObject:
   m_ObjectHideFlags: 0
@@ -14396,7 +14393,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470321794003245
 GameObject:
   m_ObjectHideFlags: 0
@@ -14466,14 +14463,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 60
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "\u0410\u041A\u0422\u0418\u0412\u041D\u042B\u0415 \u041E\u0411\u042A\u0415\u041A\u0422\u042B"
+    m_LineSpacing: 1.1
+  m_Text: ACTIVE OBJECTS
 --- !u!1 &4052470321811880610
 GameObject:
   m_ObjectHideFlags: 0
@@ -14550,7 +14547,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410\n"
+  m_Text: PRICE
 --- !u!1 &4052470321835427815
 GameObject:
   m_ObjectHideFlags: 0
@@ -15138,7 +15135,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4052470320318838900}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.39870566
+  m_Size: 0.39869946
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15392,7 +15389,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470321924933506
 GameObject:
   m_ObjectHideFlags: 0
@@ -15913,7 +15910,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426\u0415\u041D\u0410"
+  m_Text: PRICE
 --- !u!1 &4052470322034035287
 GameObject:
   m_ObjectHideFlags: 0
@@ -16308,7 +16305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.025, y: 0.18}
   m_AnchorMax: {x: 1, y: 0.95}
-  m_AnchoredPosition: {x: -0.00002861023, y: 50.376034}
+  m_AnchoredPosition: {x: -0.00002861023, y: 50.376007}
   m_SizeDelta: {x: 0, y: 50.375954}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5067766461596023891

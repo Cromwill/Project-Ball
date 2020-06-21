@@ -21,5 +21,4 @@ MonoBehaviour:
   _textColor:
   - {r: 0.99215686, g: 0.99607843, b: 1, a: 1}
   - {r: 0.1764706, g: 0.2, b: 0.23137255, a: 1}
-  _closedMessage: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
-    \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435"
+  _closedMessage: Boosters max

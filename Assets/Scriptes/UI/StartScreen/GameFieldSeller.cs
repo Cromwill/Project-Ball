@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class GameFieldSeller : MonoBehaviour, IBuyable
 {
     [SerializeField] private string _levelName;
     [SerializeField] private float _price;
-    [SerializeField] private Button _buyButton;
     [SerializeField] private GameObject _sellerPanel;
 
     public float Price => _price;

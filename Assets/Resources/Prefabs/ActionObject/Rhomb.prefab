@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 10
-  _name: "\u0420\u041E\u041C\u0411"
+  _name: RHOMBUS
   _type: 0
 --- !u!60 &5193819153645978687
 PolygonCollider2D:

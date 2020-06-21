@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d63c835a43646042b16cf6fdb69d87f, type: 3}
+  m_Name: TutorialDataEng
+  m_EditorClassIdentifier: 
+  _messages:
+  - Welcome to Project Ball!
+  - Let me show you how to play (if you have a dog, pet it first)
+  - There is a navigation bar at the top of your screen
+  - The CLEAN SAVE button erases all saves and starts a new game
+  - "The second button doesn\u2019t work because I wasn\u2019t payed for it"
+  - The third button shows you ads. After watching an ad you get points equal to
+    15 mins of playing time (you can pet your dog while waiting)
+  - Now look at the bottom bar. TOTAL shows your total points from all levels. You
+    can use them to buy playing fields.
+  - "Now, after petting your dog one more time, let\u2019s start the first level!"
+  - Press BUY and select the level.

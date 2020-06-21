@@ -8,22 +8,67 @@ public class ChoseGameField : MonoBehaviour
 {
     [SerializeField] private GameField[] _gameFields;
     [SerializeField] private RewardedVideoAds _videoAds;
+    [SerializeField] private StartScreenScoreCounter _totalScoreCounter;
 
     private bool _canLoadLevel;
     private int _currentLevelIndex;
-    public GameField[] GameFields => _gameFields;
 
     private void Start()
     {
-        for (int i = 0; i < _gameFields.Length; i++)
+        _gameFields = GetComponentsInChildren<GameField>();
+    }
+
+    public float GetScoreSum()
+    {
+        float sum = 0;
+
+        foreach(var field in _gameFields.Where(a => a.IsOpenLevel))
         {
-            _gameFields[i].SetChoseGameField(this);
+            sum += field.ScorePanel.Score;
+        }
+        return sum;
+    }
+
+    public float GetScorePerSecondSum()
+    {
+        float sum = 0;
+
+        foreach (var field in _gameFields.Where(a => a.IsOpenLevel))
+        {
+            sum += field.ScorePanel.ScorePerSecond;
+        }
+        return sum;
+    }
+
+    public float[] GetPercentageOfAmounts()
+    {
+        GameField[] fields = _gameFields.Where(a => a.IsOpenLevel).ToArray();
+        float[] fieldsPercent = new float[fields.Length];
+
+        for(int i = 0; i < fieldsPercent.Length; i++)
+        {
+            fieldsPercent[i] = fields[i].ScorePanel.Score / GetScoreSum();
+        }
+        return fieldsPercent;
+    }
+
+    public void AddScoreAll(float time)
+    {
+        foreach(var field in _gameFields.Where(a=> a.IsOpenLevel))
+        {
+            field.ScorePanel.AddScore(time);
         }
     }
-    public string[] GetOpenLevelNames()
+
+    public void ReduceScoreAll(float[] points)
     {
-        return _gameFields.Where(a => a.IsOpenLevel).Select(a => a.LevelName).ToArray();
+        for(int i = 0; i < points.Length; i++)
+        {
+            _gameFields[i].ScorePanel.ReductionScore(points[i]);
+        }
     }
+
+    public float GetSleepTime() => _totalScoreCounter.GetSleepTimeSecond();
 
     public void LevelPlay(int levelIndex)
     {

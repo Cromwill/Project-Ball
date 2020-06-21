@@ -6,13 +6,13 @@ public class MouseInput : MonoBehaviour
     [SerializeField] private MoverAroundLocation _objectMove;
     [SerializeField] private ActionObjectSpawner _actionObjectSpawner;
     [SerializeField] private SpawnObjectSpawner _spawnObjectSpawner;
+    [SerializeField] private bool _isAppForMobile;
 
     private bool _isFindObject;
 
     private void Update()
     {
-        if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-        //if (!EventSystem.current.IsPointerOverGameObject())
+        if (GetPointerOverGameObject())
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -62,4 +62,9 @@ public class MouseInput : MonoBehaviour
     }
 
     private bool IsSpawnersUsing() => _actionObjectSpawner.IsUsing || _spawnObjectSpawner.IsUsing;
+
+    private bool GetPointerOverGameObject()
+    {
+        return _isAppForMobile ? !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) : !EventSystem.current.IsPointerOverGameObject();
+    }
 }

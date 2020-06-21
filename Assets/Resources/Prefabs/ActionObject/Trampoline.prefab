@@ -123,6 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 75
-  _name: "\u0411\u0430\u0442\u0443\u0442"
+  _name: Trampoline
   _type: 1
   _xPositionOffset: 2

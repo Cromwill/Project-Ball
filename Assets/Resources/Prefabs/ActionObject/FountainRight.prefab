@@ -4944,7 +4944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _price: 35
-  _name: "\u0424\u041E\u041D\u0422\u0410\u041D (\u041F\u0420\u0410\u0412\u041E)"
+  _name: FOUNTAIN (RIGHT)
   _type: 1
   _cicleTime: 1.5
 --- !u!61 &8055319963092348190

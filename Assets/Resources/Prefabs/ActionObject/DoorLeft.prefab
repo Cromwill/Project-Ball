@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 6422339783051999539, guid: 4620436365af05d4c80d72d148c7ec1e,
         type: 3}
       propertyPath: _name
-      value: "\u0414\u0412\u0415\u0420\u042C (\u041B\u0415\u0412\u041E)"
+      value: DOOR (LEFT)
       objectReference: {fileID: 0}
     - target: {fileID: 6422339783051999539, guid: 4620436365af05d4c80d72d148c7ec1e,
         type: 3}

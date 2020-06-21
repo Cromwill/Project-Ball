@@ -4,73 +4,51 @@ using UnityEngine.UI;
 [RequireComponent(typeof(GameFieldSeller), typeof(LevelsFieldScore))]
 public class GameField : MonoBehaviour
 {
-    [SerializeField] private int _levelIndex;
-    [SerializeField] private Sprite _closePanel;
-    [SerializeField] private Sprite _openPanel;
-    [SerializeField] private BuffCardsSetter _buffCardsSetter;
+    [SerializeField] private GameFieldData _gameFieldData;
 
-
-    private Button _selfButton;
-    private GameFieldSeller _seller;
-    private Image _selfPanel;
-    private Animator _selfAnimator;
-    private AudioSource _audioSours;
-    private ChoseGameField _choseGameField;
+    private GameFieldComponentsHelper _components;
 
     public bool IsOpenLevel { get; private set; }
-    public LevelsFieldScore ScorrePanel { get; private set; }
-    public float Price => _seller.Price;
-    public string LevelName => _seller.LevelName;
-
+    public LevelsFieldScore ScorePanel => _components.ScorePanel;
+    public float Price => _components.Seller.Price;
+    public string LevelName => _components.Seller.LevelName;
 
     private void Awake()
     {
-        _selfButton = GetComponent<Button>();
-        _seller = GetComponent<GameFieldSeller>();
-        ScorrePanel = GetComponent<LevelsFieldScore>();
-        _selfPanel = GetComponent<Image>();
-        _selfAnimator = GetComponent<Animator>();
-        _audioSours = GetComponent<AudioSource>();
-
+        ComponentInitialization();
         IsOpenLevel = PlayerPrefs.HasKey(LevelName + "_isOpen");
+
         if (IsOpenLevel)
+            OpenField();
+
+        _components.SelfButton.interactable = IsOpenLevel;
+    }
+
+    public bool OpenLevel() => _components.IsCanOpenLevel();
+
+    public void LoadLevel() => _components.Chooser.LevelPlay(_gameFieldData.LevelIndex);
+
+    public void PlayOpeningSound() => _components.AudioSours.Play();
+
+    public void OpenField()
+    {
+        _components.OpenGameField(LoadLevel, _gameFieldData.OpenPanelSprite);
+        ScorePanel.Open(LevelName, _components.Chooser.GetSleepTime());
+        IsOpenLevel = true;
+        PlayerPrefs.SetString(LevelName + "_isOpen", "isOpen");
+    }
+
+    private void ComponentInitialization()
+    {
+        _components = new GameFieldComponentsHelper
         {
-            OpeningField();
-        }
-        _selfButton.interactable = IsOpenLevel;
-    }
-
-    public void SetChoseGameField(ChoseGameField choser) => _choseGameField = choser;
-
-    public bool OpenLevel(float scorre)
-    {
-        if (_seller.isCanBuy(scorre))
-        {
-            IsOpenLevel = true;
-            _selfAnimator.Play("OpeningGamePanel");
-        }
-        return IsOpenLevel;
-    }
-
-    public void LoadLevel()
-    {
-        _choseGameField.LevelPlay(_levelIndex);
-    }
-
-    public void PlayOpeningSound() => _audioSours.Play();
-
-    public void OpeningField()
-    {
-        _seller.CloseSeller();
-        _selfButton.interactable = IsOpenLevel;
-        _selfButton.onClick.AddListener(LoadLevel);
-        ScorrePanel.Open(LevelName);
-        _selfPanel.sprite = _openPanel;
-        PlayerPrefs.SetString(LevelName + "_isOpen","isOpen");
-    }
-
-    public void OpenBuffCardSetter()
-    {
-        _buffCardsSetter.OpenPanel(LevelName);
+            SelfButton = GetComponent<Button>(),
+            Seller = GetComponent<GameFieldSeller>(),
+            SelfPanel = GetComponent<Image>(),
+            SelfAnimator = GetComponent<Animator>(),
+            AudioSours = GetComponent<AudioSource>(),
+            ScorePanel = GetComponent<LevelsFieldScore>(),
+            Chooser = GetComponentInParent<ChoseGameField>()
+        };
     }
 }

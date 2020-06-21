@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "new ScoreForm", menuName = "Create ScoreForm")]
+[CreateAssetMenu(fileName = "new ScoreForm", menuName = "SO/Create ScoreForm")]
 public class ScoreFormConverter : ScriptableObject
 {
     [SerializeField] private string _scorrePerSecondEnding;

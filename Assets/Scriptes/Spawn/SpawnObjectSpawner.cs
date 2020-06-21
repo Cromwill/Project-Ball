@@ -20,7 +20,11 @@ public class SpawnObjectSpawner : ObjectSpawner
                 _currenUpgradetAnchor = _currentObject.CurrentAnchor;
             }
             else
+            {
                 _currentObject.SetObjectOnScene(_spawnPool.GetObject() as ActionObject, false);
+                Save(_levelName);
+            }
+
             var anchors = _anchors.Where(a => !a.IsFree).ToArray();
             anchors = anchors.Where(a => a.InstalledFacility.IsCanUpgrade()).ToArray();
             if (anchors.Length == 0)

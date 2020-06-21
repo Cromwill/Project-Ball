@@ -51,6 +51,7 @@ MonoBehaviour:
   _objectMove: {fileID: 0}
   _actionObjectSpawner: {fileID: 3062255098257203797}
   _spawnObjectSpawner: {fileID: 3062255098257203793}
+  _isAppForMobile: 1
 --- !u!114 &3062255098257203799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,9 +81,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23396bd8618d8734d945b8328bbb9a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scorreDrawer: {fileID: 0}
-  _scorreFactor: 2
-  _scorreFormConvert: {fileID: 11400000, guid: f61bdb24f152a4841a0d706c2fe8f546, type: 2}
+  _scoreDrawer: {fileID: 0}
+  _scoreFactor: 0
+  _scoreFormConvert: {fileID: 0}
 --- !u!114 &3062255098257203796
 MonoBehaviour:
   m_ObjectHideFlags: 0

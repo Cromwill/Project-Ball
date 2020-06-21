@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 3318001292225028729, guid: 852d27b3abe8fa74081579484e27a069,
         type: 3}
       propertyPath: _name
-      value: "\u041F\u0420\u041E\u041F\u0415\u041B\u041B\u0415\u0420 (\u041F\u0420\u0410\u0412\u041E)"
+      value: PROPELLER (RIGHT)
       objectReference: {fileID: 0}
     - target: {fileID: 3318001292225028730, guid: 852d27b3abe8fa74081579484e27a069,
         type: 3}

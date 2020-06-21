@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d63c835a43646042b16cf6fdb69d87f, type: 3}
+  m_Name: TutorialGameDataEng
+  m_EditorClassIdentifier: 
+  _messages:
+  - "Now I\u2019ll show you how to play."
+  - I wanted to make a step-by-step tutorial with cute animation, but why bother?
+    Try to experiment!
+  - Balls appear at the top line. They fall into the receiver and disappear. The
+    longer the ball is falling, the more points you get.  Slow down the ball!
+  - To do this, press SHOP to access three sections
+  - "PHYSICAL OBJECTS section contains elements that block the ball\u2019s way"
+  - ACTIVE OBJECTS section contains ball boosters that can slow it down, accelerate
+    etc.
+  - "In SPAWNS AND BOOSTERS section you can:\r\n- select another ball spawning point
+    (the more the better)\r"
+  - "-reduce ball generation time by 0,04sec. I know it\u2019s not much, but I don\u2019t
+    want you to finish the game too quickly!"
+  - '- increases scoring speed. Very useful. Use it more often'
+  - EXIT button does exactly what it should. Exits to the main menu!
+  - "Place some objects and observe how they affect the game. I hope you\u2019ll
+    enjoy the game and the process will calm you dawn."
+  - "Don\u2019t forget, you can delete all your saves anytime and start over."

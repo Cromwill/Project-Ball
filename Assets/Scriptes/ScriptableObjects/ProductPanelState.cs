@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "new ProductPanelState", menuName = "Create ProductPanelState")]
+[CreateAssetMenu(fileName = "new ProductPanelState", menuName = "SO/Create ProductPanelState")]
 public class ProductPanelState : ScriptableObject
 {
     [SerializeField] protected Sprite[] _buttonsSprites;
