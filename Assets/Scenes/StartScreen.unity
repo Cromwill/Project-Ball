@@ -4449,6 +4449,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114092076686766906, guid: 4a0acc9a317ee4b6191c57e81b0ddfb7,
         type: 3}
+      propertyPath: urls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114092076686766906, guid: 4a0acc9a317ee4b6191c57e81b0ddfb7,
+        type: 3}
       propertyPath: devKey
       value: TcxKZZu9W8GxnxKSC7tFTE
       objectReference: {fileID: 0}
@@ -4467,6 +4472,16 @@ PrefabInstance:
       propertyPath: _testViewer
       value: 
       objectReference: {fileID: 364322998}
+    - target: {fileID: 114092076686766906, guid: 4a0acc9a317ee4b6191c57e81b0ddfb7,
+        type: 3}
+      propertyPath: urls.Array.data[0]
+      value: https://projectball.onelink.me/UueA/c00d1a60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114092076686766906, guid: 4a0acc9a317ee4b6191c57e81b0ddfb7,
+        type: 3}
+      propertyPath: urls.Array.data[1]
+      value: https://projectball.onelink.me/UueA?pid=testMediaSource&c=value1&af_dp=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dru.IJunior.ProjectBall&af_web_dp=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dru.IJunior.ProjectBall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a0acc9a317ee4b6191c57e81b0ddfb7, type: 3}
 --- !u!1 &2110035794

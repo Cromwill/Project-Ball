@@ -24,7 +24,7 @@ MonoBehaviour:
     etc.
   - "In SPAWNS AND BOOSTERS section you can:\r\n- select another ball spawning point
     (the more the better)\r"
-  - "-reduce ball generation time by 0,04sec. I know it\u2019s not much, but I don\u2019t
+  - "-reduce ball generation time by 0,1 sec. I know it\u2019s not much, but I don\u2019t
     want you to finish the game too quickly!"
   - '- increases scoring speed. Very useful. Use it more often'
   - EXIT button does exactly what it should. Exits to the main menu!

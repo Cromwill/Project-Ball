@@ -16,8 +16,8 @@ public class AppsFlyerObjectScript : MonoBehaviour, IAppsFlyerConversionData
     public string appID;
     public bool isDebug;
     public bool getConversionData;
+    public string[] urls;
     //******************************//
-
     public Text _testViewer;
 
     void Start()
@@ -26,6 +26,8 @@ public class AppsFlyerObjectScript : MonoBehaviour, IAppsFlyerConversionData
         //******************************//
         AppsFlyer.setIsDebug(isDebug);
         AppsFlyer.initSDK(devKey, appID, getConversionData ? this : null);
+        AppsFlyer.setResolveDeepLinkURLs(urls);
+        AppsFlyer.getConversionData(this.gameObject.name);
         //******************************//
         AppsFlyer.startSDK();
     }

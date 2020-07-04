@@ -64,6 +64,5 @@ public class LevelData : MonoBehaviour
     {
         PlayerPrefs.SetString("ExitGameTime", DateTime.Now.ToString());
         _spawnObjectSpawner.Save(_levelName);
-        _actionObjectSpawner.Save(_levelName);
     }
 }

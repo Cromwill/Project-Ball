@@ -46,4 +46,4 @@ MonoBehaviour:
   _price: 50
   _name: Spawn booster
   _type: 3
-  _changingValue: 0.04
+  _changingValue: 0.1

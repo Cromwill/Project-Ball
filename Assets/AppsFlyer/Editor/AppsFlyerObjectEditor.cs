@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +14,7 @@ public class AppsFlyerObjectEditor : Editor
     SerializedProperty isDebug;
     SerializedProperty getConversionData;
     SerializedProperty _testViewer;
+    SerializedProperty urls;
 
     void OnEnable()
     {
@@ -20,6 +23,7 @@ public class AppsFlyerObjectEditor : Editor
         isDebug = serializedObject.FindProperty("isDebug");
         getConversionData = serializedObject.FindProperty("getConversionData");
         _testViewer = serializedObject.FindProperty("_testViewer");
+        urls = serializedObject.FindProperty("urls");
     }
 
 
@@ -47,6 +51,8 @@ public class AppsFlyerObjectEditor : Editor
         EditorGUILayout.HelpBox("For more information on setting up AppsFlyer check out our relevant docs.", MessageType.None);
 
         EditorGUILayout.PropertyField(_testViewer);
+        EditorGUILayout.PropertyField(urls, GUILayout.ExpandHeight(true));
+       
 
 
         if (GUILayout.Button("AppsFlyer Unity Docs", new GUILayoutOption[] { GUILayout.Width(200) }))
