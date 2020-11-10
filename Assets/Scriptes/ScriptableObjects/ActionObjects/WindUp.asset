@@ -17,3 +17,4 @@ MonoBehaviour:
   _actionObjectPrefab: {fileID: 6165935516948816281, guid: 31052546157f3224b85252af50e18115,
     type: 3}
   _place: 0
+  _isOpeningObject: 1

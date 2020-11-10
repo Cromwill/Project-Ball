@@ -12,9 +12,11 @@ public class GreatePanel : MonoBehaviour
     [SerializeField] private Button _startButton;
     [SerializeField] private ScoreFormConverter _scorreForm;
     [SerializeField] private DeletedPanel _deletedPanel;
+    [SerializeField] private RewardedVideoAds _commercial;
 
     private ProductPanel[] _productPanels;
     private GameEconomy _economy;
+    private string _productName;
 
     private void Start()
     {
@@ -31,7 +33,7 @@ public class GreatePanel : MonoBehaviour
 
         foreach (var product in _productPanels)
         {
-            product.AddListenerToButton(SendObjectToSpawner, ToggleActive, _confirmPanel.ToggleActiveButtons, _economy, _scorreForm);
+            product.AddListenerToButton(SendObjectToSpawner, ToggleActive, _confirmPanel.ToggleActiveButtons, ShowCommercial, _economy, _scorreForm);
         }
         _startButton.onClick.Invoke();
         ToggleActive();
@@ -44,12 +46,29 @@ public class GreatePanel : MonoBehaviour
         _spawnObjectSpawner.EnoughAnchors();
     }
 
+    private void ShowCommercial(string name)
+    {
+        _productName = name;
+        _commercial.UnityAdsDidFinish += OpeningProductPanel;
+        _commercial.ShowRewardedVideo(false);
+    }
+
+    private void OpeningProductPanel()
+    {
+        _commercial.UnityAdsDidFinish -= OpeningProductPanel;
+        GameDataStorage.SaveOpenedProduct(_productName);
+        _productPanels.Where(a => a.ProductName == _productName).First().OpenPanelAfterCommercialWathcing();
+    }
+
     private void SendObjectToSpawner(IGeneratedBy actionObject)
     {
         ActionObjectType sendableObjectType = actionObject.ActionObject.ObjectType;
 
         if (IsActionObject(sendableObjectType))
+        {
+            _commercial.ShowInterstitial();
             _actionObjectSpawner.SetObjectOnScene(actionObject);
+        }
         else if (IsSpawnObject(sendableObjectType))
             _spawnObjectSpawner.SetObjectOnScene(actionObject);
     }

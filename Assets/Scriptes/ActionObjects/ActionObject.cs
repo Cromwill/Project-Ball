@@ -9,7 +9,7 @@ public class ActionObject : MonoBehaviour, IBuyable, IUpgradeable
     protected Transform _selfTransform;
 
     public float Price  => _price;
-    public string LevelName => _name;
+    public string ObjectName => _name;
     public ActionObjectType ObjectType => _type;
 
     private void OnEnable()

@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Advertisements;
 
 public class StartScreenTopPanel : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class StartScreenTopPanel : MonoBehaviour
 
     private void Start()
     {
-        _watchAdsButton.interactable = true;
+        _watchAdsButton.interactable = _videoAds.IsRewardedReady;
         _currenWatchAdsTime = 0;
     }
 
@@ -38,20 +37,16 @@ public class StartScreenTopPanel : MonoBehaviour
         _videoAds.ShowRewardedVideo(false);
     }
 
-    private void AdsResult(ShowResult result)
+    private void AdsResult()
     {
         _videoAds.UnityAdsDidFinish -= AdsResult;
-
-        if (result == ShowResult.Finished)
-        {
-            _scoreCounter.AddScoreAllFields(900);
-            _currenWatchAdsTime = _watchAdsTimeSleep;
-        }
+        _scoreCounter.AddScoreAllFields(300);
+        _currenWatchAdsTime = _watchAdsTimeSleep;
     }
 
     private void AdsButtonInteractableCheck()
     {
-        _watchAdsButton.interactable = _currenWatchAdsTime < 0;
-        _watchAdsButton.interactable = _videoAds.IsAdsReady;
+        //_watchAdsButton.interactable = _currenWatchAdsTime < 0;
+        _watchAdsButton.interactable = _videoAds.IsRewardedReady;
     }
 }

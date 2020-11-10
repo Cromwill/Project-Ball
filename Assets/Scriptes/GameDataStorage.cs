@@ -118,6 +118,33 @@ static class GameDataStorage
 
     public static string GetUTM() => PlayerPrefs.GetString("utm");
 
+    public static int NumberOfLaunches(int levelIndex)
+    {
+        string key = "NumberOfLaunches_" + levelIndex.ToString();
+        int count = PlayerPrefs.GetInt(key);
+        count++;
+
+        Debug.Log(key + count);
+        PlayerPrefs.SetInt(key, count);
+        PlayerPrefs.Save();
+        return count;
+    }
+
+    public static bool IsProductOpened(string name)
+    {
+        if (PlayerPrefs.HasKey("OpenedProduct_level_" + CurentLevel + "_" + name))
+            Debug.Log("Load - OpenedProduct_level_" + CurentLevel + "_" + name);
+
+        return PlayerPrefs.HasKey("OpenedProduct_level_" + CurentLevel + "_" + name);
+    }
+
+    public static void SaveOpenedProduct(string name)
+    {
+        Debug.Log("Save - OpenedProduct_level_" + CurentLevel + "_" + name);
+        PlayerPrefs.SetInt("OpenedProduct_level_" + CurentLevel + "_" + name, 1);
+        PlayerPrefs.Save();
+    }
+
     private static void SaveObject(string anchorType, int index, Vector2 position, string name)
     {
         string key = "_" + anchorType + "AnchorIndex_" + index;

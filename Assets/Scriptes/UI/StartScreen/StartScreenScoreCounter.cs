@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using UnityEngine;
 
 public class StartScreenScoreCounter : MonoBehaviour
@@ -33,14 +34,14 @@ public class StartScreenScoreCounter : MonoBehaviour
     #endregion
     private void Start()
     {
-        var timeSleep = GetSleepTimeSecond();
+        var timeSleep = GetSleepTime();
         if (timeSleep > _minTimeAway)
         {
-            _informationPanel.Show(((int)timeSleep).ToString() + " sec", 
-                _scoreFormConverter.GetConvertedScore(_chooser.GetScorePerSecondSum() * timeSleep));
+            TimeSpan sleepInterval = TimeSpan.FromSeconds(timeSleep);
+            string timeSleepText = (sleepInterval.Minutes + " min " + sleepInterval.Seconds + " sec").ToUpper();
+            _informationPanel.Show(timeSleepText, _scoreFormConverter.GetConvertedScore(_chooser.GetScorePerSecondSum() * timeSleep));
         }
     }
-
     private void Update()
     {
         ShowScore();
@@ -61,7 +62,7 @@ public class StartScreenScoreCounter : MonoBehaviour
 
     public void AddScoreAllFields(float time) => _chooser.AddScoreAll(time);
 
-    public float GetSleepTimeSecond()
+    public float GetSleepTime()
     {
         if (PlayerPrefs.HasKey("ExitGameTime"))
         {

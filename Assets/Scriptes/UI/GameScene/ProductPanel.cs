@@ -10,6 +10,7 @@ public class ProductPanel : MonoBehaviour
     [SerializeField] protected Text _priceViewer;
     [SerializeField] protected Image _checkBoxImage;
     [SerializeField] protected ProductPanelState _productState;
+    [SerializeField] protected bool _isBuyWithCommercial;
 
     protected Button _productButton;
     protected GameEconomy _economy;
@@ -18,8 +19,11 @@ public class ProductPanel : MonoBehaviour
     protected Image _buttonImage;
     protected bool _isPossibleToUse;
     protected ScoreFormConverter _scorreForm;
+    protected UnityAction[] _actionsForOpenedPanels;
+    protected event Action<string> _showCommercial;
 
     public ActionObjectType ProductType => _product.ActionObject.ObjectType;
+    public string ProductName => _product.ActionObject.ObjectName;
     private void OnEnable()
     {
         _productButton = GetComponentInChildren<Button>();
@@ -27,11 +31,19 @@ public class ProductPanel : MonoBehaviour
 
     private void Start()
     {
-        _nameViewer.text = _product.ActionObject.LevelName.ToUpper();
-        _productButton.onClick.AddListener(OnChooseProduct);
+        if (!_product.IsOpeningObject || GameDataStorage.IsProductOpened(_product.ActionObject.ObjectName))
+        {
+            _nameViewer.text = _product.ActionObject.ObjectName.ToUpper();
+            _productButton.onClick.AddListener(OnChooseProduct);
+        }
+        else
+        {
+            _nameViewer.text = _product.OpeningObjectText.ToUpper();
+        }
+
         _currentState = _productButton.interactable;
         _buttonImage = _productButton.GetComponent<Image>();
-        _isPossibleToUse = true;
+        _isPossibleToUse = _product.IsOpeningObject ? GameDataStorage.IsProductOpened(_product.ActionObject.ObjectName) : true;
     }
 
     private void Update()
@@ -42,13 +54,27 @@ public class ProductPanel : MonoBehaviour
         }
     }
 
-    public virtual void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy,
-        ScoreFormConverter scorreForm)
+    public virtual void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, Action<string> showCommercial,
+        GameEconomy economy, ScoreFormConverter scorreForm)
     {
         _scorreForm = scorreForm;
         _chooseProduct += listener;
-        _productButton.onClick.AddListener(closePanel);
-        _productButton.onClick.AddListener(openConfirmPanel);
+
+
+        if (_product.IsOpeningObject && !_isPossibleToUse)
+        {
+            _actionsForOpenedPanels = new UnityAction[2];
+            _actionsForOpenedPanels[0] = closePanel;
+            _actionsForOpenedPanels[1] = openConfirmPanel;
+            _showCommercial += showCommercial;
+            _productButton.onClick.AddListener(OnShowCommercial);
+            _nameViewer.text = _product.OpeningObjectText.ToUpper();
+        }
+        else
+        {
+            _productButton.onClick.AddListener(closePanel);
+            _productButton.onClick.AddListener(openConfirmPanel);
+        }
         _economy = economy;
         _economy.PurchaseCompleted += ChangePrice;
         ChangePrice();
@@ -72,10 +98,25 @@ public class ProductPanel : MonoBehaviour
         _priceViewer.text = _scorreForm.GetConvertedScore(price).ToString();
     }
 
+    public void OpenPanelAfterCommercialWathcing()
+    {
+        _productButton.onClick.RemoveListener(OnShowCommercial);
+        _productButton.onClick.AddListener(_actionsForOpenedPanels[0]);
+        _productButton.onClick.AddListener(_actionsForOpenedPanels[1]);
+        _productButton.onClick.AddListener(OnChooseProduct);
+        _nameViewer.text = _product.ActionObject.ObjectName.ToUpper();
+        OpenPanel();
+    }
+
+    protected void OnShowCommercial()
+    {
+        _showCommercial?.Invoke(_product.ActionObject.ObjectName);
+    }
+
     protected void OpportunityBuy()
     {
         _productButton.interactable = _economy.EnoughPoints(_economy.GetPrice(_product.ActionObject.Price, _product.ActionObject.ObjectType));
-        if(_currentState != _productButton.interactable)
+        if (_currentState != _productButton.interactable)
         {
             TogglePanelState(!_currentState);
             _currentState = _productButton.interactable;
@@ -84,6 +125,20 @@ public class ProductPanel : MonoBehaviour
 
     protected void OnChooseProduct()
     {
+        if (_isBuyWithCommercial)
+        {
+            var commercial = FindObjectOfType<RewardedVideoAds>();
+            commercial.UnityAdsDidFinish += AdsShown;
+            commercial.ShowRewardedVideo(true);
+        }
+        else
+            _chooseProduct?.Invoke(_product);
+    }
+
+    protected virtual void AdsShown()
+    {
+        var commercial = FindObjectOfType<RewardedVideoAds>();
+        commercial.UnityAdsDidFinish -= AdsShown;
         _chooseProduct?.Invoke(_product);
     }
 

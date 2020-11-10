@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(GameFieldSeller), typeof(LevelsFieldScore))]
@@ -11,7 +12,8 @@ public class GameField : MonoBehaviour
     public bool IsOpenLevel { get; private set; }
     public LevelsFieldScore ScorePanel => _components.ScorePanel;
     public float Price => _components.Seller.Price;
-    public string LevelName => _components.Seller.LevelName;
+    public string LevelName => _components.Seller.ObjectName;
+    public int LevelIndex => _gameFieldData.LevelIndex;
 
     private void Awake()
     {
@@ -37,6 +39,8 @@ public class GameField : MonoBehaviour
         IsOpenLevel = true;
         PlayerPrefs.SetString(LevelName + "_isOpen", "isOpen");
     }
+
+    public void GameFieldOpenning() => _components.SelfAnimator.Play("OpeningGamePanel");
 
     private void ComponentInitialization()
     {

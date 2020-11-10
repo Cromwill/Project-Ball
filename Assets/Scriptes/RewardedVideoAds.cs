@@ -1,60 +1,132 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Advertisements;
+using AppodealAds.Unity.Api;
+using AppodealAds.Unity.Common;
 
 
-public class RewardedVideoAds : MonoBehaviour, IUnityAdsListener
+public class RewardedVideoAds : MonoBehaviour, IInterstitialAdListener, IRewardedVideoAdListener
 {
     [SerializeField] private string _gameId;
     [SerializeField] private bool _isTestAds;
-    [SerializeField] private string _noSkipAdsString;
+    [SerializeField] private bool _isUnityPlayMod;
+    [SerializeField] private string _selectedObjectAtShopPlacement;
 
-    public event Action<ShowResult> UnityAdsDidFinish;
-
-    public bool IsAdsReady => Advertisement.IsReady();
-
+    public event Action UnityAdsDidFinish;
+    public bool IsRewardedReady => Appodeal.isLoaded(Appodeal.REWARDED_VIDEO);
+    public bool IsInterstitialReady => Appodeal.isLoaded(Appodeal.INTERSTITIAL);
     private void Start()
     {
-        if (Advertisement.isSupported)
-        {
-            Advertisement.AddListener(this);
-            Advertisement.Initialize(_gameId, _isTestAds);
-        }
-        else
-            Debug.Log("Platform is not supported");
-
+        Initialize(_isTestAds);
     }
 
     public void ShowRewardedVideo(bool isCanSkipAds)
     {
-        string skipAds = isCanSkipAds ? "video" : _noSkipAdsString;
+        int skipAds = isCanSkipAds ? Appodeal.INTERSTITIAL : Appodeal.REWARDED_VIDEO;
 
-        if (Advertisement.IsReady())
+        if (Appodeal.isLoaded(skipAds))
         {
-            Advertisement.Show(skipAds);
-        }
-        else
-        {
-            OnUnityAdsDidFinish(skipAds, ShowResult.Failed);
+            Appodeal.show(skipAds);
         }
     }
 
-    public void OnUnityAdsDidError(string message)
+    public void ShowInterstitial()
     {
-        Debug.Log("Ads did Error");
+        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL))
+        {
+            Debug.Log("Appodeal is loaded");
+            Appodeal.show(Appodeal.INTERSTITIAL, _selectedObjectAtShopPlacement);
+        }
+    }
+    #region INTERSTITIAL
+    public void onInterstitialLoaded(bool isPrecache)
+    {
+        throw new NotImplementedException();
     }
 
-    public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
+    public void onInterstitialFailedToLoad()
     {
-        UnityAdsDidFinish?.Invoke(showResult);
+        UnityAdsDidFinish?.Invoke();
     }
 
-    public void OnUnityAdsDidStart(string placementId)
+    public void onInterstitialShowFailed()
     {
+        UnityAdsDidFinish?.Invoke();
     }
 
-    public void OnUnityAdsReady(string placementId)
+    public void onInterstitialShown()
     {
+        UnityAdsDidFinish?.Invoke();
+    }
 
+    public void onInterstitialClosed()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onInterstitialClicked()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onInterstitialExpired()
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
+
+    #region RewardedVideo
+    public void onRewardedVideoLoaded(bool precache)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onRewardedVideoFailedToLoad()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onRewardedVideoShowFailed()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onRewardedVideoShown()
+    {
+        Debug.Log("video shown");
+        UnityAdsDidFinish?.Invoke();
+    }
+
+    public void onRewardedVideoFinished(double amount, string name)
+    {
+        Debug.Log("video finished");
+        UnityAdsDidFinish?.Invoke();
+    }
+
+    public void onRewardedVideoClosed(bool finished)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onRewardedVideoExpired()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onRewardedVideoClicked()
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
+
+    private void Initialize(bool isTesting)
+    {
+        Appodeal.setTesting(isTesting);
+
+        Appodeal.setInterstitialCallbacks(this);
+        Appodeal.setRewardedVideoCallbacks(this);
+        Appodeal.muteVideosIfCallsMuted(true);
+        Appodeal.initialize(_gameId, Appodeal.INTERSTITIAL | Appodeal.REWARDED_VIDEO);
     }
 }

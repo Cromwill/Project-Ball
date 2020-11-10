@@ -9,7 +9,7 @@ public class UpgradeProductPanel : ProductPanel
 
     private void Start()
     {
-        _nameViewer.text = _product.ActionObject.LevelName.ToUpper();
+        _nameViewer.text = _product.ActionObject.ObjectName.ToUpper();
         _productButton.onClick.AddListener(OnChooseProduct);
         _currentState = _productButton.interactable;
         _buttonImage = _productButton.GetComponent<Image>();

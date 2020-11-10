@@ -7,7 +7,7 @@ public class GameFieldSeller : MonoBehaviour, IBuyable
     [SerializeField] private GameObject _sellerPanel;
 
     public float Price => _price;
-    public string LevelName => _levelName;
+    public string ObjectName => _levelName;
 
     public ActionObjectType ObjectType => throw new System.NotImplementedException();
 

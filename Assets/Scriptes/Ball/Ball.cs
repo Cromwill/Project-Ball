@@ -6,12 +6,9 @@ public class Ball : ObjectPool, IHaveScorre
     [SerializeField] private Vector2 _maxVelocity;
     [SerializeField] private int _scoreMultiplier;
     [SerializeField] private float _maxTime;
-    [SerializeField] private float _maxStayTime;
-    [SerializeField] private float _stayForce;
 
     private Rigidbody2D _selfRigidbody;
     private float _finishTime;
-    private float _currentStayTime;
     private Vector2 _poolPosition;
 
     public float StartTime { get; private set; }

@@ -6,6 +6,7 @@ public class ScoreCounter : MonoBehaviour, IUpgradeable
     [SerializeField] private ScoreDrawer _scoreDrawer;
     [SerializeField] private float _scoreFactor;
     [SerializeField] private ScoreFormConverter _scoreFormConvert;
+    [SerializeField] private float _increaseTime;
 
     private ScorrePerTime _scorePerTime;
     private string _levelName;
@@ -20,8 +21,8 @@ public class ScoreCounter : MonoBehaviour, IUpgradeable
 
         Score = savedScorre.Score;
         ScorePerSecond = savedScorre.ScorePerSecond;
-        if (savedScorre.ScoreFactor >= _scoreFactor)
-            _scoreFactor = savedScorre.ScoreFactor;
+        if (savedScorre.ScoreFactor >= _increaseTime)
+            _increaseTime = savedScorre.ScoreFactor;
 
         _scorePerTime = new ScorrePerTime(10, Time.timeSinceLevelLoad, ScorePerSecond);
         ChangeScorre(0);
@@ -31,26 +32,27 @@ public class ScoreCounter : MonoBehaviour, IUpgradeable
     {
         ScorePerSecond = _scorePerTime.GetValue(scorre, Time.timeSinceLevelLoad);
         ChangeScorre(scorre);
-        GameDataStorage.SaveScore(Score, ScorePerSecond, _scoreFactor);
+        GameDataStorage.SaveScore(Score, ScorePerSecond, _increaseTime);
     }
 
     public void ReductionScorre(int scorre) => ChangeScorre(scorre * -1);
 
     public float GetScorre(float time)
     {
-        return time * _scoreFactor;
+        return Mathf.CeilToInt(time / _increaseTime);
     }
 
     public void Upgrade(float value)
     {
-        _scoreFactor *= value;
+        //_scoreFactor *= value;
+        _increaseTime *= value;
     }
 
     private void ChangeScorre(float score)
     {
         Score += score;
         _scoreDrawer.Draw(_scoreFormConvert.GetConvertedScore(Score));
-        _scoreDrawer.DrawSpeed(_scoreFormConvert.GetConvertedScorrePerSecond(ScorePerSecond));
+        //_scoreDrawer.DrawSpeed(_scoreFormConvert.GetConvertedScorrePerSecond(ScorePerSecond));
     }
 
     public bool IsCanUpgrade()

@@ -14,7 +14,7 @@ public class ScoreUpgradeButton : ProductPanel
 
     private void Start()
     {
-        _nameViewer.text = _product.ActionObject.LevelName.ToUpper();
+        _nameViewer.text = _product.ActionObject.ObjectName.ToUpper();
         _productButton.onClick.AddListener(UpgradeScorre);
         _buttonImage = _productButton.GetComponent<Image>();
         _currentState = _productButton.interactable;
@@ -25,8 +25,8 @@ public class ScoreUpgradeButton : ProductPanel
         OpportunityBuy();
     }
 
-    public override void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, GameEconomy economy,
-        ScoreFormConverter scorreForm)
+    public override void AddListenerToButton(Action<IGeneratedBy> listener, UnityAction closePanel, UnityAction openConfirmPanel, Action<string> showCommercial,
+        GameEconomy economy, ScoreFormConverter scorreForm)
     {
         _economy = economy;
         _economy.PurchaseCompleted += ChangePrice;
@@ -43,6 +43,21 @@ public class ScoreUpgradeButton : ProductPanel
 
     private void UpgradeScorre()
     {
+        if (_isBuyWithCommercial)
+        {
+            var commercial = FindObjectOfType<RewardedVideoAds>();
+            commercial.UnityAdsDidFinish += AdsShown;
+            commercial.ShowRewardedVideo(true);
+        }
+        else
+            _economy.ScorreUpgrade(_product.ActionObject as UpgradeObject);
+
+    }
+
+    protected override void AdsShown()
+    {
+        var commercial = FindObjectOfType<RewardedVideoAds>();
+        commercial.UnityAdsDidFinish -= AdsShown;
         _economy.ScorreUpgrade(_product.ActionObject as UpgradeObject);
     }
 

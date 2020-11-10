@@ -84,6 +84,7 @@ MonoBehaviour:
   _scoreDrawer: {fileID: 0}
   _scoreFactor: 0
   _scoreFormConvert: {fileID: 0}
+  _increaseTime: 5
 --- !u!114 &3062255098257203796
 MonoBehaviour:
   m_ObjectHideFlags: 0

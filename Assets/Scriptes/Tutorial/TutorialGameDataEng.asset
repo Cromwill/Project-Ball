@@ -18,16 +18,4 @@ MonoBehaviour:
     Try to experiment!
   - Balls appear at the top line. They fall into the receiver and disappear. The
     longer the ball is falling, the more points you get.  Slow down the ball!
-  - To do this, press SHOP to access three sections
-  - "PHYSICAL OBJECTS section contains elements that block the ball\u2019s way"
-  - ACTIVE OBJECTS section contains ball boosters that can slow it down, accelerate
-    etc.
-  - "In SPAWNS AND BOOSTERS section you can:\r\n- select another ball spawning point
-    (the more the better)\r"
-  - "-reduce ball generation time by 0,1 sec. I know it\u2019s not much, but I don\u2019t
-    want you to finish the game too quickly!"
-  - '- increases scoring speed. Very useful. Use it more often'
-  - EXIT button does exactly what it should. Exits to the main menu!
-  - "Place some objects and observe how they affect the game. I hope you\u2019ll
-    enjoy the game and the process will calm you dawn."
-  - "Don\u2019t forget, you can delete all your saves anytime and start over."
+  - To do this, press SHOP...

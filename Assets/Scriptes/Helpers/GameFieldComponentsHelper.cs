@@ -13,16 +13,7 @@ class GameFieldComponentsHelper
     public LevelsFieldScore ScorePanel { get; set; }
 
 
-    public bool IsCanOpenLevel()
-    {
-        if (Seller.isCanBuy(Chooser.GetScoreSum()))
-        {
-            SelfAnimator.Play("OpeningGamePanel");
-            return true;
-        }
-        else
-            return false;
-    }
+    public bool IsCanOpenLevel() => Seller.isCanBuy(Chooser.GetScoreSum());
 
     public void OpenGameField(UnityAction action, Sprite openPanelSprite)
     {

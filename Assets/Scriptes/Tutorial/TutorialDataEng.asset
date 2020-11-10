@@ -14,13 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _messages:
   - Welcome to Project Ball!
-  - Let me show you how to play (if you have a dog, pet it first)
-  - There is a navigation bar at the top of your screen
-  - The CLEAN SAVE button erases all saves and starts a new game
-  - "The second button doesn\u2019t work because I wasn\u2019t payed for it"
+  - "Let me show you how to play. \nThere is a navigation bar at the top of your
+    screen"
+  - The CLEAN START button erases all saves and starts a new game
   - The third button shows you ads. After watching an ad you get points equal to
-    15 mins of playing time (you can pet your dog while waiting)
-  - Now look at the bottom bar. TOTAL shows your total points from all levels. You
-    can use them to buy playing fields.
-  - "Now, after petting your dog one more time, let\u2019s start the first level!"
-  - Press BUY and select the level.
+    15 mins of playing time.
+  - Press START and select the level.

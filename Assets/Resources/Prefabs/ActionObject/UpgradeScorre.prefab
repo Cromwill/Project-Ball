@@ -46,4 +46,4 @@ MonoBehaviour:
   _price: 50
   _name: Scoring booster
   _type: 4
-  _changingValue: 1.1
+  _changingValue: 0.95

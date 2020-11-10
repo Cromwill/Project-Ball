@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using UnityEngine;
-using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(LevelsShop))]
@@ -9,6 +8,8 @@ public class ChoseGameField : MonoBehaviour
     [SerializeField] private GameField[] _gameFields;
     [SerializeField] private RewardedVideoAds _videoAds;
     [SerializeField] private StartScreenScoreCounter _totalScoreCounter;
+    [SerializeField] private bool _isDebug;
+    [SerializeField] private int _adDisplayDelay;
 
     private bool _canLoadLevel;
     private int _currentLevelIndex;
@@ -68,17 +69,27 @@ public class ChoseGameField : MonoBehaviour
         }
     }
 
-    public float GetSleepTime() => _totalScoreCounter.GetSleepTimeSecond();
+    public float GetSleepTime() => _totalScoreCounter.GetSleepTime();
 
     public void LevelPlay(int levelIndex)
     {
         _currentLevelIndex = levelIndex;
         _canLoadLevel = true;
-        _videoAds.UnityAdsDidFinish += LevelLoad;
-        _videoAds.ShowRewardedVideo(true);
+        int count = GameDataStorage.NumberOfLaunches(levelIndex);
+
+
+        if (_isDebug || count <= _adDisplayDelay)
+        {
+            LevelLoad();
+        }
+        else
+        {
+            _videoAds.UnityAdsDidFinish += LevelLoad;
+            _videoAds.ShowRewardedVideo(true);
+        }
     }
 
-    private void LevelLoad(ShowResult result)
+    private void LevelLoad()
     {
         if (_canLoadLevel && _currentLevelIndex != 0)
         {

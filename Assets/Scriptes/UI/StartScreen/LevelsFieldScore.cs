@@ -50,7 +50,7 @@ public class LevelsFieldScore : MonoBehaviour
     private void Show()
     {
         AddScore(Time.deltaTime);
-        _scorePerSecondViewer.text = _scoreFormConverter.GetConvertedScorrePerSecond(_savedScore.ScorePerSecond);
+        //_scorePerSecondViewer.text = _scoreFormConverter.GetConvertedScorrePerSecond(_savedScore.ScorePerSecond);
         _scoreViewer.text = _scoreFormConverter.GetConvertedScore(_savedScore.Score);
         GameDataStorage.SaveScore(_levelName, _savedScore);
     }
