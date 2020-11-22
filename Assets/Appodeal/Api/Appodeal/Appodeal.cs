@@ -119,6 +119,7 @@ namespace AppodealAds.Unity.Api
 
         public static bool isLoaded(int adTypes)
         {
+            Debug.Log("isLoaded");
             return getInstance().isLoaded(adTypes);
         }
 

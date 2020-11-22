@@ -50,13 +50,12 @@ public class GreatePanel : MonoBehaviour
     {
         _productName = name;
         _commercial.UnityAdsDidFinish += OpeningProductPanel;
-        _commercial.ShowRewardedVideo(false);
+        _commercial.ShowInterstitial();
     }
 
     private void OpeningProductPanel()
     {
         _commercial.UnityAdsDidFinish -= OpeningProductPanel;
-        GameDataStorage.SaveOpenedProduct(_productName);
         _productPanels.Where(a => a.ProductName == _productName).First().OpenPanelAfterCommercialWathcing();
     }
 

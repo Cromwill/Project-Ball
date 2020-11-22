@@ -31,7 +31,7 @@ public class ProductPanel : MonoBehaviour
 
     private void Start()
     {
-        if (!_product.IsOpeningObject || GameDataStorage.IsProductOpened(_product.ActionObject.ObjectName))
+        if (!_product.IsOpeningObject)
         {
             _nameViewer.text = _product.ActionObject.ObjectName.ToUpper();
             _productButton.onClick.AddListener(OnChooseProduct);
@@ -43,7 +43,7 @@ public class ProductPanel : MonoBehaviour
 
         _currentState = _productButton.interactable;
         _buttonImage = _productButton.GetComponent<Image>();
-        _isPossibleToUse = _product.IsOpeningObject ? GameDataStorage.IsProductOpened(_product.ActionObject.ObjectName) : true;
+        _isPossibleToUse = _product.IsOpeningObject ? false : true;
     }
 
     private void Update()
@@ -123,6 +123,14 @@ public class ProductPanel : MonoBehaviour
         }
     }
 
+    protected void CloseCommertialPanelAfterPurchases()
+    {
+        _isPossibleToUse = false;
+        _productButton.onClick.RemoveAllListeners();
+        _productButton.onClick.AddListener(OnShowCommercial);
+        _nameViewer.text = _product.OpeningObjectText.ToUpper();
+    }
+
     protected void OnChooseProduct()
     {
         if (_isBuyWithCommercial)
@@ -130,6 +138,11 @@ public class ProductPanel : MonoBehaviour
             var commercial = FindObjectOfType<RewardedVideoAds>();
             commercial.UnityAdsDidFinish += AdsShown;
             commercial.ShowRewardedVideo(true);
+        }
+        else if(_product.IsOpeningObject && _isPossibleToUse)
+        {
+            _chooseProduct?.Invoke(_product);
+            CloseCommertialPanelAfterPurchases();
         }
         else
             _chooseProduct?.Invoke(_product);

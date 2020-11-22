@@ -39,12 +39,15 @@ public class ScoreCounter : MonoBehaviour, IUpgradeable
 
     public float GetScorre(float time)
     {
-        return Mathf.CeilToInt(time / _increaseTime);
+        float score = Mathf.CeilToInt(time / _increaseTime);
+
+        if (score < 1) score = 1;
+
+        return score;
     }
 
     public void Upgrade(float value)
     {
-        //_scoreFactor *= value;
         _increaseTime *= value;
     }
 
@@ -52,7 +55,6 @@ public class ScoreCounter : MonoBehaviour, IUpgradeable
     {
         Score += score;
         _scoreDrawer.Draw(_scoreFormConvert.GetConvertedScore(Score));
-        //_scoreDrawer.DrawSpeed(_scoreFormConvert.GetConvertedScorrePerSecond(ScorePerSecond));
     }
 
     public bool IsCanUpgrade()

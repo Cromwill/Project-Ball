@@ -31,7 +31,12 @@ public class StartScreenTopPanel : MonoBehaviour
         SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 
-    public void StartAds()
+    public void LoadTestScene()
+    {
+        SceneManager.LoadScene(7);
+    }
+
+    public void StartAds(int addSecond)
     {
         _videoAds.UnityAdsDidFinish += AdsResult;
         _videoAds.ShowRewardedVideo(false);
