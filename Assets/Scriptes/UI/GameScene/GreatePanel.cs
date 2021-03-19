@@ -65,11 +65,16 @@ public class GreatePanel : MonoBehaviour
 
         if (IsActionObject(sendableObjectType))
         {
-            _commercial.ShowInterstitial();
+            if (!(actionObject as ActionObjectScriptableObject).IsOpeningObject)
+                _commercial.ShowInterstitial();
+
             _actionObjectSpawner.SetObjectOnScene(actionObject);
         }
         else if (IsSpawnObject(sendableObjectType))
+        {
+            //_commercial.ShowRewardedVideo(false);
             _spawnObjectSpawner.SetObjectOnScene(actionObject);
+        }
     }
 
     private bool IsActionObject(ActionObjectType type)

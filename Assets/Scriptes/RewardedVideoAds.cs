@@ -10,6 +10,8 @@ public class RewardedVideoAds : MonoBehaviour, IInterstitialAdListener, IRewarde
     [SerializeField] private bool _isUnityPlayMod;
     [SerializeField] private string _selectedObjectAtShopPlacement;
 
+    private bool _isAdsFinished = false;
+
     public event Action UnityAdsDidFinish;
     public bool IsRewardedReady => _isUnityPlayMod? true : Appodeal.isLoaded(Appodeal.REWARDED_VIDEO);
     public bool IsInterstitialReady => _isUnityPlayMod ? true : Appodeal.canShow(Appodeal.INTERSTITIAL);
@@ -18,12 +20,18 @@ public class RewardedVideoAds : MonoBehaviour, IInterstitialAdListener, IRewarde
         Initialize(_isTestAds);
     }
 
-    public void ShowRewardedVideo(bool isCanSkipAds)
+    private void Update()
     {
-        if(_isUnityPlayMod)
+        if(_isAdsFinished)
         {
             UnityAdsDidFinish?.Invoke();
+            _isAdsFinished = false;
         }
+
+    }
+
+    public void ShowRewardedVideo(bool isCanSkipAds)
+    {
         if (Appodeal.isLoaded(Appodeal.REWARDED_VIDEO))
         {
             Appodeal.show(Appodeal.REWARDED_VIDEO);
@@ -32,15 +40,12 @@ public class RewardedVideoAds : MonoBehaviour, IInterstitialAdListener, IRewarde
 
     public void ShowInterstitial()
     {
-        if (_isUnityPlayMod)
-        {
-            UnityAdsDidFinish?.Invoke();
-        }
+        //if (Appodeal.canShow(Appodeal.INTERSTITIAL, _selectedObjectAtShopPlacement))
+        //{
+        //    Appodeal.show(Appodeal.INTERSTITIAL, _selectedObjectAtShopPlacement);
+        //}
 
-        if (Appodeal.canShow(Appodeal.INTERSTITIAL, _selectedObjectAtShopPlacement))
-        {
-            Appodeal.show(Appodeal.INTERSTITIAL, _selectedObjectAtShopPlacement);
-        }
+        ShowRewardedVideo(true);
     }
     #region INTERSTITIAL
     public void onInterstitialLoaded(bool isPrecache)
@@ -50,17 +55,17 @@ public class RewardedVideoAds : MonoBehaviour, IInterstitialAdListener, IRewarde
 
     public void onInterstitialFailedToLoad()
     {
-        UnityAdsDidFinish?.Invoke();
+        _isAdsFinished = true;
     }
 
     public void onInterstitialShowFailed()
     {
-        UnityAdsDidFinish?.Invoke();
+        _isAdsFinished = true;
     }
 
     public void onInterstitialShown()
     {
-        UnityAdsDidFinish?.Invoke();
+        _isAdsFinished = true;
     }
 
     public void onInterstitialClosed()
@@ -98,12 +103,12 @@ public class RewardedVideoAds : MonoBehaviour, IInterstitialAdListener, IRewarde
 
     public void onRewardedVideoShown()
     {
-        UnityAdsDidFinish?.Invoke();
+        //_isAdsFinished = true;
     }
 
     public void onRewardedVideoFinished(double amount, string name)
     {
-        UnityAdsDidFinish?.Invoke();
+        _isAdsFinished = true;
     }
 
     public void onRewardedVideoClosed(bool finished)
@@ -118,7 +123,7 @@ public class RewardedVideoAds : MonoBehaviour, IInterstitialAdListener, IRewarde
 
     public void onRewardedVideoClicked()
     {
-        
+        FindObjectOfType<FBHelper>().AddClick("rewarded");
     }
 
     #endregion

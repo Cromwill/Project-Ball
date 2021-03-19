@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialViewer : MonoBehaviour
@@ -17,6 +16,7 @@ public class TutorialViewer : MonoBehaviour
     private void OnTutorialFinished()
     {
         PlayerPrefs.SetInt(_saveKey, 1);
+        FindObjectOfType<FBHelper>().LogCompletedTutorialEvent("tutorial", true);
     }
 
     private IEnumerator FirstShowTutorialPanel()
